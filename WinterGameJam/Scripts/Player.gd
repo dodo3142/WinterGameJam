@@ -2,8 +2,6 @@ extends KinematicBody2D
 
 signal Grounded_Update(isGrounded)
 
-enum PlayerState {GROUND, AIR, DAMAGE, DEAD}
-
 #movement
 export var Speed = 300
 export var JumpForce=-800
@@ -13,10 +11,6 @@ export var MaxFallSpeed = 800
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
-
-#states
-var state = PlayerState.GROUND
-var prev_state = PlayerState.GROUND
 
 #boolens
 var canJump = false
@@ -64,19 +58,6 @@ func _physics_process(delta):
 	
 	#move the player
 	velocity = move_and_slide(velocity,Vector2.UP)
-	
-	# state machine
-	match state:
-		PlayerState.GROUND:
-			pass
-
-		PlayerState.AIR:
-			pass
-
-# change state logic
-func change_state(new_state):
-	prev_state = state
-	state = new_state
 
 func Movement():
 	#get input dir
@@ -126,8 +107,9 @@ func _on_JumpBuffring_timeout():
 	tryingtoJump = false
 
 #put Boomerang every beat
-#func _on_BeatTimer_timeout():
-#	var b = Boomerang.instance()
-#	var BoomGoal = $Sprite/BoomerangGoal.global_position
-#	b.Goal = BoomGoal
-#	add_child(b)
+func _on_BeatTimer_timeout():
+	pass
+	#var b = Boomerang.instance()
+	#var BoomGoal = $Sprite/BoomerangGoal.global_position
+	#b.Goal = BoomGoal
+	#add_child(b)
