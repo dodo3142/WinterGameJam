@@ -40,7 +40,7 @@ func _physics_process(delta):
 	
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
-	
+	print(velocity)
 	move_and_slide(velocity,Vector2.UP)
 
 func Movement():
@@ -67,10 +67,12 @@ func Jumping():
 		tryingtoJump = false
 
 func Gravity(delta):
-	if velocity.y >= 0 and velocity.y < MaxFallSpeed:
+	if velocity.y >= 0 and velocity.y < MaxFallSpeed and !is_on_floor():
 		velocity.y += FallGravity * delta
 	elif velocity.y < 0:
 		velocity.y += JumpGravity * delta
+	elif is_on_floor():
+		velocity.y = 0
 
 func _on_CoyoteTimer_timeout():
 	canJump = false
