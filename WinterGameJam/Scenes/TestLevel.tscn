@@ -87,3 +87,10 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D7"]
 texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 159.0
+margin_top = -214.0
+margin_right = 227.0
+margin_bottom = -200.0
+text = "dasdasdsA"

@@ -87,9 +87,7 @@ func Jumping():
 	#variableJump
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y = velocity.y * JumpStopMul
-	
-	if Input.is_action_just_released("Jump"):
-		tryingtoJump = false
+
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
