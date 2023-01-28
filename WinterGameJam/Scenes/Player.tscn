@@ -10,8 +10,6 @@ extents = Vector2( 32, 31.5 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 JumpForce = -1000
-friction = 1.0
-acceleration = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
