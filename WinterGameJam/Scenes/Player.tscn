@@ -9,7 +9,7 @@ extents = Vector2( 32, 31.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-JumpForce = -1200
+JumpForce = -1000
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -40,5 +40,6 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[connection signal="Grounded_Update" from="." to="Sprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
