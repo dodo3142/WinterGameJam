@@ -28,6 +28,9 @@ drag_margin_bottom = 0.0
 editor_draw_drag_margin = true
 script = ExtResource( 3 )
 
+[node name="RayCast2D" type="RayCast2D" parent="Sprite"]
+cast_to = Vector2( 66, 1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -0.5 )
 shape = SubResource( 1 )
