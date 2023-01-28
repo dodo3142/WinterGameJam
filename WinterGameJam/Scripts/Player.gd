@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 signal Grounded_Update(isGrounded)
 
+enum PlayerState {GROUND, AIR, DAMAGE, DEAD}
+
 export var Speed = 300
 export var JumpForce=-800
 export var FallGravity= 2500
@@ -10,6 +12,9 @@ export var MaxFallSpeed = 800
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
+
+var state = PlayerState.GROUND
+var prev_state = PlayerState.GROUND
 
 var canJump = false
 var tryingtoJump= false
@@ -43,6 +48,19 @@ func _physics_process(delta):
 	print(velocity)
 	
 	velocity = move_and_slide(velocity,Vector2.UP)
+	
+	# state machine
+	match state:
+		PlayerState.GROUND:
+			pass
+
+		PlayerState.AIR:
+			pass
+
+# change state logic
+func change_state(new_state):
+	prev_state = state
+	state = new_state
 
 func Movement():
 	HorizontalDir= Input.get_action_strength("Right")-Input.get_action_strength("Left")
