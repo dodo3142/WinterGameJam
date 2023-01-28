@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,10 +7,22 @@
 extents = Vector2( 85.1667, 31 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 85.1667, 31 )
+extents = Vector2( 114.667, 31 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30.0833, 31 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 22.1667, 31 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 51.5, 268 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 28.1667, 175.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 28.1667, 97 )
 
 [node name="TestLevel" type="Node2D"]
 
@@ -20,7 +32,7 @@ position = Vector2( -52, -189 )
 [node name="blocks" type="Node2D" parent="."]
 
 [node name="block" type="StaticBody2D" parent="blocks"]
-position = Vector2( 0, -1 )
+position = Vector2( 0, -21 )
 scale = Vector2( 6, 1 )
 __meta__ = {
 "_edit_group_": true
@@ -78,13 +90,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block4"]
-position = Vector2( 5.5, 0 )
+position = Vector2( 35, 0 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="blocks/block4"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 5.58333, 0 )
-scale = Vector2( 2.65365, 1 )
+position = Vector2( 35.0833, 0 )
+scale = Vector2( 3.57552, 1 )
 texture = ExtResource( 2 )
 
 [node name="block5" type="StaticBody2D" parent="blocks"]
@@ -102,4 +114,123 @@ shape = SubResource( 3 )
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -49.6667, 0 )
 scale = Vector2( 0.927083, 1 )
+texture = ExtResource( 2 )
+
+[node name="block6" type="StaticBody2D" parent="blocks"]
+position = Vector2( -1162, 620 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block6"]
+position = Vector2( -49.5833, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block6"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -49.6667, 0 )
+scale = Vector2( 0.927083, 1 )
+texture = ExtResource( 2 )
+
+[node name="block7" type="StaticBody2D" parent="blocks"]
+position = Vector2( -1647, 468 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block7"]
+position = Vector2( -49.5833, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block7"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -49.6667, 0 )
+scale = Vector2( 0.927083, 1 )
+texture = ExtResource( 2 )
+
+[node name="block12" type="StaticBody2D" parent="blocks"]
+position = Vector2( 1820, 176 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block12"]
+position = Vector2( -57.5, 0 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block12"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -57.5, 0 )
+scale = Vector2( 0.682292, 1 )
+texture = ExtResource( 2 )
+
+[node name="block8" type="StaticBody2D" parent="blocks"]
+position = Vector2( -1122, 300 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block8"]
+position = Vector2( -49.5833, 0 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block8"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -49.6667, 0 )
+scale = Vector2( 0.927083, 1 )
+texture = ExtResource( 2 )
+
+[node name="block9" type="StaticBody2D" parent="blocks"]
+position = Vector2( 2273, 260 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block9"]
+position = Vector2( -28.1667, 237 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block9"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -27.0833, 236.5 )
+scale = Vector2( 1.63281, 8.39063 )
+texture = ExtResource( 2 )
+
+[node name="block10" type="StaticBody2D" parent="blocks"]
+position = Vector2( 1934, 258 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block10"]
+position = Vector2( -51.5, 329.5 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block10"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -51.1667, 330.5 )
+scale = Vector2( 0.880208, 5.45312 )
+texture = ExtResource( 2 )
+
+[node name="block11" type="StaticBody2D" parent="blocks"]
+position = Vector2( 1596, 258 )
+scale = Vector2( 6, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/block11"]
+position = Vector2( -51.5, 408 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="blocks/block11"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -51.1667, 408.5 )
+scale = Vector2( 0.880208, 3.01563 )
 texture = ExtResource( 2 )
