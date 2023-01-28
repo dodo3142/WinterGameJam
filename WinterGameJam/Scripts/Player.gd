@@ -27,11 +27,12 @@ onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 
 func _process(delta):
+	#when player can jump
 	if is_on_floor():
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
-	
+	#flip playersprite when changing dir
 	if HorizontalDir !=0:
 		PlayerSprite.scale.x = HorizontalDir
 
@@ -40,13 +41,13 @@ func _physics_process(delta):
 	Jumping()
 	Gravity(delta)
 	
+	#give camera when is player is grounded
 	var wasGrounded = isGrounded
 	isGrounded = is_on_floor()
-	
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
-	print(velocity)
 	
+	#move the player
 	velocity = move_and_slide(velocity,Vector2.UP)
 	
 	# state machine
@@ -63,22 +64,27 @@ func change_state(new_state):
 	state = new_state
 
 func Movement():
+	#get input dir
 	HorizontalDir= Input.get_action_strength("Right")-Input.get_action_strength("Left")
+	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
 func Jumping():
+	#start jump buffring when player press jump
 	if Input.is_action_just_pressed("Jump"):
 		tryingtoJump = true
 		JumpBuffring.start()
 	
+	#jumping
 	if tryingtoJump:
 		if canJump:
 			velocity.y = JumpForce
 			canJump = false
 	
+	#variableJump
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y = velocity.y * JumpStopMul
 	
@@ -86,6 +92,7 @@ func Jumping():
 		tryingtoJump = false
 
 func Gravity(delta):
+	#gravity whenfalling and when jumping 
 	if velocity.y >= 0 and velocity.y < MaxFallSpeed and !is_on_floor():
 		velocity.y += FallGravity * delta
 	elif velocity.y < 0:
