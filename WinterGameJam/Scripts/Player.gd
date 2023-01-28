@@ -18,6 +18,7 @@ var prev_state = PlayerState.GROUND
 
 var canJump = false
 var tryingtoJump= false
+var JumpButtonrelesed = true
 var isGrounded
 
 var HorizontalDir = Vector2.ZERO
@@ -73,10 +74,16 @@ func Movement():
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
 func Jumping():
+	
+	
+	
 	#start jump buffring when player press jump
 	if Input.is_action_just_pressed("Jump"):
+		JumpButtonrelesed = false
 		tryingtoJump = true
 		JumpBuffring.start()
+	if Input.is_action_just_released("Jump"):
+		JumpButtonrelesed = true
 	
 	#jumping
 	if tryingtoJump:
@@ -85,8 +92,9 @@ func Jumping():
 			canJump = false
 	
 	#variableJump
-	if Input.is_action_just_released("Jump") and velocity.y < 0:
+	if JumpButtonrelesed and velocity.y < 0:
 		velocity.y = velocity.y * JumpStopMul
+		JumpButtonrelesed = false
 
 
 func Gravity(delta):
