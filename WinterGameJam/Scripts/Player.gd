@@ -41,7 +41,7 @@ func _physics_process(delta):
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
 	print(velocity)
-	move_and_slide(velocity,Vector2.UP)
+	velocity = move_and_slide(velocity,Vector2.UP)
 
 func Movement():
 	HorizontalDir= Input.get_action_strength("Right")-Input.get_action_strength("Left")
