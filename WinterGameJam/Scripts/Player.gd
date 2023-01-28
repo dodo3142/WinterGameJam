@@ -4,6 +4,7 @@ signal Grounded_Update(isGrounded)
 
 enum PlayerState {GROUND, AIR, DAMAGE, DEAD}
 
+#movement
 export var Speed = 300
 export var JumpForce=-800
 export var FallGravity= 2500
@@ -13,19 +14,25 @@ export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
 
+#states
 var state = PlayerState.GROUND
 var prev_state = PlayerState.GROUND
 
+#boolens
 var canJump = false
 var tryingtoJump= false
 var JumpButtonrelesed = true
 var isGrounded
 
+#Directions
 var HorizontalDir = Vector2.ZERO
 var velocity = Vector2.ZERO
+
+#get the nodes and scenes
 onready var PlayerSprite = $Sprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
+onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 func _process(delta):
 	#when player can jump
@@ -36,6 +43,13 @@ func _process(delta):
 	#flip playersprite when changing dir
 	if HorizontalDir !=0:
 		PlayerSprite.scale.x = HorizontalDir
+	
+	if Input.is_action_just_pressed("Attack"):
+		var b = Boomerang.instance()
+		var BoomGoal = $Sprite/BoomerangGoal.global_position
+		b.Goal = BoomGoal
+		add_child(b)
+
 
 func _physics_process(delta):
 	Movement()
@@ -75,8 +89,6 @@ func Movement():
 
 func Jumping():
 	
-	
-	
 	#start jump buffring when player press jump
 	if Input.is_action_just_pressed("Jump"):
 		JumpButtonrelesed = false
@@ -112,3 +124,10 @@ func _on_CoyoteTimer_timeout():
 
 func _on_JumpBuffring_timeout():
 	tryingtoJump = false
+
+#put Boomerang every beat
+#func _on_BeatTimer_timeout():
+#	var b = Boomerang.instance()
+#	var BoomGoal = $Sprite/BoomerangGoal.global_position
+#	b.Goal = BoomGoal
+#	add_child(b)
