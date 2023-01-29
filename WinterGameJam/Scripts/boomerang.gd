@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+
+export var Damage = 30
+
 onready var Player = get_parent()
 var Dir = 1
 export var Speed = 300
@@ -36,6 +39,9 @@ func _physics_process(delta):
 
 
 func _on_Area2D_area_entered(area):
+	if area.is_in_group("Enemy"):
+		area.TakeDamage(Damage);
+	
 	if IsComingBack:
 		if area.is_in_group("Player"):
 			queue_free()
