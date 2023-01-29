@@ -55,7 +55,7 @@ func _physics_process(delta):
 
 func Movement():
 	#get input dir
-	HorizontalDir= Input.get_action_strength("Right")-Input.get_action_strength("Left")
+	HorizontalDir = Input.get_action_strength("Right")-Input.get_action_strength("Left")
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
