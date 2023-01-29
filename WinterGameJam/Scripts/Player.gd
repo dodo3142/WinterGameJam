@@ -22,13 +22,13 @@ var isGrounded
 #Directions
 var HorizontalDir = Vector2.ZERO
 var velocity = Vector2.ZERO
-var create = true
 
 #get the nodes and scenes
 onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var Anim = $AnimationPlayer
+onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 func _process(_delta):
@@ -98,12 +98,9 @@ func Jumping():
 func Attack():
 	if Input.is_action_just_pressed("Attack"):
 			var b = Boomerang.instance()
-			if PlayerSprite.scale.x > 0:
-				b.Dir = 1
-			elif PlayerSprite.scale.x < 0:
-				b.Dir = -1 
+			b.Hand = Hand
 			add_child(b)
-			create = false
+
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
