@@ -90,7 +90,10 @@ func Jumping():
 func Attack():
 	if Input.is_action_just_pressed("Attack"):
 			var b = Boomerang.instance()
-			b.Dir = HorizontalDir
+			if PlayerSprite.scale.x > 0:
+				b.Dir = 1
+			elif PlayerSprite.scale.x < 0:
+				b.Dir = -1 
 			add_child(b)
 			create = false
 
