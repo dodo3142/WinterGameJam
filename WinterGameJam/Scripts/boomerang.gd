@@ -1,8 +1,11 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 onready var Player = get_parent()
-export var rotationspeed = 10
-var Goal = Vector2.ZERO
+var Dir = 1
+export var Speed = 300
+export var Goaccl = 100
+export var Backaccl = 100
+var velocity = Vector2.ZERO
 var IsComingBack = false
 
 
@@ -15,23 +18,25 @@ func _ready():
 	main_scene.add_child(self)
 	self.set_owner(main_scene)
 	
-	#go to it's goal
-	var tween = get_node("Tween")
-	tween.interpolate_property($".", "position", position, Goal, 0.5, Tween.TRANS_EXPO, Tween.EASE_IN)
-	tween.start()
+
 
 
 func _process(_delta):
-	#go back to the player
-	if IsComingBack:
-		var tween = get_node("Tween")
-		tween.interpolate_property($".", "position", position, Player.global_position, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
-		tween.start()
+	pass
 
-func _on_ComeBackTimer_timeout():
-	IsComingBack = true
-
-
+func _physics_process(delta):
+	if IsComingBack == false:
+		Speed = Speed - Goaccl*delta
+		velocity.x = Dir*Speed
+		print(velocity.x)
+		if velocity.x <= 0:
+			IsComingBack = true
+	elif IsComingBack == true:
+		Speed = Speed + Backaccl*delta
+		print(Speed)
+		velocity = position.direction_to(Player.position)* Speed
+	
+	velocity = move_and_slide(velocity,Vector2.UP)
 
 func _on_Area2D_area_entered(area):
 	if IsComingBack:

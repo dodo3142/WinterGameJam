@@ -27,7 +27,7 @@ var create = true
 onready var PlayerSprite = $Sprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
-onready var Boomerang = preload("res://Scenes/Mildarang.tscn")
+onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 func _process(_delta):
 	#when player can jump
@@ -88,10 +88,9 @@ func Jumping():
 		JumpButtonrelesed = false
 
 func Attack():
-	if Input.is_action_just_pressed("Attack") && create:
+	if Input.is_action_just_pressed("Attack"):
 			var b = Boomerang.instance()
-			var BoomGoal = $Sprite/BoomerangGoal.global_position
-			#b.Goal = BoomGoal
+			b.Dir = HorizontalDir
 			add_child(b)
 			create = false
 
@@ -112,7 +111,4 @@ func _on_JumpBuffring_timeout():
 #put Boomerang every beat
 func _on_BeatTimer_timeout():
 	pass
-	#var b = Boomerang.instance()
-	#var BoomGoal = $Sprite/BoomerangGoal.global_position
-	#b.Goal = BoomGoal
-	#add_child(b)
+
