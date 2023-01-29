@@ -18,7 +18,6 @@ export var rotationSpeed = 0.5
 export var Speed = 300
 export var Goaccl = 100
 export var Backaccl = 100
-export var Missiedaccl = 200
 export var Gravity = 250
 var velocity = Vector2.ZERO
 var IsComingBack = false
