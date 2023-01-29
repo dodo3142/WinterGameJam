@@ -25,7 +25,7 @@ var velocity = Vector2.ZERO
 var create = true
 
 #get the nodes and scenes
-onready var PlayerSprite = $Sprite
+onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var Anim = $AnimationPlayer
