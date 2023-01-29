@@ -9,6 +9,8 @@ var state = Flying
 
 export var Damage = 30
 
+onready var stuckTimer = $StuckTimer
+export var StuckTime = 0.1
 onready var Player = get_parent()
 var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
@@ -51,6 +53,8 @@ func _physics_process(delta):
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info != null and state == Flying:
 		state=ComingBack
+	elif collision_info != null and state == ComingBack and stuckTimer.time_left == 0:
+		stuckTimer.start(StuckTime)
 	elif collision_info != null and state == Missed:
 		velocity.x = 0
 		rotationSpeed = 0
@@ -65,3 +69,7 @@ func _on_Area2D_area_entered(area):
 	if state == ComingBack:
 		if area.is_in_group("Player"):
 			state = Missed
+
+
+func _on_StuckTimer_timeout():
+	state= Missed
