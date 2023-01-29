@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clipart220566.png-35deb92de80c4400c7b49403c89751b5.stex"
+path="res://.import/boomerang.png-3894922559e8e2cf387cf862ac4ba6ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://clipart220566.png"
-dest_files=[ "res://.import/clipart220566.png-35deb92de80c4400c7b49403c89751b5.stex" ]
+source_file="res://Assets/boomerang.png"
+dest_files=[ "res://.import/boomerang.png-3894922559e8e2cf387cf862ac4ba6ed.stex" ]
 
 [params]
 

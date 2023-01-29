@@ -8,7 +8,7 @@ onready var HealthText = $Health
 func _ready():
 	HealthText.text = Health as String
 
-func _process(delta):
+func _process(_delta):
 	if Health <= 0:
 		queue_free()
 

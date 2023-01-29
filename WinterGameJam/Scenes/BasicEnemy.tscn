@@ -8,7 +8,7 @@
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 33, 33 )
+extents = Vector2( 32, 32 )
 
 [node name="BasicEnemy" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 1 )
@@ -17,6 +17,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0, 0.694118, 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" type="Label" parent="."]
@@ -32,4 +33,5 @@ valign = 1
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 2 )

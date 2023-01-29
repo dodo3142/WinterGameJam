@@ -37,6 +37,7 @@ func _process(_delta):
 		CoyoteJump.start()
 
 	Attack()
+	
 
 
 func _physics_process(delta):
