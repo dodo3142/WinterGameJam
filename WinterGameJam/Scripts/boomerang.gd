@@ -45,7 +45,6 @@ func _physics_process(delta):
 			velocity = position.direction_to(Hand.global_position)* Speed
 		Missed:
 			velocity.y = velocity.y + Gravity * delta
-			print(velocity.y)
 	
 	velocity = move_and_slide(velocity,Vector2.UP)
 
