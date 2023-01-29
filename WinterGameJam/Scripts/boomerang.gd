@@ -12,6 +12,7 @@ export var Damage = 30
 onready var Player = get_parent()
 var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
+export var rotationSpeed = 0.5
 export var Speed = 300
 export var Goaccl = 100
 export var Backaccl = 100
@@ -31,7 +32,8 @@ func _ready():
 	self.set_owner(main_scene)
 
 func _process(_delta):
-	rotate(0.5)
+	
+	rotate(rotationSpeed)
 
 func _physics_process(delta):
 	match state:
@@ -46,7 +48,13 @@ func _physics_process(delta):
 		Missed:
 			velocity.y = velocity.y + Gravity * delta
 	
-	velocity = move_and_slide(velocity,Vector2.UP)
+	var collision_info = move_and_collide(velocity * delta)
+	if collision_info != null and state == Flying:
+		state=ComingBack
+	elif collision_info != null and state == Missed:
+		velocity.x = 0
+		rotationSpeed = 0
+
 
 
 

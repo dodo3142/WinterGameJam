@@ -53,6 +53,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+collision_mask = 8
 script = ExtResource( 2 )
 Speed = 500
 JumpForce = -1000
