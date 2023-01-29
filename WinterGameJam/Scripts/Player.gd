@@ -13,6 +13,7 @@ export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
 
 #boolens
+var canFlip =true
 var canJump = false
 var tryingtoJump= false
 var JumpButtonrelesed = true
@@ -27,6 +28,7 @@ var create = true
 onready var PlayerSprite = $Sprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
+onready var Anim = $AnimationPlayer
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 func _process(_delta):
@@ -35,24 +37,29 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
-
-	Attack()
 	
+	Attack()
+
 
 
 func _physics_process(delta):
+	#move the player
 	Movement()
 	Jumping()
 	Gravity(delta)
+	velocity = move_and_slide(velocity,Vector2.UP)
 	
 	#give camera when is player is grounded
-	var wasGrounded = isGrounded
-	isGrounded = is_on_floor()
-	if wasGrounded == null || isGrounded != wasGrounded:
-		emit_signal("Grounded_Update",isGrounded)
+	CameraUpdate()
 	
-	#move the player
-	velocity = move_and_slide(velocity,Vector2.UP)
+	#flip the player sprite
+	if HorizontalDir != 0:
+		if HorizontalDir == 1:
+			PlayerSprite.scale.x = abs(PlayerSprite.scale.x)
+		if HorizontalDir == -1:
+			PlayerSprite.scale.x = -abs(PlayerSprite.scale.x)
+
+
 
 func Movement():
 	#get input dir
@@ -60,10 +67,10 @@ func Movement():
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
-		#flip playersprite when changing dir
-		PlayerSprite.scale.x = HorizontalDir
+		Anim.play("Running")
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
+		Anim.play("Idle")
 
 func Jumping():
 	
@@ -105,14 +112,14 @@ func Gravity(delta):
 	elif velocity.y < 0:
 		velocity.y += JumpGravity * delta
 
+func CameraUpdate():
+	var wasGrounded = isGrounded
+	isGrounded = is_on_floor()
+	if wasGrounded == null || isGrounded != wasGrounded:
+		emit_signal("Grounded_Update",isGrounded)
+
 func _on_CoyoteTimer_timeout():
 	canJump = false
 
-
 func _on_JumpBuffring_timeout():
 	tryingtoJump = false
-
-#put Boomerang every beat
-func _on_BeatTimer_timeout():
-	pass
-

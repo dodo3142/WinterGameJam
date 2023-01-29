@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15, 15 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 21.095
 
 [node name="Boomerang" type="KinematicBody2D" groups=["Weapon"]]
 collision_layer = 0
