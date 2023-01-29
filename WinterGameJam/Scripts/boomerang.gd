@@ -21,7 +21,7 @@ func _ready():
 	tween.start()
 
 
-func _process(delta):
+func _process(_delta):
 	#go back to the player
 	if IsComingBack:
 		var tween = get_node("Tween")

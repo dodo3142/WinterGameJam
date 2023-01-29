@@ -21,14 +21,15 @@ var isGrounded
 #Directions
 var HorizontalDir = Vector2.ZERO
 var velocity = Vector2.ZERO
+var create = true
 
 #get the nodes and scenes
 onready var PlayerSprite = $Sprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
-onready var Boomerang = preload("res://Scenes/boomerang.tscn")
+onready var Boomerang = preload("res://Scenes/Mildarang.tscn")
 
-func _process(delta):
+func _process(_delta):
 	#when player can jump
 	if is_on_floor():
 		canJump = true
@@ -38,11 +39,7 @@ func _process(delta):
 	if HorizontalDir !=0:
 		PlayerSprite.scale.x = HorizontalDir
 	
-	if Input.is_action_just_pressed("Attack"):
-		var b = Boomerang.instance()
-		var BoomGoal = $Sprite/BoomerangGoal.global_position
-		b.Goal = BoomGoal
-		add_child(b)
+	Attack()
 
 
 func _physics_process(delta):
@@ -91,6 +88,13 @@ func Jumping():
 		velocity.y = velocity.y * JumpStopMul
 		JumpButtonrelesed = false
 
+func Attack():
+	if Input.is_action_just_pressed("Attack") && create:
+			var b = Boomerang.instance()
+			var BoomGoal = $Sprite/BoomerangGoal.global_position
+			#b.Goal = BoomGoal
+			add_child(b)
+			create = false
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
