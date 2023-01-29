@@ -17,9 +17,6 @@ func _ready():
 	get_parent().remove_child(self)
 	main_scene.add_child(self)
 	self.set_owner(main_scene)
-	
-
-
 
 func _process(_delta):
 	rotate(0.5)
