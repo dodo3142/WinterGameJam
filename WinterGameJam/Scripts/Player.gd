@@ -35,10 +35,7 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
-	#flip playersprite when changing dir
-	if HorizontalDir !=0:
-		PlayerSprite.scale.x = HorizontalDir
-	
+
 	Attack()
 
 
@@ -62,6 +59,8 @@ func Movement():
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
+		#flip playersprite when changing dir
+		PlayerSprite.scale.x = HorizontalDir
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
