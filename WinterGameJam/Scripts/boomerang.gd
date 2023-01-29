@@ -22,21 +22,21 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	rotate(0.5)
 
 func _physics_process(delta):
 	if IsComingBack == false:
 		Speed = Speed - Goaccl*delta
 		velocity.x = Dir*Speed
-		print(velocity.x)
-		if velocity.x <= 0:
+		if Speed <= 0:
 			IsComingBack = true
 	elif IsComingBack == true:
 		Speed = Speed + Backaccl*delta
-		print(Speed)
 		velocity = position.direction_to(Player.position)* Speed
 	
 	velocity = move_and_slide(velocity,Vector2.UP)
+
+
 
 func _on_Area2D_area_entered(area):
 	if IsComingBack:
