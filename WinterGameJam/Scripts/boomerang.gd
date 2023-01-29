@@ -15,6 +15,8 @@ onready var Dir = position.direction_to(get_local_mouse_position())
 export var Speed = 300
 export var Goaccl = 100
 export var Backaccl = 100
+export var Missiedaccl = 200
+export var Gravity = 250
 var velocity = Vector2.ZERO
 var IsComingBack = false
 
@@ -32,7 +34,6 @@ func _process(_delta):
 	rotate(0.5)
 
 func _physics_process(delta):
-	print(state)
 	match state:
 		Flying:
 			Speed = Speed - Goaccl*delta
@@ -43,7 +44,8 @@ func _physics_process(delta):
 			Speed = Speed + Backaccl*delta
 			velocity = position.direction_to(Hand.global_position)* Speed
 		Missed:
-			velocity = velocity - Backaccl*delta
+			velocity.y = velocity.y + Gravity * delta
+			print(velocity.y)
 	
 	velocity = move_and_slide(velocity,Vector2.UP)
 
