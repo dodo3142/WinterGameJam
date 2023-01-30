@@ -60,7 +60,7 @@ func _physics_process(delta):
 	var collision_info = move_and_collide(Velocity * delta)
 	#what to do when it collide
 	if collision_info != null and state == Flying:
-		Speed = 10
+		Speed = Speed / 4
 		state=ComingBack
 	elif collision_info != null and state == ComingBack and stuckTimer.time_left == 0:
 		stuckTimer.start(StuckTime)
