@@ -18,7 +18,7 @@ var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
 export var rotationSpeed = 0.5
 export var Speed = 300
-export var PlayerSpeedModi= 300
+export var PlayerSpeedModi= 100
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
@@ -26,9 +26,11 @@ onready var velocity = Vector2.ZERO
 
 
 func _ready():
-	if Player.velocity.x in range(-1,1) : 
-		print("hi")
+	#add the player vel to the boomerang
+	if Player.velocity.x < -1 or Player.velocity.x > 1 : 
 		Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
+	print(Speed)
+	
 	#leave the player
 	var root = get_tree().root
 	var main_scene = root.get_child(root.get_child_count() - 1)
@@ -59,9 +61,12 @@ func _physics_process(delta):
 	var collision_info = move_and_collide(velocity * delta)
 	#what to do when it collide
 	if collision_info != null and state == Flying:
+		Speed = 10
 		state=ComingBack
 	elif collision_info != null and state == ComingBack and stuckTimer.time_left == 0:
 		stuckTimer.start(StuckTime)
+	elif collision_info == null and state == ComingBack and stuckTimer.time_left > 0:
+		stuckTimer.stop()
 	elif collision_info != null and state == Missed:
 		velocity.x = 0
 		rotationSpeed = 0
