@@ -29,7 +29,6 @@ onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var CatchTimer = $CatchTimer
-onready var Anim = $AnimationPlayer
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
@@ -71,10 +70,10 @@ func Movement():
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
-		Anim.play("Running")
+		PlayerSprite.play("Running")
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
-		Anim.play("Idle")
+		PlayerSprite.play("Idle")
 
 func Jumping():
 	
@@ -101,13 +100,15 @@ func Jumping():
 
 func Attack():
 	if Input.is_action_just_pressed("Attack") && BoomerangCount > 0:
-			var b = Boomerang.instance()
-			b.Hand = Hand
-			add_child(b)
-			BoomerangCount -= 1
+		Hand.play("Throw")
+		var b = Boomerang.instance()
+		b.Hand = Hand
+		add_child(b)
+		BoomerangCount -= 1
 
 func Catch():
 	if Input.is_action_just_pressed("Throw"):
+		Hand.play("Catch")
 		CatchBox.disabled = false
 		CatchTimer.start()
 		
