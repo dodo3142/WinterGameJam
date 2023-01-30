@@ -88,7 +88,7 @@ func Jumping():
 		JumpButtonrelesed = false
 		tryingtoJump = true
 		JumpBuffring.start()
-	
+		
 	#get wen player relese JumpButton
 	if Input.is_action_just_released("Jump"):
 		JumpButtonrelesed = true
