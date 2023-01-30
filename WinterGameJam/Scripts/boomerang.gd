@@ -7,7 +7,7 @@ enum{
 }
 var state = Flying
 
-export var Damage = 30
+var Damage = 30
 var candamage = true
 #timer to fix boomerang stuck
 onready var stuckTimer = $StuckTimer
@@ -19,7 +19,6 @@ var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
 export var rotationSpeed = 0.5
 export var Speed = 300
-export var PlayerSpeedModi= 100
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
@@ -27,10 +26,6 @@ onready var velocity = Vector2.ZERO
 
 
 func _ready():
-	#add the player vel to the boomerang
-	if Player.velocity.x < -1 or Player.velocity.x > 1 : 
-		Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
-	
 	#leave the player
 	var root = get_tree().root
 	var main_scene = root.get_child(root.get_child_count() - 1)
