@@ -8,6 +8,7 @@ enum{
 var state = Flying
 
 export var Damage = 30
+var candamage = true
 #timer to fix boomerang stuck
 onready var stuckTimer = $StuckTimer
 export var StuckTime = 0.1
@@ -29,7 +30,6 @@ func _ready():
 	#add the player vel to the boomerang
 	if Player.velocity.x < -1 or Player.velocity.x > 1 : 
 		Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
-	print(Speed)
 	
 	#leave the player
 	var root = get_tree().root
@@ -70,13 +70,15 @@ func _physics_process(delta):
 	elif collision_info != null and state == Missed:
 		velocity.x = 0
 		rotationSpeed = 0
+		candamage = false
 
 
 
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("Enemy"):
-		area.TakeDamage(Damage);
+	if candamage:
+		if area.is_in_group("Enemy"):
+			area.TakeDamage(Damage);
 	
 	if state == ComingBack:
 		if area.is_in_group("Player"):
