@@ -72,7 +72,10 @@ func _on_Area2D_area_entered(area):
 	if state == ComingBack:
 		if area.is_in_group("Player"):
 			state = Missed
-
+	
+	if area.is_in_group("Catch") && state != Flying:
+		Player.BoomerangCount += 1
+		queue_free()
 
 func _on_StuckTimer_timeout():
 	state= Missed
