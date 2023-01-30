@@ -27,7 +27,7 @@ var isGrounded
 
 #Directions
 var HorizontalDir = Vector2.ZERO
-var velocity = Vector2.ZERO
+var Velocity = Vector2.ZERO
 
 #get the nodes and scenes
 onready var PlayerSprite = $PlayerSprite
@@ -48,6 +48,7 @@ func _process(_delta):
 	
 	Attack(_delta)
 	Catch()
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 
@@ -56,7 +57,7 @@ func _physics_process(delta):
 	Movement()
 	Jumping()
 	Gravity(delta)
-	velocity = move_and_slide(velocity,Vector2.UP)
+	Velocity = move_and_slide(Velocity,Vector2.UP)
 	
 	#give camera when is player is grounded
 	CameraUpdate()
@@ -75,10 +76,10 @@ func Movement():
 	HorizontalDir = Input.get_action_strength("Right")-Input.get_action_strength("Left")
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
-		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
+		Velocity.x = lerp(Velocity.x, HorizontalDir * Speed, acceleration)
 		PlayerSprite.play("Running")
 	else:
-		velocity.x = lerp(velocity.x, 0.0, friction)
+		Velocity.x = lerp(Velocity.x, 0.0, friction)
 		PlayerSprite.play("Idle")
 
 func Jumping():
@@ -96,12 +97,12 @@ func Jumping():
 	#jumping
 	if tryingtoJump:
 		if canJump:
-			velocity.y = JumpForce
+			Velocity.y = JumpForce
 			canJump = false
 	
 	#variableJump
-	if JumpButtonrelesed and velocity.y < 0:
-		velocity.y = velocity.y * JumpStopMul
+	if JumpButtonrelesed and Velocity.y < 0:
+		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
 
 func Attack(delta):
@@ -127,10 +128,10 @@ func Catch():
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
-	if velocity.y >= 0 and velocity.y < MaxFallSpeed and !is_on_floor():
-		velocity.y += FallGravity * delta
-	elif velocity.y < 0:
-		velocity.y += JumpGravity * delta
+	if Velocity.y >= 0 and Velocity.y < MaxFallSpeed and !is_on_floor():
+		Velocity.y += FallGravity * delta
+	elif Velocity.y < 0:
+		Velocity.y += JumpGravity * delta
 
 func CameraUpdate():
 	var wasGrounded = isGrounded
