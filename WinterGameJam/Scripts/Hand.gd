@@ -2,7 +2,7 @@ extends Position2D
 
 onready var HandSprite = $HandSprite
 
-func _process(delta):
+func _process(_delta):
 	look_at(get_global_mouse_position())
 	
 	if rotation_degrees >= 360:
