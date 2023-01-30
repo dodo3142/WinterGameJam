@@ -13,8 +13,8 @@ radius = 21.095
 collision_layer = 2
 collision_mask = 8
 script = ExtResource( 2 )
-Speed = 800
-Goaccl = 1000
+Speed = 1200
+Goaccl = 1800
 Backaccl = 650
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -28,8 +28,8 @@ onready var velocity = Vector2.ZERO
 
 func _ready():
 	#add the player vel to the boomerang
-	if Player.velocity.x < -1 or Player.velocity.x > 1 : 
-		Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
+	#if Player.velocity.x < -1 or Player.velocity.x > 1 : 
+	#	Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
 	
 	#leave the player
 	var root = get_tree().root
