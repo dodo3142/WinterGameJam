@@ -18,13 +18,17 @@ var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
 export var rotationSpeed = 0.5
 export var Speed = 300
+export var PlayerSpeedModi= 300
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
-var velocity = Vector2.ZERO
+onready var velocity = Vector2.ZERO
 
 
 func _ready():
+	if Player.velocity.x in range(-1,1) : 
+		print("hi")
+		Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
 	#leave the player
 	var root = get_tree().root
 	var main_scene = root.get_child(root.get_child_count() - 1)
@@ -41,8 +45,8 @@ func _physics_process(delta):
 	#state machine
 	match state:
 		Flying:
-			Speed = Speed - Goaccl*delta
-			velocity = Dir*Speed
+			Speed = Speed - Goaccl * delta
+			velocity = Dir * Speed
 			if Speed <= 0:
 				state = ComingBack
 		ComingBack:

@@ -104,6 +104,7 @@ shape = SubResource( 8 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0, 1, 0.858824, 1 )
 shape = SubResource( 3 )
 
@@ -120,6 +121,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
 modulate = Color( 0, 1, 0.180392, 1 )

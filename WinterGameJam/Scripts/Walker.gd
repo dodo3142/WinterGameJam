@@ -6,7 +6,8 @@ var Velocity = Vector2.ZERO
 onready var Raycast = $RayCast2D
 
 func _ready():
-	set_physics_process(false)
+	#set_physics_process(false)
+	pass
 
 func _physics_process(delta: float) -> void:
 	#Velocity.y += Gravity * delta
@@ -14,6 +15,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall() || !Raycast.is_colliding():
 		Direction *= -1
 		Raycast.position.x *= -1
-	Velocity = Direction * 25
+	Velocity = Direction * 2500
 	move_and_slide(Velocity, Vector2.UP)
 
