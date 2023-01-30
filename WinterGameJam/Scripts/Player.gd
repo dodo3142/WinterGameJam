@@ -98,8 +98,19 @@ func Jumping():
 		velocity.y = velocity.y * JumpStopMul
 		JumpButtonrelesed = false
 
+<<<<<<< Updated upstream
 func Attack():
 	if Input.is_action_just_pressed("Attack") && BoomerangCount > 0:
+=======
+func Attack(delta):
+	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
+		#Damage mulitpler
+		Damage = Damage + mindamage*delta
+		Damage = clamp(Damage,mindamage,maxdamage)
+	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
+		canAttack = false 
+		AttackTimer.start()
+>>>>>>> Stashed changes
 		Hand.play("Throw")
 		var b = Boomerang.instance()
 		b.Hand = Hand
