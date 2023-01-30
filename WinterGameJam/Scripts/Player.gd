@@ -13,9 +13,14 @@ export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
 
+export var mindamage = 10
+export var maxdamage = 30
+var Damage = 0
+
 #boolens
 var canFlip =true
 var canJump = false
+var canAttack = true
 var tryingtoJump= false
 var JumpButtonrelesed = true
 var isGrounded
@@ -29,6 +34,7 @@ onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var CatchTimer = $CatchTimer
+onready var AttackTimer = $AttackRate
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
@@ -40,7 +46,7 @@ func _process(_delta):
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
 	
-	Attack()
+	Attack(_delta)
 	Catch()
 
 
@@ -98,20 +104,26 @@ func Jumping():
 		velocity.y = velocity.y * JumpStopMul
 		JumpButtonrelesed = false
 
-func Attack():
-	if Input.is_action_just_pressed("Attack") && BoomerangCount > 0:
+func Attack(delta):
+	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
+		Damage = Damage + mindamage*delta
+		Damage = clamp(Damage,mindamage,maxdamage)
+	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
+		canAttack = false 
+		AttackTimer.start()
 		Hand.play("Throw")
 		var b = Boomerang.instance()
+		b.Damage = Damage as int
 		b.Hand = Hand
 		add_child(b)
 		BoomerangCount -= 1
+		Damage = 0
 
 func Catch():
 	if Input.is_action_just_pressed("Throw"):
 		Hand.play("Catch")
 		CatchBox.disabled = false
 		CatchTimer.start()
-		
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
@@ -132,6 +144,8 @@ func _on_CoyoteTimer_timeout():
 func _on_JumpBuffring_timeout():
 	tryingtoJump = false
 
-
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
+
+func _on_AttackRate_timeout():
+	canAttack = true

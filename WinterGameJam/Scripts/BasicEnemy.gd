@@ -14,3 +14,4 @@ func _process(_delta):
 
 func TakeDamage(Damage):
 	Health -= Damage
+	print(Damage)
