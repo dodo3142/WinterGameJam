@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Run Cycle Sprite Sheet.png-dfbe1ab48800adcddb6a00d0505a18c9.stex"
+path="res://.import/Protag Sprite Sheet(1).png-527f927121885074da9e32d6da7bab92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Run Cycle Sprite Sheet.png"
-dest_files=[ "res://.import/Run Cycle Sprite Sheet.png-dfbe1ab48800adcddb6a00d0505a18c9.stex" ]
+source_file="res://Assets/Protag Sprite Sheet(1).png"
+dest_files=[ "res://.import/Protag Sprite Sheet(1).png-527f927121885074da9e32d6da7bab92.stex" ]
 
 [params]
 
