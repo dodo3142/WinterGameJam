@@ -147,5 +147,10 @@ func _on_JumpBuffring_timeout():
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
 
+
 func _on_AttackRate_timeout():
 	canAttack = true
+
+func _on_HandSprite_animation_finished():
+	Hand.play("Idle")
+
