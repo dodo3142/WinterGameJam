@@ -401,6 +401,7 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
 position = Vector2( 900, -500 )
 scale = Vector2( 6.66667, 6.66667 )
+current = true
 zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 drag_margin_h_enabled = true

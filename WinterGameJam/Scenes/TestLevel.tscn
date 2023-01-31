@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Chaser.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Assets/Bg concept 1.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -97,16 +96,3 @@ position = Vector2( 630, 392 )
 
 [node name="BasicObject3" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( 14, -252 )
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 0.1 )
-motion_mirroring = Vector2( 1920, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 512, 300 )
-texture = ExtResource( 10 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
