@@ -502,6 +502,7 @@ friction = 0.15
 acceleration = 0.15
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
+use_parent_material = true
 scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 41 )
 animation = "Idle"

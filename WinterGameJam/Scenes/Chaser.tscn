@@ -16,6 +16,7 @@ extents = Vector2( 32, 32 )
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 1 )
+Attack = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.290196, 0, 1, 1 )
@@ -40,5 +41,6 @@ collision_layer = 0
 scale = Vector2( 80, 30 )
 shape = SubResource( 3 )
 
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="area_entered" from="PlayerTracker" to="." method="_on_PlayerTracker_area_entered"]
 [connection signal="area_exited" from="PlayerTracker" to="." method="_on_PlayerTracker_area_exited"]
