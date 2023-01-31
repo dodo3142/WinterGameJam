@@ -311,8 +311,13 @@ height = 98.0
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 8
 script = ExtResource( 2 )
+<<<<<<< Updated upstream
 Speed = 500
+=======
+Speed = 800
+>>>>>>> Stashed changes
 JumpForce = -1000
+MaxFallSpeed = 1200
 BoomerangCount = 3
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
