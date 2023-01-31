@@ -1,10 +1,41 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Assets/Protag Sprite Sheet(2).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Hand Sprite Sheet.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Hand.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Protag Sprite Sheet(3).png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 9000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 9000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 9000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
@@ -173,6 +204,11 @@ region = Rect2( 3000, 7000, 1000, 1000 )
 
 [sub_resource type="SpriteFrames" id=41]
 animations = [ {
+"frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
+"loop": true,
+"name": "Falling",
+"speed": 24.0
+}, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "Idle",
@@ -321,10 +357,7 @@ height = 76.0
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 8
 script = ExtResource( 2 )
-Speed = 900
-JumpForce = -1100
 FallGravity = 5000
-MaxFallSpeed = 1200
 BoomerangCount = 3
 JumpStopMul = 0.4
 friction = 0.15
@@ -333,8 +366,8 @@ acceleration = 0.15
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.17, 0.13 )
 frames = SubResource( 41 )
-animation = "Idle"
-frame = 19
+animation = "Falling"
+frame = 2
 
 [node name="Hand" type="Position2D" parent="PlayerSprite"]
 scale = Vector2( 6.66667, 6.66667 )
@@ -368,7 +401,6 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
 position = Vector2( 900, -500 )
 scale = Vector2( 6.66667, 6.66667 )
-current = true
 zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 drag_margin_h_enabled = true

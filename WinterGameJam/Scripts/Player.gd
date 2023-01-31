@@ -83,7 +83,9 @@ func Movement():
 			PlayerSprite.play("Running")
 	else:
 		Velocity.x = lerp(Velocity.x, 0.0, friction)
-		PlayerSprite.play("Idle")
+		if is_on_floor():
+			PlayerSprite.play("Idle")
+		
 
 func Jumping():
 	
@@ -107,8 +109,10 @@ func Jumping():
 		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
 		
-	if !canJump:
+	if !canJump and Velocity.y < 0:
 		PlayerSprite.play("Jump")
+	elif !canJump and Velocity.y > 0:
+		PlayerSprite.play("Falling")
 
 func Attack(delta):
 	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
