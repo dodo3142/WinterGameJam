@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Chaser.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[node name="Chaser" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.290196, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0, 0.694118, 1, 1 )
+shape = SubResource( 1 )
+
+[node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 2 )
+
+[node name="PlayerTracker" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTracker"]
+scale = Vector2( 80, 30 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="PlayerTracker" to="." method="_on_PlayerTracker_area_entered"]
+[connection signal="area_exited" from="PlayerTracker" to="." method="_on_PlayerTracker_area_exited"]

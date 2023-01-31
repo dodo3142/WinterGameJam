@@ -7,7 +7,7 @@ enum{
 }
 var state = Flying
 
-export var Damage = 30
+var Damage = 30
 var candamage = true
 #timer to fix boomerang stuck
 onready var stuckTimer = $StuckTimer
@@ -19,11 +19,10 @@ var Hand = null
 onready var Dir = position.direction_to(get_local_mouse_position())
 export var rotationSpeed = 0.5
 export var Speed = 300
-export var PlayerSpeedModi= 100
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
-onready var velocity = Vector2.ZERO
+onready var Velocity = Vector2.ZERO
 
 
 func _ready():
@@ -48,27 +47,27 @@ func _physics_process(delta):
 	match state:
 		Flying:
 			Speed = Speed - Goaccl * delta
-			velocity = Dir * Speed
+			Velocity = Dir * Speed
 			if Speed <= 0:
 				state = ComingBack
 		ComingBack:
 			Speed = Speed + Backaccl*delta
-			velocity = position.direction_to(Hand.global_position)* Speed
+			Velocity = position.direction_to(Hand.global_position)* Speed
 		Missed:
-			velocity.y = velocity.y + Gravity * delta
+			Velocity.y = Velocity.y + Gravity * delta
 	
 	
-	var collision_info = move_and_collide(velocity * delta)
+	var collision_info = move_and_collide(Velocity * delta)
 	#what to do when it collide
 	if collision_info != null and state == Flying:
-		Speed = 10
+		Speed = Speed / 4
 		state=ComingBack
 	elif collision_info != null and state == ComingBack and stuckTimer.time_left == 0:
 		stuckTimer.start(StuckTime)
 	elif collision_info == null and state == ComingBack and stuckTimer.time_left > 0:
 		stuckTimer.stop()
 	elif collision_info != null and state == Missed:
-		velocity.x = 0
+		Velocity.x = 0
 		rotationSpeed = 0
 		candamage = false
 

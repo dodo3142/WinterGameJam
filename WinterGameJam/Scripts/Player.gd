@@ -3,35 +3,46 @@ extends KinematicBody2D
 signal Grounded_Update(isGrounded)
 
 #movement
-export var Speed = 300
-export var JumpForce=-800
-export var FallGravity= 2500
+export var Speed = 900
+export var JumpForce=-1100
+export var FallGravity= 3000
 export var JumpGravity = 2000
-export var MaxFallSpeed = 800
+export var MaxFallSpeed = 1200
 export var BoomerangCount = 1
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
+export var MaxHealth = 200
+export var mindamage = 10
+export var maxdamage = 30
+var Damage = 0
+
+
 
 #boolens
 var canFlip =true
 var canJump = false
+var canAttack = true
 var tryingtoJump= false
 var JumpButtonrelesed = true
 var isGrounded
+var takingDamage = false
 
 #Directions
 var HorizontalDir = Vector2.ZERO
-var velocity = Vector2.ZERO
+var Velocity = Vector2.ZERO
 
 #get the nodes and scenes
 onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var CatchTimer = $CatchTimer
+onready var AttackTimer = $AttackRate
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
+onready var Health = MaxHealth
+onready var PlayerEffects = $PlayerSprite/PlayerEffects
 
 func _process(_delta):
 	#when player can jump
@@ -39,9 +50,9 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
-	
-	Attack()
+	Throw(_delta)
 	Catch()
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 
@@ -50,7 +61,7 @@ func _physics_process(delta):
 	Movement()
 	Jumping()
 	Gravity(delta)
-	velocity = move_and_slide(velocity,Vector2.UP)
+	Velocity = move_and_slide(Velocity,Vector2.UP)
 	
 	#give camera when is player is grounded
 	CameraUpdate()
@@ -69,11 +80,14 @@ func Movement():
 	HorizontalDir = Input.get_action_strength("Right")-Input.get_action_strength("Left")
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
-		velocity.x = lerp(velocity.x, HorizontalDir * Speed, acceleration)
-		PlayerSprite.play("Running")
+		Velocity.x = lerp(Velocity.x, HorizontalDir * Speed, acceleration)
+		if is_on_floor():
+			PlayerSprite.play("Running")
 	else:
-		velocity.x = lerp(velocity.x, 0.0, friction)
-		PlayerSprite.play("Idle")
+		Velocity.x = lerp(Velocity.x, 0.0, friction)
+		if is_on_floor():
+			PlayerSprite.play("Idle")
+		
 
 func Jumping():
 	
@@ -88,48 +102,56 @@ func Jumping():
 		JumpButtonrelesed = true
 	
 	#jumping
-	if tryingtoJump:
-		if canJump:
-			velocity.y = JumpForce
+	if tryingtoJump and canJump:
+			Velocity.y = JumpForce
 			canJump = false
 	
 	#variableJump
-	if JumpButtonrelesed and velocity.y < 0:
-		velocity.y = velocity.y * JumpStopMul
+	if JumpButtonrelesed and Velocity.y < 0:
+		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
+		
+	if !canJump and Velocity.y < 0:
+		PlayerSprite.play("Jump")
+	elif !canJump and Velocity.y > 0:
+		PlayerSprite.play("Falling")
 
-<<<<<<< Updated upstream
-func Attack():
-	if Input.is_action_just_pressed("Attack") && BoomerangCount > 0:
-=======
-func Attack(delta):
+func Throw(delta):
 	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
-		#Damage mulitpler
 		Damage = Damage + mindamage*delta
 		Damage = clamp(Damage,mindamage,maxdamage)
 	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
 		canAttack = false 
 		AttackTimer.start()
->>>>>>> Stashed changes
 		Hand.play("Throw")
 		var b = Boomerang.instance()
+		b.Damage = Damage as int
 		b.Hand = Hand
 		add_child(b)
 		BoomerangCount -= 1
+		Damage = 0
 
 func Catch():
-	if Input.is_action_just_pressed("Throw"):
+	if Input.is_action_just_pressed("Catch"):
 		Hand.play("Catch")
 		CatchBox.disabled = false
 		CatchTimer.start()
-		
 
 func Gravity(delta):
 	#gravity whenfalling and when jumping 
-	if velocity.y >= 0 and velocity.y < MaxFallSpeed and !is_on_floor():
-		velocity.y += FallGravity * delta
-	elif velocity.y < 0:
-		velocity.y += JumpGravity * delta
+	if Velocity.y >= 0 and Velocity.y < MaxFallSpeed and !is_on_floor():
+		Velocity.y += FallGravity * delta
+	elif Velocity.y < 0:
+		Velocity.y += JumpGravity * delta
+
+
+func TakeDamage(Amount):
+	if !takingDamage:
+		Health -= Amount
+		PlayerEffects.play("Damage")
+		takingDamage = true
+		print(Health)
+
 
 func CameraUpdate():
 	var wasGrounded = isGrounded
@@ -143,10 +165,18 @@ func _on_CoyoteTimer_timeout():
 func _on_JumpBuffring_timeout():
 	tryingtoJump = false
 
-
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
 
 
+func _on_AttackRate_timeout():
+	canAttack = true
+
 func _on_HandSprite_animation_finished():
 	Hand.play("Idle")
+
+
+func _on_PlayerEffects_animation_finished(anim_name):
+	if anim_name == "Damage":
+		PlayerEffects.play("Off")
+		takingDamage = false

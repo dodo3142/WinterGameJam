@@ -1,10 +1,59 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Assets/Protag Sprite Sheet(2).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Hand Sprite Sheet.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Hand.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Protag Sprite Sheet(3).png" type="Texture" id=6]
+[ext_resource path="res://Scripts/HitBox.gd" type="Script" id=7]
+
+[sub_resource type="Shader" id=75]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=76]
+shader = SubResource( 75 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 8000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 9000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 9000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 9000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
@@ -173,13 +222,18 @@ region = Rect2( 3000, 7000, 1000, 1000 )
 
 [sub_resource type="SpriteFrames" id=41]
 animations = [ {
+"frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
+"loop": true,
+"name": "Falling",
+"speed": 24.0
+}, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 24.0
 }, {
 "frames": [ SubResource( 68 ) ],
-"loop": true,
+"loop": false,
 "name": "Jump",
 "speed": 24.0
 }, {
@@ -310,25 +364,148 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=8]
 radius = 35.0223
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 21.0
-height = 98.0
+[sub_resource type="Animation" id=77]
+resource_name = "Damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.6, 0.0, 0.6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "Off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=78]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 19.0
-height = 100.0
+radius = 18.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 21.0
+height = 76.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+material = SubResource( 76 )
 collision_mask = 8
 script = ExtResource( 2 )
-Speed = 500
-JumpForce = -1000
+FallGravity = 5000
 BoomerangCount = 3
+JumpStopMul = 0.4
+friction = 0.15
+acceleration = 0.15
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.15, 0.15 )
+use_parent_material = true
+scale = Vector2( 0.17, 0.13 )
 frames = SubResource( 41 )
-animation = "Jump"
+animation = "Idle"
 
 [node name="Hand" type="Position2D" parent="PlayerSprite"]
 scale = Vector2( 6.66667, 6.66667 )
@@ -341,9 +518,10 @@ frames = SubResource( 66 )
 animation = "Idle"
 playing = true
 
-[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite" groups=["Player"]]
+[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite"]
 position = Vector2( 0, 10 )
 scale = Vector2( 8, 8 )
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/Hand/HandSprite/HandHitBox"]
 shape = SubResource( 8 )
@@ -351,6 +529,7 @@ shape = SubResource( 8 )
 [node name="CatchHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite" groups=["Catch"]]
 position = Vector2( 0, 10 )
 scale = Vector2( 8, 8 )
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/Hand/HandSprite/CatchHitBox"]
 modulate = Color( 0.00784314, 0.976471, 0, 1 )
@@ -358,7 +537,7 @@ shape = SubResource( 8 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
-position = Vector2( 566.667, 6.66667 )
+position = Vector2( 864.706, 6.10352e-05 )
 scale = Vector2( 6.66667, 6.66667 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
@@ -373,9 +552,23 @@ drag_margin_bottom = 0.0
 editor_draw_drag_margin = true
 script = ExtResource( 3 )
 
+[node name="PlayerEffects" type="AnimationPlayer" parent="PlayerSprite"]
+anims/Damage = SubResource( 77 )
+anims/Off = SubResource( 79 )
+anims/RESET = SubResource( 78 )
+
+[node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
+collision_mask = 4
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+modulate = Color( 0, 1, 0.180392, 1 )
+position = Vector2( 0, 4 )
+shape = SubResource( 7 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 1, 0.858824, 1 )
-position = Vector2( 0, 1 )
+position = Vector2( 0, 4 )
 shape = SubResource( 3 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -390,15 +583,14 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
-modulate = Color( 0, 1, 0.180392, 1 )
-position = Vector2( 0, 1 )
-shape = SubResource( 7 )
+[node name="AttackRate" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
+[connection signal="animation_finished" from="PlayerSprite/PlayerEffects" to="." method="_on_PlayerEffects_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_CatchTimer_timeout"]
+[connection signal="timeout" from="AttackRate" to="." method="_on_AttackRate_timeout"]
