@@ -45,7 +45,6 @@ func LeaveThePlayer():
 	main_scene.add_child(self)
 	self.set_owner(main_scene)
 
-
 func _process(_delta):
 	#rotation effect
 	rotate(rotationSpeed)

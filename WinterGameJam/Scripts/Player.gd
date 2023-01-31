@@ -59,8 +59,6 @@ func _process(_delta):
 	Catch()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-
-
 func _physics_process(delta):
 	#move the player
 	Movement()
@@ -156,9 +154,16 @@ func TakeDamage(Amount):
 		if Health <= 0:
 			var k = get_tree().reload_current_scene()
 		PlayerEffects.play("Damage")
+		FrameFreeze(0.05,0.4)
 		takingDamage = true
 		TakingDamageTimer.start()
 		print(Health)
+
+#will slow the game to (timescale) for (duration)
+func FrameFreeze(timescale,duration):
+	Engine.time_scale = timescale
+	yield(get_tree().create_timer(duration * timescale),"timeout")
+	Engine.time_scale = 1
 
 #CameraSystem(I will edit it later)
 func CameraUpdate():
