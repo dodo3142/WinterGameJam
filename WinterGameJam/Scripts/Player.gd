@@ -58,7 +58,6 @@ func _physics_process(delta):
 	Movement()
 	Jumping()
 	Gravity(delta)
-	print(Velocity)
 	Velocity = move_and_slide(Velocity,Vector2.UP)
 	
 	#give camera when is player is grounded
