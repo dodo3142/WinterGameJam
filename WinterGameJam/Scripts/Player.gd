@@ -45,6 +45,7 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
+
 	
 	Attack(_delta)
 	Catch()
@@ -77,7 +78,8 @@ func Movement():
 	#lerp velocity to get acceleration feel
 	if HorizontalDir != 0:
 		Velocity.x = lerp(Velocity.x, HorizontalDir * Speed, acceleration)
-		PlayerSprite.play("Running")
+		if is_on_floor():
+			PlayerSprite.play("Running")
 	else:
 		Velocity.x = lerp(Velocity.x, 0.0, friction)
 		PlayerSprite.play("Idle")
@@ -104,6 +106,9 @@ func Jumping():
 	if JumpButtonrelesed and Velocity.y < 0:
 		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
+		
+	if !canJump:
+		PlayerSprite.play("Jump")
 
 func Attack(delta):
 	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
@@ -132,6 +137,7 @@ func Gravity(delta):
 		Velocity.y += FallGravity * delta
 	elif Velocity.y < 0:
 		Velocity.y += JumpGravity * delta
+
 
 func CameraUpdate():
 	var wasGrounded = isGrounded

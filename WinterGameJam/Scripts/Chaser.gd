@@ -1,12 +1,13 @@
 extends Enemy
 
 var Velocity = Vector2.ZERO
-var Speed = 200
+
 var Gravity = 700
 var Pos = Vector2.ZERO
 var PlayerEntered = false
 var Player = null
 
+export var Speed = 200
 export var TrackerSize = Vector2(80,30)
 
 onready var ChaserSprite = $Sprite
@@ -15,7 +16,7 @@ onready var TrackerCollision = $PlayerTracker/CollisionShape2D
 func _ready():
 	TrackerCollision.scale = TrackerSize
 
-func _process(delta):
+func _process(_delta):
 	if PlayerEntered:
 		#player position
 		Pos = position.direction_to(Player.global_position)
