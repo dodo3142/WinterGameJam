@@ -12,12 +12,15 @@ export var BoomerangCount = 1
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
-export var MaxHealth = 200
+
+#Damage
 export var mindamage = 10
 export var maxdamage = 30
 var Damage = 0
 
-
+#Health
+export var MaxHealth = 200
+onready var Health = MaxHealth
 
 #boolens
 var canFlip =true
@@ -38,11 +41,12 @@ onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
 onready var CatchTimer = $CatchTimer
 onready var AttackTimer = $AttackRate
+onready var TakingDamageTimer = $TakingDamage
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
-onready var Boomerang = preload("res://Scenes/boomerang.tscn")
-onready var Health = MaxHealth
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
+onready var Boomerang = preload("res://Scenes/boomerang.tscn")
+
 
 func _process(_delta):
 	#when player can jump
@@ -50,6 +54,7 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
+	
 	Throw(_delta)
 	Catch()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -73,8 +78,7 @@ func _physics_process(delta):
 		if HorizontalDir == -1:
 			PlayerSprite.scale.x = -abs(PlayerSprite.scale.x)
 
-
-
+#All Movement and Gravity
 func Movement():
 	#get input dir
 	HorizontalDir = Input.get_action_strength("Right")-Input.get_action_strength("Left")
@@ -87,7 +91,6 @@ func Movement():
 		Velocity.x = lerp(Velocity.x, 0.0, friction)
 		if is_on_floor():
 			PlayerSprite.play("Idle")
-		
 
 func Jumping():
 	
@@ -116,6 +119,15 @@ func Jumping():
 	elif !canJump and Velocity.y > 0:
 		PlayerSprite.play("Falling")
 
+func Gravity(delta):
+	#gravity whenfalling and when jumping 
+	if Velocity.y >= 0 and Velocity.y < MaxFallSpeed and !is_on_floor():
+		Velocity.y += FallGravity * delta
+	elif Velocity.y < 0:
+		Velocity.y += JumpGravity * delta
+#All Movement and Gravity End
+
+#ThrowingSystem
 func Throw(delta):
 	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
 		Damage = Damage + mindamage*delta
@@ -130,35 +142,32 @@ func Throw(delta):
 		add_child(b)
 		BoomerangCount -= 1
 		Damage = 0
-
+#catchingSystem
 func Catch():
 	if Input.is_action_just_pressed("Catch"):
 		Hand.play("Catch")
 		CatchBox.disabled = false
 		CatchTimer.start()
 
-func Gravity(delta):
-	#gravity whenfalling and when jumping 
-	if Velocity.y >= 0 and Velocity.y < MaxFallSpeed and !is_on_floor():
-		Velocity.y += FallGravity * delta
-	elif Velocity.y < 0:
-		Velocity.y += JumpGravity * delta
-
-
+#TakingDamageSystem
 func TakeDamage(Amount):
 	if !takingDamage:
 		Health -= Amount
+		if Health <= 0:
+			var k = get_tree().reload_current_scene()
 		PlayerEffects.play("Damage")
 		takingDamage = true
+		TakingDamageTimer.start()
 		print(Health)
 
-
+#CameraSystem(I will edit it later)
 func CameraUpdate():
 	var wasGrounded = isGrounded
 	isGrounded = is_on_floor()
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
 
+#Timers
 func _on_CoyoteTimer_timeout():
 	canJump = false
 
@@ -168,15 +177,13 @@ func _on_JumpBuffring_timeout():
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
 
-
 func _on_AttackRate_timeout():
 	canAttack = true
 
+func _on_TakingDamage_timeout():
+	takingDamage = false
+	PlayerEffects.play("Off")
+#TimersEnd
+
 func _on_HandSprite_animation_finished():
 	Hand.play("Idle")
-
-
-func _on_PlayerEffects_animation_finished(anim_name):
-	if anim_name == "Damage":
-		PlayerEffects.play("Off")
-		takingDamage = false

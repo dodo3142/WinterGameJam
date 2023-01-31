@@ -14,7 +14,9 @@ onready var ChaserSprite = $Sprite
 onready var TrackerCollision = $PlayerTracker/CollisionShape2D
 
 func _ready():
-	TrackerCollision.scale = TrackerSize
+	#TrackerCollision.scale = TrackerSize
+	pass
+
 
 func _process(_delta):
 	if PlayerEntered:

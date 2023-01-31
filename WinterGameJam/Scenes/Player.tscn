@@ -518,7 +518,7 @@ frames = SubResource( 66 )
 animation = "Idle"
 playing = true
 
-[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite"]
+[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite" groups=["PlayerHand"]]
 position = Vector2( 0, 10 )
 scale = Vector2( 8, 8 )
 collision_layer = 0
@@ -587,6 +587,10 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="TakingDamage" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
 [connection signal="animation_finished" from="PlayerSprite/PlayerEffects" to="." method="_on_PlayerEffects_animation_finished"]
@@ -594,3 +598,4 @@ one_shot = true
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_CatchTimer_timeout"]
 [connection signal="timeout" from="AttackRate" to="." method="_on_AttackRate_timeout"]
+[connection signal="timeout" from="TakingDamage" to="." method="_on_TakingDamage_timeout"]

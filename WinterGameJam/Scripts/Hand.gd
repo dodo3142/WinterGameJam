@@ -9,12 +9,13 @@ func _process(_delta):
 	#Mouse Rotation
 	look_at(get_global_mouse_position())
 	
-	#Hand Flip
+	#To clamp the rotationdegrees
 	if rotation_degrees >= 360:
 		rotation_degrees = 0
 	if rotation_degrees <= -360:
 		rotation_degrees = 0
 	
+	#ToFlipTheHandSprite
 	if rotation_degrees >= 90 and rotation_degrees < 270 or rotation_degrees >= -270 and rotation_degrees < -90:
 		HandSprite.flip_v = true
 	else:
