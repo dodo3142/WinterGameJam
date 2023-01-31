@@ -45,8 +45,6 @@ func _process(_delta):
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
-
-	
 	Attack(_delta)
 	Catch()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

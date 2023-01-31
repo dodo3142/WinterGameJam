@@ -399,7 +399,7 @@ shape = SubResource( 8 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
-position = Vector2( 900, -500 )
+position = Vector2( 864.706, 6.10352e-05 )
 scale = Vector2( 6.66667, 6.66667 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
@@ -442,6 +442,7 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
