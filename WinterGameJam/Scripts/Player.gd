@@ -3,11 +3,11 @@ extends KinematicBody2D
 signal Grounded_Update(isGrounded)
 
 #movement
-export var Speed = 300
-export var JumpForce=-800
-export var FallGravity= 2500
+export var Speed = 900
+export var JumpForce=-1100
+export var FallGravity= 3000
 export var JumpGravity = 2000
-export var MaxFallSpeed = 800
+export var MaxFallSpeed = 1200
 export var BoomerangCount = 1
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
@@ -58,6 +58,7 @@ func _physics_process(delta):
 	Movement()
 	Jumping()
 	Gravity(delta)
+	print(Velocity)
 	Velocity = move_and_slide(Velocity,Vector2.UP)
 	
 	#give camera when is player is grounded
@@ -97,8 +98,7 @@ func Jumping():
 		JumpButtonrelesed = true
 	
 	#jumping
-	if tryingtoJump:
-		if canJump:
+	if tryingtoJump and canJump:
 			Velocity.y = JumpForce
 			canJump = false
 	

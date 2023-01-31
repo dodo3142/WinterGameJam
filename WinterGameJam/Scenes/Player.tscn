@@ -189,7 +189,7 @@ animations = [ {
 "speed": 24.0
 }, {
 "frames": [ SubResource( 68 ) ],
-"loop": true,
+"loop": false,
 "name": "Jump",
 "speed": 24.0
 }, {
@@ -331,11 +331,22 @@ height = 76.0
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 8
 script = ExtResource( 2 )
+<<<<<<< Updated upstream
 Speed = 600
 JumpForce = -1000
 FallGravity = 3800
 BoomerangCount = 3
 JumpStopMul = 0.5
+=======
+Speed = 900
+JumpForce = -1100
+FallGravity = 5000
+MaxFallSpeed = 1200
+BoomerangCount = 3
+JumpStopMul = 0.4
+friction = 0.15
+acceleration = 0.15
+>>>>>>> Stashed changes
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.17, 0.13 )
