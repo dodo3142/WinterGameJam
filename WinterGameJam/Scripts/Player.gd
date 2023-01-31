@@ -121,7 +121,7 @@ func Attack(delta):
 		Damage = 0
 
 func Catch():
-	if Input.is_action_just_pressed("Throw"):
+	if Input.is_action_just_pressed("Catch"):
 		Hand.play("Catch")
 		CatchBox.disabled = false
 		CatchTimer.start()
