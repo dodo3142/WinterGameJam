@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Assets/Protag Sprite Sheet(2).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,24 @@
 [ext_resource path="res://Assets/Hand Sprite Sheet.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Hand.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Protag Sprite Sheet(3).png" type="Texture" id=6]
+[ext_resource path="res://Scripts/HitBox.gd" type="Script" id=7]
+
+[sub_resource type="Shader" id=75]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=76]
+shader = SubResource( 75 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=69]
 flags = 4
@@ -346,6 +364,125 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=8]
 radius = 35.0223
 
+[sub_resource type="Animation" id=77]
+resource_name = "Damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.6, 0.0, 0.6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "Off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=78]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:material:shader_param/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../PlayerHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 18.0
 height = 80.0
@@ -355,6 +492,7 @@ radius = 21.0
 height = 76.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
+material = SubResource( 76 )
 collision_mask = 8
 script = ExtResource( 2 )
 FallGravity = 5000
@@ -364,10 +502,9 @@ friction = 0.15
 acceleration = 0.15
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.17, 0.13 )
+scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 41 )
-animation = "Falling"
-frame = 2
+animation = "Idle"
 
 [node name="Hand" type="Position2D" parent="PlayerSprite"]
 scale = Vector2( 6.66667, 6.66667 )
@@ -380,7 +517,7 @@ frames = SubResource( 66 )
 animation = "Idle"
 playing = true
 
-[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite" groups=["Player"]]
+[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite"]
 position = Vector2( 0, 10 )
 scale = Vector2( 8, 8 )
 collision_layer = 0
@@ -414,7 +551,14 @@ drag_margin_bottom = 0.0
 editor_draw_drag_margin = true
 script = ExtResource( 3 )
 
+[node name="PlayerEffects" type="AnimationPlayer" parent="PlayerSprite"]
+anims/Damage = SubResource( 77 )
+anims/Off = SubResource( 79 )
+anims/RESET = SubResource( 78 )
+
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
+collision_mask = 4
+script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
 modulate = Color( 0, 1, 0.180392, 1 )
@@ -444,6 +588,7 @@ one_shot = true
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
+[connection signal="animation_finished" from="PlayerSprite/PlayerEffects" to="." method="_on_PlayerEffects_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_CatchTimer_timeout"]
