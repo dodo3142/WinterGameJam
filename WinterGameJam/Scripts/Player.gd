@@ -8,7 +8,7 @@ export var JumpForce=-1100
 export var FallGravity= 3000
 export var JumpGravity = 2000
 export var MaxFallSpeed = 1200
-export var BoomerangCount = 1
+export var BoomerangCount = 3
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
@@ -160,6 +160,10 @@ func TakeDamage(Amount):
 		TakingDamageTimer.start()
 		takingDamage = true
 		print(Health)
+
+#Adds to boomerang count
+func CountUp(Amount):
+	BoomerangCount += Amount
 
 #will slow the game to (timescale) for (duration)
 func FrameFreeze(timescale,duration):

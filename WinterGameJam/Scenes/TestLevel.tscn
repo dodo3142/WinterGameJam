@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Chaser.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/CountUp.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -60,24 +61,33 @@ position = Vector2( -676, 95 )
 [node name="Chaser" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 729, 214 )
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="Switch" type="Node2D" parent="."]
 position = Vector2( -3087, 411 )
 script = ExtResource( 6 )
 
-[node name="BasicObject" parent="Objects" instance=ExtResource( 5 )]
+[node name="BasicObject" parent="Switch" instance=ExtResource( 5 )]
 position = Vector2( 398, -124 )
 
-[node name="BasicObject2" parent="Objects" instance=ExtResource( 5 )]
+[node name="BasicObject2" parent="Switch" instance=ExtResource( 5 )]
 position = Vector2( -374, -124 )
 
-[node name="BasicObject4" parent="Objects" instance=ExtResource( 5 )]
+[node name="BasicObject4" parent="Switch" instance=ExtResource( 5 )]
 position = Vector2( -593, 261 )
 
-[node name="BasicObject5" parent="Objects" instance=ExtResource( 5 )]
+[node name="BasicObject5" parent="Switch" instance=ExtResource( 5 )]
 position = Vector2( 630, 392 )
 
-[node name="BasicObject3" parent="Objects" instance=ExtResource( 5 )]
+[node name="BasicObject3" parent="Switch" instance=ExtResource( 5 )]
 position = Vector2( 14, -252 )
+
+[node name="Collectables" type="Node2D" parent="."]
+position = Vector2( 440, -103 )
+
+[node name="CountUp" parent="Collectables" instance=ExtResource( 10 )]
+position = Vector2( -850, 8 )
+
+[node name="CountUp2" parent="Collectables" instance=ExtResource( 10 )]
+position = Vector2( 2409, -1143 )
 
 [node name="FPSGraphOverlay" parent="." instance=ExtResource( 3 )]
 max_fps = 3493
