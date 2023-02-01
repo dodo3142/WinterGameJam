@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=13]
 [ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=14]
 [ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=15]
+[ext_resource path="res://Assets/BackGround/Clouds.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/CloudParallax.gd" type="Script" id=17]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -119,6 +121,15 @@ motion_mirroring = Vector2( 5760, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 12 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 5760, 0 )
+script = ExtResource( 17 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 16 )
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
