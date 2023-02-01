@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://Scenes/Chaser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/CountUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=11]
+[ext_resource path="res://Assets/BackGround/4.png" type="Texture" id=12]
+[ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=15]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -106,3 +110,37 @@ position = Vector2( 2409, -1143 )
 
 [node name="FPSGraphOverlay" parent="." instance=ExtResource( 3 )]
 max_fps = 3493
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_limit_end = Vector2( 0, 1080 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 5760, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 5760, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 15 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 5760, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 13 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 5760, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 14 )
+centered = false
