@@ -43,4 +43,18 @@ cast_to = Vector2( 50, 0 )
 enabled = true
 cast_to = Vector2( -50, 0 )
 
+[node name="GroundCheckRays" type="Node2D" parent="."]
+
+[node name="RightRayCast" type="RayCast2D" parent="GroundCheckRays"]
+position = Vector2( 33, 32 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 8
+
+[node name="LeftRayCast" type="RayCast2D" parent="GroundCheckRays"]
+position = Vector2( -33, 32 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 8
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

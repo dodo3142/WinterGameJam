@@ -8,21 +8,11 @@
 [ext_resource path="res://Assets/Protag Sprite Sheet(3).png" type="Texture" id=6]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/ObjectPickup.gd" type="Script" id=8]
-
-[sub_resource type="Shader" id=75]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}"
+[ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=9]
 
 [sub_resource type="ShaderMaterial" id=80]
-shader = SubResource( 75 )
+resource_local_to_scene = true
+shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 

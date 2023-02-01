@@ -113,7 +113,7 @@ func Jumping():
 	if JumpButtonrelesed and Velocity.y < 0:
 		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
-		
+	#JUMP&FALLING ANIMATION
 	if !canJump and Velocity.y < 0:
 		PlayerSprite.play("Jump")
 	elif !canJump and Velocity.y > 0:
@@ -142,6 +142,7 @@ func Throw(delta):
 		add_child(b)
 		BoomerangCount -= 1
 		Damage = 0
+
 #catchingSystem
 func Catch():
 	if Input.is_action_just_pressed("Catch"):

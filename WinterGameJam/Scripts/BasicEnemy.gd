@@ -28,5 +28,5 @@ func FrameFreeze(duration):
 	set_physics_process(true)
 
 func _on_HitBox_area_entered(area):
-			if area.is_in_group("Player"):
-				area.TakeDamage(Attack)
+		if area.is_in_group("Player"):
+			area.TakeDamage(Attack)
