@@ -20,7 +20,7 @@ void fragment() {
 	COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=76]
+[sub_resource type="ShaderMaterial" id=80]
 shader = SubResource( 75 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
@@ -366,28 +366,29 @@ radius = 35.0223
 
 [sub_resource type="Animation" id=77]
 resource_name = "Damage"
-length = 0.6
+length = 0.3
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:material:shader_param/flash_color")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, -0.5, -0.5 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 0.00232267, 1 ),
 "update": 0,
 "values": [ 0.6, 0.0, 0.6 ]
 }
@@ -492,7 +493,7 @@ radius = 21.0
 height = 76.0
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
-material = SubResource( 76 )
+material = SubResource( 80 )
 collision_mask = 8
 script = ExtResource( 2 )
 FallGravity = 5000
@@ -540,7 +541,6 @@ disabled = true
 position = Vector2( 864.706, 6.10352e-05 )
 scale = Vector2( 6.66667, 6.66667 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -588,12 +588,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="TakingDamage" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.7
 one_shot = true
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
-[connection signal="animation_finished" from="PlayerSprite/PlayerEffects" to="." method="_on_PlayerEffects_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_CatchTimer_timeout"]

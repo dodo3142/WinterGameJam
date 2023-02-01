@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Chaser.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -10,13 +10,12 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=3]
-
 [node name="Chaser" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 1 )
 Attack = 40
+CheckArea = 800
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.290196, 0, 1, 1 )
@@ -33,13 +32,14 @@ script = ExtResource( 3 )
 modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 2 )
 
-[node name="PlayerTracker" type="Area2D" parent="."]
-collision_layer = 0
+[node name="PlayerCheckRays" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTracker"]
-scale = Vector2( 30.487, 3.151 )
-shape = SubResource( 3 )
+[node name="RightRayCast" type="RayCast2D" parent="PlayerCheckRays"]
+enabled = true
+cast_to = Vector2( 50, 0 )
+
+[node name="LeftRayCast" type="RayCast2D" parent="PlayerCheckRays"]
+enabled = true
+cast_to = Vector2( -50, 0 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
-[connection signal="area_entered" from="PlayerTracker" to="." method="_on_PlayerTracker_area_entered"]
-[connection signal="area_exited" from="PlayerTracker" to="." method="_on_PlayerTracker_area_exited"]

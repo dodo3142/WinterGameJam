@@ -23,6 +23,7 @@ export var MaxHealth = 200
 onready var Health = MaxHealth
 
 #boolens
+var canmove = true
 var canFlip =true
 var canJump = false
 var canAttack = true
@@ -61,8 +62,9 @@ func _process(_delta):
 
 func _physics_process(delta):
 	#move the player
-	Movement()
-	Jumping()
+	if canmove:
+		Movement()
+		Jumping()
 	Gravity(delta)
 	Velocity = move_and_slide(Velocity,Vector2.UP)
 	
@@ -155,8 +157,8 @@ func TakeDamage(Amount):
 			var k = get_tree().reload_current_scene()
 		PlayerEffects.play("Damage")
 		FrameFreeze(0.05,0.4)
-		takingDamage = true
 		TakingDamageTimer.start()
+		takingDamage = true
 		print(Health)
 
 #will slow the game to (timescale) for (duration)

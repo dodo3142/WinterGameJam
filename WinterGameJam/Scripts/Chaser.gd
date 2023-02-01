@@ -1,5 +1,12 @@
 extends Enemy
 
+enum{
+	Chasing,
+	Walking,
+	TakingDamage
+}
+var state = Walking
+
 var Velocity = Vector2.ZERO
 
 var Gravity = 700
@@ -8,41 +15,42 @@ var PlayerEntered = false
 var Player = null
 
 export var Speed = 200
-export var TrackerSize = Vector2(80,30)
+export var CheckArea = 200
 
 onready var ChaserSprite = $Sprite
-onready var TrackerCollision = $PlayerTracker/CollisionShape2D
+onready var RightRaycast = $PlayerCheckRays/RightRayCast
+onready var LeftRayCast = $PlayerCheckRays/LeftRayCast
 
 func _ready():
-	#TrackerCollision.scale = TrackerSize
-	pass
+	RightRaycast.cast_to.x = CheckArea
+	LeftRayCast.cast_to.x = -CheckArea
+
 
 
 func _process(_delta):
-	if PlayerEntered:
-		#player position
-		Pos = position.direction_to(Player.global_position)
+	if RightRaycast.is_colliding():
+		Pos = position.direction_to(RightRaycast.get_collision_point())
+		state = Chasing
+	elif LeftRayCast.is_colliding():
+		Pos = position.direction_to(LeftRayCast.get_collision_point())
+		state = Chasing
+
 
 func _physics_process(delta):
+	match state:
+		Walking:
+			pass
+		Chasing:
+			# Tracks player position and changes direction
+			if Pos < Vector2.ZERO:
+				ChaserSprite.flip_h = true
+				Velocity.x = lerp(Velocity.x, -Speed, 0.09)
+			else:
+				ChaserSprite.flip_h = false
+				Velocity.x = lerp(Velocity.x, Speed, 0.09)
+		TakingDamage:
+			pass
+	
+	
 	Velocity.y += Gravity * delta
-	# Tracks player position and changes direction
-	if Pos < Vector2.ZERO:
-		ChaserSprite.flip_h = true
-		Velocity.x = lerp(Velocity.x, -Speed, 0.09)
-	else:
-		ChaserSprite.flip_h = false
-		Velocity.x = lerp(Velocity.x, Speed, 0.09)
-		
 	Velocity = move_and_slide(Velocity, Vector2.UP)
-
-
-func _on_PlayerTracker_area_entered(area):
-	if area.is_in_group("Player"):
-		Player = area
-		PlayerEntered = true
-
-
-func _on_PlayerTracker_area_exited(area):
-	if area.is_in_group("Player"):
-		Player = null
-		PlayerEntered = false

@@ -18,6 +18,7 @@ onready var Dir = position.direction_to(get_local_mouse_position())
 onready var Velocity = Vector2.ZERO
 
 #Damage
+var FrameFreezeTime = 0.2
 var Damage = 0
 var candamage = true
 
@@ -85,6 +86,7 @@ func _on_Area2D_area_entered(area):
 	if candamage:
 		if area.is_in_group("Enemy"):
 			area.TakeDamage(Damage);
+			FrameFreeze(FrameFreezeTime)
 	
 	if state == ComingBack:
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):
@@ -93,6 +95,13 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Catch") && state != Flying:
 		Player.BoomerangCount += 1
 		queue_free()
+
+func FrameFreeze(duration):
+	#set_process(false)
+	set_physics_process(false)
+	yield(get_tree().create_timer(duration),"timeout")
+	#set_process(true)
+	set_physics_process(true)
 
 func _on_StuckTimer_timeout():
 	state= Missed
