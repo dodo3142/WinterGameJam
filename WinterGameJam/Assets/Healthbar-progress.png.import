@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boomerangup.png-00bd8a5ec8a9fda67131ac472e9fa1cc.stex"
+path="res://.import/Healthbar-progress.png-d4079c43e03695024c98b445275cf7c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/boomerangup.png"
-dest_files=[ "res://.import/boomerangup.png-00bd8a5ec8a9fda67131ac472e9fa1cc.stex" ]
+source_file="res://Assets/Healthbar-progress.png"
+dest_files=[ "res://.import/Healthbar-progress.png-d4079c43e03695024c98b445275cf7c9.stex" ]
 
 [params]
 

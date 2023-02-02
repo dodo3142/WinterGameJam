@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Assets/Protag Sprite Sheet(2).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/ObjectPickup.gd" type="Script" id=8]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=9]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ShaderMaterial" id=80]
 resource_local_to_scene = true
@@ -17,197 +18,158 @@ shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=69]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 8000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=70]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 8000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=71]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3000, 8000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=72]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 9000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=73]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 9000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=74]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 9000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=11]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=12]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=13]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=16]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=17]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=18]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=19]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=20]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=21]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=22]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=27]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=28]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=68]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=29]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=30]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=31]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=32]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=33]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 6000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=34]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 6000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=35]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 6000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=36]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 6000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=37]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 7000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=38]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 7000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=39]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 7000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=40]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 7000, 1000, 1000 )
 
@@ -235,102 +197,82 @@ animations = [ {
 } ]
 
 [sub_resource type="AtlasTexture" id=42]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 2000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=43]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=44]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=45]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=46]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=47]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=48]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=49]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=50]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 2000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=51]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=67]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=57]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 1000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=58]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 2000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=59]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=60]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=61]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 1000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=62]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 2000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=63]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=64]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=65]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 1000, 3000, 1000, 1000 )
 
@@ -593,6 +535,14 @@ one_shot = true
 [node name="TakingDamage" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="HealthBar" parent="." instance=ExtResource( 10 )]
+margin_left = -120.0
+margin_top = -135.0
+margin_right = -120.0
+margin_bottom = -135.0
+rect_scale = Vector2( 0.3, 0.3 )
+WillPulse = true
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]

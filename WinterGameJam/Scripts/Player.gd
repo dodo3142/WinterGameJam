@@ -46,8 +46,13 @@ onready var TakingDamageTimer = $TakingDamage
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
+onready var HealthBar = $HealthBar
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
+
+func _ready():
+	#Updates Heathbar to max health
+	HealthBar._on_max_health_updated(MaxHealth)
 
 func _process(_delta):
 	#when player can jump
@@ -160,7 +165,8 @@ func TakeDamage(Amount):
 		FrameFreeze(0.05,0.4)
 		TakingDamageTimer.start()
 		takingDamage = true
-		print(Health)
+		#Calls healthbar functions
+		HealthBar._on_health_updated(Health, Health)
 
 #Adds to boomerang count
 func CountUp(Amount):
@@ -178,6 +184,7 @@ func CameraUpdate():
 	isGrounded = is_on_floor()
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
+
 
 #Timers
 func _on_CoyoteTimer_timeout():

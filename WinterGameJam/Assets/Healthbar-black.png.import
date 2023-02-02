@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boomerangup.png-00bd8a5ec8a9fda67131ac472e9fa1cc.stex"
+path="res://.import/Healthbar-black.png-ee015310a7d65531b0e4ed0270dd631d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/boomerangup.png"
-dest_files=[ "res://.import/boomerangup.png-00bd8a5ec8a9fda67131ac472e9fa1cc.stex" ]
+source_file="res://Assets/Healthbar-black.png"
+dest_files=[ "res://.import/Healthbar-black.png-ee015310a7d65531b0e4ed0270dd631d.stex" ]
 
 [params]
 
