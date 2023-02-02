@@ -5,10 +5,11 @@ export var MaxHealth = 100
 export var Attack = 30
 export var FrameFreezeTime = 0.2
 onready var Health = MaxHealth
+onready var HealthBar = get_node("HealthBar")
 
 
 func _ready():
-	pass
+	HealthBar._on_max_health_updated(MaxHealth)
 
 func _process(_delta):
 	if Health <= 0:
@@ -18,7 +19,7 @@ func _process(_delta):
 func TakeDamage(Damage):
 	Health -= Damage
 	FrameFreeze(FrameFreezeTime)
-	print(Damage)
+	HealthBar._on_health_updated(Health, Health)
 
 func FrameFreeze(duration):
 	set_process(false)

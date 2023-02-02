@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Walker.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -24,15 +25,6 @@ texture = ExtResource( 2 )
 modulate = Color( 0, 0.694118, 1, 1 )
 shape = SubResource( 1 )
 
-[node name="Health" type="Label" parent="."]
-margin_left = -20.0
-margin_top = -57.0
-margin_right = 20.0
-margin_bottom = -43.0
-text = ":)"
-align = 1
-valign = 1
-
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
 script = ExtResource( 3 )
 
@@ -46,5 +38,12 @@ position = Vector2( 33, 32 )
 enabled = true
 cast_to = Vector2( 0, 5 )
 collision_mask = 8
+
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
+margin_left = -43.0
+margin_top = -57.0
+margin_right = -43.0
+margin_bottom = -57.0
+rect_scale = Vector2( 0.108139, 0.108139 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

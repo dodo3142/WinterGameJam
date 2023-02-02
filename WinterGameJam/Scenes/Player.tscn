@@ -596,12 +596,22 @@ wait_time = 0.7
 one_shot = true
 
 [node name="HealthBar" parent="." instance=ExtResource( 10 )]
-margin_left = -120.0
-margin_top = -135.0
-margin_right = -120.0
-margin_bottom = -135.0
+margin_left = -132.0
+margin_top = -114.0
+margin_right = -132.0
+margin_bottom = -114.0
 rect_scale = Vector2( 0.3, 0.3 )
 WillPulse = true
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -827.0
+margin_top = -540.0
+margin_right = -827.0
+margin_bottom = -540.0
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]

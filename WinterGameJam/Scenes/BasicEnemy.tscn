@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/BasicEnemy.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -32,5 +33,12 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 2 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
+margin_left = -46.0001
+margin_top = -57.0
+margin_right = -46.0001
+margin_bottom = -57.0
+rect_scale = Vector2( 0.11352, 0.137267 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
