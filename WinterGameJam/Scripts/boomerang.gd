@@ -88,6 +88,7 @@ func _on_Area2D_area_entered(area):
 	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
+			state = ComingBack
 			area.TakeDamage(Damage);
 			FrameFreeze(FrameFreezeTime)
 	#to get when it should be Missed
