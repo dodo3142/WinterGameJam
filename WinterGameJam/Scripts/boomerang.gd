@@ -16,13 +16,16 @@ export var Backaccl = 100
 export var Gravity = 250
 onready var Dir = position.direction_to(get_local_mouse_position())
 onready var Velocity = Vector2.ZERO
+var ThrowForce = 0
 
 #Damage
 var FrameFreezeTime = 0.2
 var Damage = 0
 var candamage = true
 
-#timer to fix boomerang stuck
+#timer to fix boomerang stuck and collide
+onready var CollideTimer = $CollideTimer
+var canCollide = false
 onready var stuckTimer = $StuckTimer
 export var StuckTime = 0.1
 
@@ -31,10 +34,8 @@ onready var Player = get_parent()
 var Hand = null
 
 func _ready():
-	#add the player vel to the boomerang
-	#if Player.velocity.x < -1 or Player.velocity.x > 1 : 
-	#	Speed = Speed + (abs(Player.velocity.x) - PlayerSpeedModi)
-	
+	Speed = Speed + ThrowForce
+	print(Speed)
 	LeaveThePlayer()
 
 #LeaveThePlayer
@@ -66,7 +67,8 @@ func _physics_process(delta):
 	
 	var collision_info = move_and_collide(Velocity * delta)
 	
-	CollisionCheck(collision_info)
+	if canCollide:
+		CollisionCheck(collision_info)
 
 #what to do when it collide
 func CollisionCheck(collision_info):
@@ -83,18 +85,28 @@ func CollisionCheck(collision_info):
 		candamage = false
 
 func _on_Area2D_area_entered(area):
+	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
 			area.TakeDamage(Damage);
 			FrameFreeze(FrameFreezeTime)
-	
+	#to get when it should be Missed
 	if state == ComingBack:
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):
 			state = Missed
-	
+	#To get when it is chatched by the player
 	if area.is_in_group("Catch") && state != Flying:
 		Player.BoomerangCount += 1
 		queue_free()
+	
+	if area.is_in_group("Player") and candamage:
+		Player.IsOnBoomerang = true
+		Player.BoomerangCanJumpOn = self
+
+func _on_Area2D_area_exited(area):
+	if area.is_in_group("Player") and candamage:
+		Player.IsOnBoomerang = false
+		Player.BoomerangCanJumpOn = null
 
 func FrameFreeze(duration):
 	#set_process(false)
@@ -105,3 +117,6 @@ func FrameFreeze(duration):
 
 func _on_StuckTimer_timeout():
 	state= Missed
+
+func _on_CollideTimer_timeout():
+	canCollide = true

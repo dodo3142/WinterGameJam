@@ -8,15 +8,25 @@ export var JumpForce=-1100
 export var FallGravity= 3000
 export var JumpGravity = 2000
 export var MaxFallSpeed = 1200
-export var BoomerangCount = 3
 export (float, 0, 1.0) var JumpStopMul = 0.7
 export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
 
+#Boomerang Variables
+export var BoomerangCount = 3
+export var BoomerangJumpForce =-900
+export var BoomrangPushDownForce = 400
+export var ThrowForceTimeMult = 100
+export var maxThrowForce = 800
+var BoomerangCanJumpOn = null
+var ThrowForce = 0
+
 #Damage
 export var mindamage = 10
 export var maxdamage = 30
+export var DamageTimeMult = 20
 var Damage = 0
+
 
 #Health
 export var MaxHealth = 200
@@ -25,12 +35,13 @@ onready var Health = MaxHealth
 #boolens
 var canmove = true
 var canFlip =true
-var canJump = false
 var canAttack = true
-var tryingtoJump= false
 var JumpButtonrelesed = true
-var isGrounded
+var canJump = false
+var tryingtoJump= false
 var takingDamage = false
+var IsOnBoomerang = false
+var isGrounded
 
 #Directions
 var HorizontalDir = Vector2.ZERO
@@ -44,6 +55,8 @@ onready var CatchTimer = $CatchTimer
 onready var AttackTimer = $AttackRate
 onready var TakingDamageTimer = $TakingDamage
 onready var Hand = $PlayerSprite/Hand/HandSprite
+onready var RealHandPos = $PlayerSprite/Hand/RealHandPos
+onready var HandBackPos = $PlayerSprite/Hand/HandBackPos
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
 onready var HealthBar = $HealthBar
@@ -56,7 +69,7 @@ func _ready():
 
 func _process(_delta):
 	#when player can jump
-	if is_on_floor():
+	if is_on_floor() or IsOnBoomerang:
 		canJump = true
 	elif(CoyoteJump.time_left <= 0):
 		CoyoteJump.start()
@@ -111,7 +124,11 @@ func Jumping():
 	
 	#jumping
 	if tryingtoJump and canJump:
-			Velocity.y = JumpForce
+			if IsOnBoomerang:
+				BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
+				Velocity.y = BoomerangJumpForce
+			else:
+				Velocity.y = JumpForce
 			canJump = false
 	
 	#variableJump
@@ -135,18 +152,25 @@ func Gravity(delta):
 #ThrowingSystem
 func Throw(delta):
 	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
-		Damage = Damage + mindamage*delta
+		Damage = Damage + DamageTimeMult * delta
+		ThrowForce = ThrowForce + ThrowForceTimeMult * delta
+		ThrowForce = clamp(ThrowForce,0,maxThrowForce)
 		Damage = clamp(Damage,mindamage,maxdamage)
+		Hand.position= lerp(Hand.position,HandBackPos.position,3*delta)
+	else:
+		Hand.position = lerp(Hand.position,RealHandPos.position,9*delta)
 	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
 		canAttack = false 
 		AttackTimer.start()
 		Hand.play("Throw")
 		var b = Boomerang.instance()
 		b.Damage = Damage as int
+		b.ThrowForce = ThrowForce as int
 		b.Hand = Hand
 		add_child(b)
 		BoomerangCount -= 1
 		Damage = 0
+		ThrowForce = 0
 
 #catchingSystem
 func Catch():
@@ -184,7 +208,6 @@ func CameraUpdate():
 	isGrounded = is_on_floor()
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
-
 
 #Timers
 func _on_CoyoteTimer_timeout():
