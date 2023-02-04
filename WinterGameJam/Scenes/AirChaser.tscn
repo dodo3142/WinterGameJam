@@ -42,5 +42,10 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
 shape = SubResource( 3 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+scale = Vector2( 6, 5.65 )
+process_parent = true
+physics_process_parent = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_PlayerDetect_area_entered"]

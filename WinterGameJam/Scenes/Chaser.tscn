@@ -57,4 +57,9 @@ enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 8
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+scale = Vector2( 6.75, 5.4 )
+process_parent = true
+physics_process_parent = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

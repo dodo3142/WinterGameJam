@@ -9,7 +9,7 @@ var Gravity = 700
 onready var Raycast = $RayCast2D
 
 func _ready():
-	#set_physics_process(false)
+	set_physics_process(false)
 	Velocity.x = Speed
 
 func _physics_process(delta: float) -> void:

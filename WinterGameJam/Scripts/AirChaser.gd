@@ -31,6 +31,7 @@ onready var ChaserSprite = $Sprite
 
 
 func _ready():
+	set_physics_process(false)
 	PlayerDetectRadius = $PlayerDetect/CollisionShape2D
 	#Gets starting position and inital velocity
 	checkright = global_position.x + EndPositions

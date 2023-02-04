@@ -31,7 +31,7 @@ onready var GroundRightRayCast = $GroundCheckRays/RightRayCast
 onready var GroundLeftRayCast = $GroundCheckRays/LeftRayCast
 
 func _ready():
-	
+	set_physics_process(false)
 	PlayerRightRaycast.cast_to.x = CheckArea
 	PlayerLeftRayCast.cast_to.x = -CheckArea
 

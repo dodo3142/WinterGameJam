@@ -8,4 +8,4 @@ func _on_CountUp_area_entered(area):
 		for member in get_tree().get_nodes_in_group("Boomerang"):
 			member.queue_free()
 			area.AddCount(Amount)
-		queue_free()
+		#queue_free()
