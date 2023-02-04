@@ -27,11 +27,11 @@ export var EndPositions = 200
 export var RotationSpeed = 5.0
 
 onready var ChaserSprite = $Sprite
-onready var PlayerDetectRadius = $PlayerDetect/CollisionShape2D
+
 
 
 func _ready():
-	
+	PlayerDetectRadius = $PlayerDetect/CollisionShape2D
 	#Gets starting position and inital velocity
 	checkright = global_position.x + EndPositions
 	checkleft = global_position.x - EndPositions

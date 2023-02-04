@@ -5,6 +5,7 @@ export var MaxHealth = 100
 export var Attack = 30
 export var FrameFreezeTime = 0.2
 onready var Health = MaxHealth
+var PlayerDetectRadius = null
 
 func _ready():
 	pass
@@ -16,6 +17,8 @@ func _process(_delta):
 
 func TakeDamage(Damage):
 	Health -= Damage
+	if PlayerDetectRadius != null:
+		PlayerDetectRadius.shape.radius = 100000
 	FrameFreeze(FrameFreezeTime)
 
 func FrameFreeze(duration):

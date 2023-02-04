@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="WinterGameJam"
-run/main_scene="res://Scenes/FeedBackLevel.tscn"
+run/main_scene="res://Levels/FeedBackLevel.tscn"
 config/icon="res://icon.png"
 
 [autoload]
