@@ -67,7 +67,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "Credits:
 Dodo3142
 Mr.Mild
-Kuma_Porta"
+Kuma_Porta
+Damoid"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_limit_end = Vector2( 0, 1080 )
