@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Objects.gd" type="Script" id=2]
@@ -20,6 +20,9 @@
 [ext_resource path="res://Scenes/AirChaser.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=19]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Protag Sprite Sheet (new).png" type="Texture" id=21]
+[ext_resource path="res://Assets/boomerang.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Arrow.png" type="Texture" id=23]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -956,12 +959,24 @@ points = PoolVector2Array( 1000, 1000, 0, 1000, 0, 0, 1000, 0 )
 size = 35
 font_data = ExtResource( 16 )
 
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 21 )
+region = Rect2( 1000, 3000, 1000, 1000 )
+
+[sub_resource type="SpriteFrames" id=72]
+animations = [ {
+"frames": [ SubResource( 71 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 material = SubResource( 3 )
-position = Vector2( -155, -211 )
+position = Vector2( -155, -217 )
 BoomerangCount = 1
 
 [node name="AutoTile" type="TileMap" parent="."]
@@ -1104,6 +1119,12 @@ position = Vector2( 7003, -2132 )
 [node name="BoomerangReset11" parent="Objects" instance=ExtResource( 12 )]
 position = Vector2( 9832, -1131 )
 
+[node name="BoomerangReset12" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 4053, 434 )
+
+[node name="BoomerangReset13" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 5863, 421 )
+
 [node name="Collectables" type="Node2D" parent="."]
 position = Vector2( 432, -73 )
 
@@ -1119,12 +1140,12 @@ position = Vector2( 2458, -3758 )
 margin_left = -282.0
 margin_top = -143.0
 margin_right = 585.0
-margin_bottom = 50.0
+margin_bottom = -48.0
 custom_fonts/font = SubResource( 70 )
 text = "-You can move with WASD
 -You can throw the boomerang with LMB and Catch it With RMB
--You can jump on the boomerang like douplejump
-"
+-Press F1 for fullscreen
+-Press R to restart"
 
 [node name="Label2" type="Label" parent="Text"]
 margin_left = 1166.0
@@ -1132,66 +1153,90 @@ margin_top = 1502.0
 margin_right = 2033.0
 margin_bottom = 1695.0
 custom_fonts/font = SubResource( 70 )
-text = "It is a switch Throw the boomerang at it to open the door"
+text = "It is a switch, Throw the boomerang at it to open the door."
 
 [node name="Label3" type="Label" parent="Text"]
 margin_left = 7379.0
 margin_top = 463.0
-margin_right = 8246.0
-margin_bottom = 656.0
+margin_right = 7975.0
+margin_bottom = 509.0
 custom_fonts/font = SubResource( 70 )
-text = "Now it is your first enemy use the boomerang
-"
+text = "Here is the first enemy, use the boomerang!"
 
 [node name="Label8" type="Label" parent="Text"]
 margin_left = 6003.0
 margin_top = 315.0
-margin_right = 6870.0
-margin_bottom = 508.0
+margin_right = 6668.0
+margin_bottom = 410.0
 custom_fonts/font = SubResource( 70 )
 text = "You can charge your attack for longer throw and 
-more damage
-"
+more damage"
+align = 1
 
 [node name="Label4" type="Label" parent="Text"]
-margin_left = 9021.0
+margin_left = 9053.0
 margin_top = -1375.0
-margin_right = 9888.0
-margin_bottom = -1182.0
+margin_right = 9638.0
+margin_bottom = -1329.0
 custom_fonts/font = SubResource( 70 )
-text = "Wow you found the boomerang Power up and also 
-use the douplejump 
-It will  add boomerang to you :]"
+text = "This will add to your max boomerang count."
 
 [node name="Label5" type="Label" parent="Text"]
-margin_left = 4427.0
-margin_top = -1214.0
-margin_right = 5294.0
-margin_bottom = -1021.0
+margin_left = 3569.0
+margin_top = 312.0
+margin_right = 4007.0
+margin_bottom = 407.0
 custom_fonts/font = SubResource( 70 )
-text = "You have to use the douplejump"
+text = "The Boomerang Recall wil return 
+your lost Boomerangs"
+align = 1
 
 [node name="Label6" type="Label" parent="Text"]
 margin_left = 2310.0
-margin_top = -3172.0
-margin_right = 3177.0
-margin_bottom = -2979.0
+margin_top = -3197.0
+margin_right = 2785.0
+margin_bottom = -3151.0
 custom_fonts/font = SubResource( 70 )
 text = "Try to think how u can turn it on :]"
 
 [node name="Label7" type="Label" parent="Text"]
 margin_left = 11498.0
 margin_top = -1511.0
-margin_right = 12365.0
-margin_bottom = -1318.0
+margin_right = 12278.0
+margin_bottom = -1416.0
 custom_fonts/font = SubResource( 70 )
-text = "Thank you for playtest our game we are working hard on it 
-your feedback will be super usefull :]"
+text = "Thank you for playing our game, we are working hard on it!
+Any and all feedback will be appreciated."
+align = 1
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="Text"]
+modulate = Color( 1, 1, 1, 0.572549 )
+position = Vector2( 5260, -960 )
+scale = Vector2( 0.15, 0.15 )
+frames = SubResource( 72 )
+flip_h = true
+
+[node name="BoomerangSprite" type="Sprite" parent="Text"]
+modulate = Color( 1, 1, 1, 0.733333 )
+position = Vector2( 4817, -981 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 22 )
+
+[node name="Arrow" type="Sprite" parent="Text"]
+position = Vector2( 5057, -1022 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="Arrow2" type="Sprite" parent="Text"]
+position = Vector2( 4597, -1022 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
 
 [node name="FPSGraphOverlay" parent="." instance=ExtResource( 11 )]
 max_fps = 3493
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 scroll_limit_end = Vector2( 0, 1080 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]

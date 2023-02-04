@@ -7,7 +7,7 @@ func _ready():
 	$Play.grab_focus()
 	Hud.visible=false
 
-func _process(delta):
+func _process(_delta):
 		if Input.is_action_just_pressed("fullscreen"):
 			OS.window_fullscreen = !OS.window_fullscreen
 
