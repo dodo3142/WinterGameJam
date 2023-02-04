@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=3]
@@ -241,7 +241,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 35.0223
+radius = 36.336
 
 [sub_resource type="Animation" id=77]
 resource_name = "Damage"
@@ -367,6 +367,10 @@ tracks/2/keys = {
 radius = 18.0
 height = 80.0
 
+[sub_resource type="CapsuleShape2D" id=102]
+radius = 43.0
+height = 80.0
+
 [sub_resource type="RectangleShape2D" id=81]
 extents = Vector2( 15.5, 59.5 )
 
@@ -375,11 +379,13 @@ material = SubResource( 80 )
 collision_mask = 8
 script = ExtResource( 2 )
 Speed = 700
-JumpForce = -1150
+JumpForce = -1180
 FallGravity = 5000
 JumpStopMul = 0.4
 friction = 0.2
 acceleration = 0.15
+ThrowForceTimeMult = 400
+maxThrowForce = 500
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
@@ -451,6 +457,15 @@ modulate = Color( 0, 1, 0.180392, 1 )
 position = Vector2( 0, 4 )
 shape = SubResource( 7 )
 
+[node name="JumpCatchBox" type="Area2D" parent="." groups=["Catch"]]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpCatchBox"]
+modulate = Color( 0, 1, 0.180392, 1 )
+position = Vector2( 0, 4 )
+shape = SubResource( 102 )
+disabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 1, 0.858824, 1 )
 position = Vector2( -0.5, 2.5 )
@@ -475,6 +490,12 @@ one_shot = true
 [node name="TakingDamage" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="PulseTween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="FlashTween" type="Tween" parent="."]
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]

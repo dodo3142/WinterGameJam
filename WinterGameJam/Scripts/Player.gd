@@ -2,6 +2,10 @@ extends KinematicBody2D
 
 signal Grounded_Update(isGrounded)
 
+#Const
+const FLASH_RATE = 0.05
+const N_FLASHES = 4
+
 #movement
 export var Speed = 900
 export var JumpForce=-1100
@@ -18,6 +22,9 @@ export var BoomerangJumpForce =-900
 export var BoomrangPushDownForce = 400
 export var ThrowForceTimeMult = 100
 export var maxThrowForce = 800
+var PlayerColor = Color.white
+var PulseColor = Color.lightyellow
+var PulseColorHard = Color(1,1,0.5,1)
 var BoomerangCanJumpOn = null
 var ThrowForce = 0
 
@@ -59,7 +66,10 @@ onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var RealHandPos = $PlayerSprite/Hand/RealHandPos
 onready var HandBackPos = $PlayerSprite/Hand/HandBackPos
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
+onready var JumpCatchBox = $JumpCatchBox/CollisionShape2D
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
+onready var PulseTween = $PulseTween
+onready var FlashTween = $FlashTween
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 
@@ -129,6 +139,8 @@ func Jumping():
 			if IsOnBoomerang:
 				#BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
 				Velocity.y = BoomerangJumpForce
+				JumpCatchBox.disabled = false
+				CatchTimer.start()
 			else:
 				Velocity.y = JumpForce
 			canJump = false
@@ -159,6 +171,15 @@ func Throw(delta):
 		ThrowForce = clamp(ThrowForce,0,maxThrowForce)
 		Damage = clamp(Damage,mindamage,maxdamage)
 		Hand.position= lerp(Hand.position,HandBackPos.position,3*delta)
+		#when fully charged, pulse chage color
+		if ThrowForce == maxThrowForce:
+			if !PulseTween.is_active():
+				PulseTween.interpolate_property(PlayerSprite, "modulate", PlayerColor, PulseColorHard, 
+				2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+				PulseTween.start()
+				FlashColor()
+		else:
+			PulseTween.set_active(false)
 	else:
 		Hand.position = lerp(Hand.position,RealHandPos.position,9*delta)
 	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
@@ -173,6 +194,8 @@ func Throw(delta):
 		BoomerangCount -= 1
 		Damage = 0
 		ThrowForce = 0
+		PlayerSprite.modulate = PlayerColor
+		PulseTween.set_active(false)
 
 #catchingSystem
 func Catch():
@@ -212,6 +235,15 @@ func CameraUpdate():
 	if wasGrounded == null || isGrounded != wasGrounded:
 		emit_signal("Grounded_Update",isGrounded)
 
+#Flashs charge color
+func FlashColor():
+	for i in range(N_FLASHES * 2):
+		#cant tell if color var works right? seems fine
+		var color = PlayerSprite.modulate if i % 2 == 1 else PulseColor
+		var time = FLASH_RATE * i + FLASH_RATE
+		FlashTween.interpolate_callback(PlayerSprite, time, "set", "modulate", color)
+	FlashTween.start()
+
 #Timers
 func _on_CoyoteTimer_timeout():
 	canJump = false
@@ -221,6 +253,7 @@ func _on_JumpBuffring_timeout():
 
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
+	JumpCatchBox.disabled = true
 
 func _on_AttackRate_timeout():
 	canAttack = true
