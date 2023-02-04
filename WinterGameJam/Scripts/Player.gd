@@ -46,6 +46,7 @@ var isGrounded
 #Directions
 var HorizontalDir = Vector2.ZERO
 var Velocity = Vector2.ZERO
+var k
 
 #get the nodes and scenes
 onready var PlayerSprite = $PlayerSprite
@@ -59,13 +60,12 @@ onready var RealHandPos = $PlayerSprite/Hand/RealHandPos
 onready var HandBackPos = $PlayerSprite/Hand/HandBackPos
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
-onready var HealthBar = $HealthBar
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 
 func _ready():
 	#Updates Heathbar to max health
-	HealthBar._on_max_health_updated(MaxHealth)
+	Hud.HealthBar._on_max_health_updated(MaxHealth)
 
 func _process(_delta):
 	#when player can jump
@@ -76,6 +76,8 @@ func _process(_delta):
 	
 	Throw(_delta)
 	Catch()
+	
+	Hud.BoomerangCount.text = str("x " + str(BoomerangCount))
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _physics_process(delta):
@@ -125,7 +127,7 @@ func Jumping():
 	#jumping
 	if tryingtoJump and canJump:
 			if IsOnBoomerang:
-				BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
+				#BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
 				Velocity.y = BoomerangJumpForce
 			else:
 				Velocity.y = JumpForce
@@ -184,13 +186,14 @@ func TakeDamage(Amount):
 	if !takingDamage:
 		Health -= Amount
 		if Health <= 0:
-			var k = get_tree().reload_current_scene()
+			Health = MaxHealth
+			k = get_tree().reload_current_scene()
 		PlayerEffects.play("Damage")
 		FrameFreeze(0.05,0.4)
 		TakingDamageTimer.start()
 		takingDamage = true
 		#Calls healthbar functions
-		HealthBar._on_health_updated(Health, Health)
+		Hud.HealthBar._on_health_updated(Health, Health)
 
 #Adds to boomerang count
 func CountUp(Amount):

@@ -26,7 +26,8 @@ func _process(_delta):
 
 func Controller():
 	#Controller Rotation
-	var Dir = Vector2(Input.get_action_strength("HandRight") - Input.get_action_strength("HandLeft"), Input.get_action_strength("HandDown") - Input.get_action_strength("HandUp"))
+	var Dir = Vector2(Input.get_action_strength("HandRight") - Input.get_action_strength("HandLeft"),
+	Input.get_action_strength("HandDown") - Input.get_action_strength("HandUp"))
 	
 	if abs(Dir.x) > 0.1 or abs(Dir.y) > 0.1:
 		StickCord = Dir.normalized()

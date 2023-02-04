@@ -4,6 +4,7 @@ var k
 
 func _ready():
 	Engine.time_scale=1
+	#MusicController.Play_Music()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("fullscreen"):

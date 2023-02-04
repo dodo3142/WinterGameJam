@@ -21,6 +21,7 @@ export (bool) var WillPulse = false
 #updates health
 func _on_health_updated(health, amount):
 	HealthOver.value = health
+	print(HealthOver.value)
 	UpdateTween.interpolate_property(HealthUnder, "value", HealthUnder.value, health, 0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
 	UpdateTween.start()
 	
@@ -30,7 +31,7 @@ func _on_health_updated(health, amount):
 	if amount < 0:
 		_flash_damage()
 
-
+#Assigns healthbar color to how low health value is
 func _assign_color(health):
 	if health == 0:
 		PulseTween.set_active(false)
@@ -48,7 +49,7 @@ func _assign_color(health):
 		else:
 			HealthOver.tint_progress = HealthyColor
 
-#
+#Flashs healthbar when low
 func _flash_damage():
 	for i in range(N_FLASHES * 2):
 		#cant tell if color var works right? seems fine
@@ -63,3 +64,4 @@ func _on_max_health_updated(max_health):
 	HealthUnder.max_value = max_health
 	HealthOver.value = max_health
 	HealthUnder.value = max_health
+	

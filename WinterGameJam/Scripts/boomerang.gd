@@ -35,7 +35,7 @@ var Hand = null
 
 func _ready():
 	Speed = Speed + ThrowForce
-	print(Speed)
+	#print(Speed)
 	LeaveThePlayer()
 
 #LeaveThePlayer
@@ -88,6 +88,7 @@ func _on_Area2D_area_entered(area):
 	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
+			Speed = Speed / 2
 			state = ComingBack
 			area.TakeDamage(Damage);
 			FrameFreeze(FrameFreezeTime)
@@ -98,6 +99,7 @@ func _on_Area2D_area_entered(area):
 	#To get when it is chatched by the player
 	if area.is_in_group("Catch") && state != Flying:
 		Player.BoomerangCount += 1
+		Player.IsOnBoomerang = false
 		queue_free()
 	
 	if area.is_in_group("Player") and candamage:
@@ -105,7 +107,7 @@ func _on_Area2D_area_entered(area):
 		Player.BoomerangCanJumpOn = self
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Player") and candamage:
+	if area.is_in_group("Player"):
 		Player.IsOnBoomerang = false
 		Player.BoomerangCanJumpOn = null
 

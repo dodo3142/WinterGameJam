@@ -26,7 +26,8 @@ texture = ExtResource( 1 )
 modulate = Color( 0, 1, 0.976471, 1 )
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="." groups=["Boomerang"]]
+[node name="Area2D" type="Area2D" parent="." groups=["Weapon"]]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color( 1, 0, 0, 1 )
