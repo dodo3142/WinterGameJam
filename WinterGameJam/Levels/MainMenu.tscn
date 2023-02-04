@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Levels/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Front.tres" type="DynamicFont" id=2]
@@ -22,6 +22,13 @@ bg_color = Color( 0.6, 0.6, 0.6, 0.596078 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0, 0, 0, 0.541176 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://Assets/Fonts/brush in space.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 76
+font_data = SubResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.6, 0.6, 0.6, 0.6 )
@@ -53,7 +60,7 @@ margin_left = 575.0
 margin_top = 565.0
 margin_right = 1389.0
 margin_bottom = 670.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = SubResource( 11 )
 custom_styles/hover = SubResource( 7 )
 custom_styles/focus = SubResource( 9 )
 custom_styles/normal = SubResource( 4 )

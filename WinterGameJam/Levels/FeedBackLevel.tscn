@@ -1143,6 +1143,16 @@ custom_fonts/font = SubResource( 70 )
 text = "Now it is your first enemy use the boomerang
 "
 
+[node name="Label8" type="Label" parent="Text"]
+margin_left = 6003.0
+margin_top = 315.0
+margin_right = 6870.0
+margin_bottom = 508.0
+custom_fonts/font = SubResource( 70 )
+text = "You can charge your attack for longer throw and 
+more damage
+"
+
 [node name="Label4" type="Label" parent="Text"]
 margin_left = 9021.0
 margin_top = -1375.0
