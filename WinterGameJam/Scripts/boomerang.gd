@@ -98,6 +98,7 @@ func _on_Area2D_area_entered(area):
 			state = Missed
 	#To get when it is chatched by the player
 	if area.is_in_group("Catch") && state != Flying:
+		AudioManager.play("res://Assets/SFX/BoomerangCatch.wav")
 		Player.BoomerangCount += 1
 		Player.IsOnBoomerang = false
 		queue_free()

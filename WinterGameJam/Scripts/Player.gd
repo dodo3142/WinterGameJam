@@ -188,6 +188,7 @@ func Throw(delta):
 		canAttack = false 
 		AttackTimer.start()
 		Hand.play("Throw")
+		AudioManager.play("res://Assets/SFX/BoomerangThrow.wav")
 		var b = Boomerang.instance()
 		b.Damage = Damage as int
 		b.ThrowForce = ThrowForce as int
@@ -263,12 +264,15 @@ func _on_AttackRate_timeout():
 func _on_TakingDamage_timeout():
 	takingDamage = false
 	PlayerEffects.play("Off")
-#TimersEnd
-
-func _on_HandSprite_animation_finished():
-	Hand.play("Idle")
-
 
 func _on_Timer_timeout():
 		set_physics_process(true)
 		set_process(true)
+
+func _on_RunSoundTimer_timeout():
+	AudioManager.play("res://Assets/SFX/RunOnGravel01.wav")
+
+#TimersEnd
+
+func _on_HandSprite_animation_finished():
+	Hand.play("Idle")

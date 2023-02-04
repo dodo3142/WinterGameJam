@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 Hud="*res://Globals/HUD.tscn"
 MusicController="*res://Globals/MusicController.tscn"
+AudioManager="*res://Globals/Audio Manager.tscn"
 
 [debug]
 
