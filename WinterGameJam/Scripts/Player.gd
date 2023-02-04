@@ -74,6 +74,8 @@ onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 
 func _ready():
+	set_physics_process(false)
+	set_process(false)
 	#Updates Heathbar to max health
 	Hud.HealthBar._on_max_health_updated(MaxHealth)
 
@@ -175,7 +177,7 @@ func Throw(delta):
 		if ThrowForce == maxThrowForce:
 			if !PulseTween.is_active():
 				PulseTween.interpolate_property(PlayerSprite, "modulate", PlayerColor, PulseColorHard, 
-				2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+				2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 				PulseTween.start()
 				FlashColor()
 		else:
@@ -265,3 +267,8 @@ func _on_TakingDamage_timeout():
 
 func _on_HandSprite_animation_finished():
 	Hand.play("Idle")
+
+
+func _on_Timer_timeout():
+		set_physics_process(true)
+		set_process(true)
