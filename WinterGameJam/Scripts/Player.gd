@@ -266,8 +266,8 @@ func _on_TakingDamage_timeout():
 	PlayerEffects.play("Off")
 
 func _on_Timer_timeout():
-		set_physics_process(true)
-		set_process(true)
+	 set_process(true)
+	 set_physics_process(true)
 
 func _on_RunSoundTimer_timeout():
 	AudioManager.play("res://Assets/SFX/RunOnGravel01.wav")

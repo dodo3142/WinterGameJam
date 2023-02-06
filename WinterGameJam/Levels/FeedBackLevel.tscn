@@ -1236,7 +1236,6 @@ texture = ExtResource( 23 )
 max_fps = 3493
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
 scroll_limit_end = Vector2( 0, 1080 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
