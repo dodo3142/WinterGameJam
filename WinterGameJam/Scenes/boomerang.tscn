@@ -4,10 +4,10 @@
 [ext_resource path="res://Scripts/boomerang.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.875, 15.875 )
+extents = Vector2( 19.25, 21.5 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 25.0
+radius = 31.0161
 
 [node name="Boomerang" type="KinematicBody2D" groups=["Boomerang"]]
 collision_layer = 2
@@ -24,6 +24,7 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 1, 0.976471, 1 )
+position = Vector2( 0.75, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["Weapon"]]

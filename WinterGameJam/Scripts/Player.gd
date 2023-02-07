@@ -139,10 +139,10 @@ func Jumping():
 	#jumping
 	if tryingtoJump and canJump:
 			if IsOnBoomerang:
-				BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
+				#BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
 				Velocity.y = BoomerangJumpForce
-				#JumpCatchBox.disabled = false
-				#CatchTimer.start()
+				JumpCatchBox.disabled = false
+				CatchTimer.start()
 			else:
 				Velocity.y = JumpForce
 			canJump = false

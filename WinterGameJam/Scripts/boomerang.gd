@@ -88,8 +88,8 @@ func _on_Area2D_area_entered(area):
 	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
-			Speed = Speed / 2
-			state = ComingBack
+			#Speed = Speed / 2
+			#state = ComingBack
 			area.TakeDamage(Damage);
 			FrameFreeze(FrameFreezeTime)
 	#to get when it should be Missed
@@ -97,7 +97,7 @@ func _on_Area2D_area_entered(area):
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):
 			state = Missed
 	#To get when it is chatched by the player
-	if area.is_in_group("Catch") && state != Flying:
+	if area.is_in_group("Catch"):
 		AudioManager.play("res://Assets/SFX/BoomerangCatch.wav")
 		Player.BoomerangCount += 1
 		Player.IsOnBoomerang = false

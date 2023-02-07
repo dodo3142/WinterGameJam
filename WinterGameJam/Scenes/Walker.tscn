@@ -14,7 +14,7 @@ extents = Vector2( 32, 32 )
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 1 )
-MaxHealth = 20
+MaxHealth = 30
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.431373, 0, 1, 1 )
