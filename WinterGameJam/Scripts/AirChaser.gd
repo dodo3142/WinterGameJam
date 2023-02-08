@@ -26,8 +26,7 @@ export var AreaSize = 200
 export var EndPositions = 200
 export var RotationSpeed = 5.0
 
-onready var ChaserSprite = $Sprite
-
+onready var ChaserSprite = $AnimatedSprite
 
 
 func _ready():
