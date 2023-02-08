@@ -18,8 +18,8 @@ func _process(_delta):
 func TakeDamage(Damage):
 	print(Damage)
 	Health -= Damage
-	#if PlayerDetectRadius != null:
-		#PlayerDetectRadius.shape.radius = 1000
+	if PlayerDetectRadius != null:
+		PlayerDetectRadius.shape.radius = 1000
 	FrameFreeze(FrameFreezeTime)
 
 func FrameFreeze(duration):

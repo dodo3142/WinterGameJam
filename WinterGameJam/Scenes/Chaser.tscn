@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Chaser.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteSheets/Beetle SpriteSheet.png" type="Texture" id=2]
@@ -173,10 +173,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 127, 89.5 )
+extents = Vector2( 80.5, 49.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 127, 89.5 )
+extents = Vector2( 91.5, 52 )
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 30.375, 33 )
 
 [node name="Chaser" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -194,19 +197,22 @@ frame = 11
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 modulate = Color( 0, 0.694118, 1, 1 )
-position = Vector2( -2, -1.5 )
+position = Vector2( 6.5, 36.5 )
 shape = SubResource( 1 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
-visible = false
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -2, -1.5 )
+position = Vector2( 10.5, 31 )
 shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 92, -12 )
+shape = SubResource( 35 )
 
 [node name="PlayerCheckRays" type="Node2D" parent="."]
 
@@ -221,13 +227,13 @@ cast_to = Vector2( -50, 0 )
 [node name="GroundCheckRays" type="Node2D" parent="."]
 
 [node name="RightRayCast" type="RayCast2D" parent="GroundCheckRays"]
-position = Vector2( 126, 87 )
+position = Vector2( 85, 87 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 8
 
 [node name="LeftRayCast" type="RayCast2D" parent="GroundCheckRays"]
-position = Vector2( -130, 88 )
+position = Vector2( -74, 88 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 8

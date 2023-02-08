@@ -108,10 +108,10 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 396.667, 296.667 )
+extents = Vector2( 265, 170 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 396.667, 305 )
+extents = Vector2( 280, 168.333 )
 
 [node name="Walker" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 0.3, 0.3 )
@@ -122,12 +122,12 @@ MaxHealth = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 22 )
-frame = 7
+frame = 3
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 0.694118, 1, 1 )
-position = Vector2( 23.3334, -3.33334 )
+position = Vector2( 8.33332, 96.6667 )
 shape = SubResource( 1 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
@@ -135,17 +135,18 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 23.3333, 5 )
+position = Vector2( 20, 78.3333 )
 shape = SubResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 modulate = Color( 0, 1, 0.929412, 1 )
-position = Vector2( 423.333, 286.667 )
+position = Vector2( 273.333, 266.667 )
 enabled = true
 cast_to = Vector2( 6.10352e-05, 10 )
 collision_mask = 8
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 76.6667, 56.6667 )
 scale = Vector2( 47.3333, 39.3935 )
 process_parent = true

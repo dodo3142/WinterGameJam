@@ -13,7 +13,7 @@ func _process(_delta):
 
 func _on_Play_pressed():
 	MusicController.ChangeMusic("res://Assets/Music/OverwolrdDemo3.ogg")
-	SceenTransition.ChangeSceen("res://Levels/FeedBackLevel.tscn")
+	SceenTransition.ChangeSceen("res://Levels/FinalLevel.tscn")
 
 func _on_Quit_pressed():
 	get_tree().quit()

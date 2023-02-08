@@ -976,7 +976,6 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 material = SubResource( 3 )
-position = Vector2( 6861, 799 )
 BoomerangCount = 1
 
 [node name="AutoTile" type="TileMap" parent="."]

@@ -40,7 +40,6 @@ export var MaxHealth = 200
 onready var Health = MaxHealth
 
 #boolens
-export var ThrowUpgrade = true
 var canmove = true
 var canFlip =true
 var canAttack = true
@@ -168,7 +167,7 @@ func Gravity(delta):
 
 #ThrowingSystem
 func Throw(delta):
-	if Input.is_action_pressed("Attack")  && ThrowUpgrade && BoomerangCount > 0 and canAttack:
+	if Input.is_action_pressed("Attack")  && Hud.ThrowUpgrade && BoomerangCount > 0 and canAttack:
 		Damage = Damage + DamageTimeMult * delta
 		ThrowForce = ThrowForce + ThrowForceTimeMult * delta
 		ThrowForce = clamp(ThrowForce,0,maxThrowForce)

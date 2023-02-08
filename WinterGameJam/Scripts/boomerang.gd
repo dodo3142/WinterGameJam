@@ -14,7 +14,6 @@ export var Speed = 300
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
-export var JumpUpgrade = true
 onready var Dir = position.direction_to(get_local_mouse_position())
 onready var Velocity = Vector2.ZERO
 var ThrowForce = 0
@@ -104,12 +103,12 @@ func _on_Area2D_area_entered(area):
 		Player.IsOnBoomerang = false
 		queue_free()
 	
-	if area.is_in_group("Player") and candamage && JumpUpgrade:
+	if area.is_in_group("Player") and candamage && Hud.JumpUpgrade:
 		Player.IsOnBoomerang = true
 		Player.BoomerangCanJumpOn = self
 
 func _on_Area2D_area_exited(area):
-	if JumpUpgrade && area.is_in_group("Player"):
+	if Hud.JumpUpgrade && area.is_in_group("Player"):
 		Player.IsOnBoomerang = false
 		Player.BoomerangCanJumpOn = null
 
