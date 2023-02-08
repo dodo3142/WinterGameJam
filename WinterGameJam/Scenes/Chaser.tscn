@@ -227,13 +227,13 @@ cast_to = Vector2( -50, 0 )
 [node name="GroundCheckRays" type="Node2D" parent="."]
 
 [node name="RightRayCast" type="RayCast2D" parent="GroundCheckRays"]
-position = Vector2( 85, 87 )
+position = Vector2( 89, 85 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 8
 
 [node name="LeftRayCast" type="RayCast2D" parent="GroundCheckRays"]
-position = Vector2( -74, 88 )
+position = Vector2( -76, 85 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 8
