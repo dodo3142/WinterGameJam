@@ -32,13 +32,13 @@ onready var ChaserSprite = $Sprite
 
 func _ready():
 	set_physics_process(false)
-	#PlayerDetectRadius = $PlayerDetect/CollisionShape2D
+	PlayerDetectRadius = $PlayerDetect/CollisionShape2D
 	#Gets starting position and inital velocity
 	checkright = global_position.x + EndPositions
 	checkleft = global_position.x - EndPositions
 	Velocity.x = WalkingSpeed
 	#Changes radius size of player detect
-	#PlayerDetectRadius.shape.radius = AreaSize
+	PlayerDetectRadius.shape.radius = AreaSize
 	
 
 func _process(_delta):

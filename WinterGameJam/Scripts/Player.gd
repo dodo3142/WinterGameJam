@@ -32,7 +32,7 @@ var ThrowForce = 0
 export var mindamage = 10
 export var maxdamage = 30
 export var DamageTimeMult = 20
-var Damage = 0
+var Damage = 10
 
 
 #Health
@@ -40,6 +40,7 @@ export var MaxHealth = 200
 onready var Health = MaxHealth
 
 #boolens
+export var ThrowUpgrade = true
 var canmove = true
 var canFlip =true
 var canAttack = true
@@ -59,8 +60,8 @@ var k
 onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
-onready var CatchTimer = $CatchTimer
 onready var AttackTimer = $AttackRate
+onready var CatchTimer = $CatchTimer
 onready var TakingDamageTimer = $TakingDamage
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var RealHandPos = $PlayerSprite/Hand/RealHandPos
@@ -167,7 +168,7 @@ func Gravity(delta):
 
 #ThrowingSystem
 func Throw(delta):
-	if Input.is_action_pressed("Attack") && BoomerangCount > 0 and canAttack:
+	if Input.is_action_pressed("Attack")  && ThrowUpgrade && BoomerangCount > 0 and canAttack:
 		Damage = Damage + DamageTimeMult * delta
 		ThrowForce = ThrowForce + ThrowForceTimeMult * delta
 		ThrowForce = clamp(ThrowForce,0,maxThrowForce)
@@ -185,7 +186,7 @@ func Throw(delta):
 	else:
 		Hand.position = lerp(Hand.position,RealHandPos.position,9*delta)
 	if Input.is_action_just_released("Attack") && BoomerangCount > 0 and canAttack:
-		canAttack = false 
+		canAttack = false
 		AttackTimer.start()
 		Hand.play("Throw")
 		AudioManager.play("res://Assets/SFX/BoomerangThrow.wav")
@@ -195,7 +196,7 @@ func Throw(delta):
 		b.Hand = Hand
 		add_child(b)
 		BoomerangCount -= 1
-		Damage = 0
+		Damage = 10
 		ThrowForce = 0
 		PlayerSprite.modulate = PlayerColor
 		PulseTween.set_active(false)
@@ -254,12 +255,12 @@ func _on_CoyoteTimer_timeout():
 func _on_JumpBuffring_timeout():
 	tryingtoJump = false
 
+func  _on_AttackRate_timeout():
+	canAttack = true
+
 func _on_CatchTimer_timeout():
 	CatchBox.disabled = true
 	JumpCatchBox.disabled = true
-
-func _on_AttackRate_timeout():
-	canAttack = true
 
 func _on_TakingDamage_timeout():
 	takingDamage = false

@@ -14,6 +14,7 @@ export var Speed = 300
 export var Goaccl = 100
 export var Backaccl = 100
 export var Gravity = 250
+export var JumpUpgrade = true
 onready var Dir = position.direction_to(get_local_mouse_position())
 onready var Velocity = Vector2.ZERO
 var ThrowForce = 0
@@ -97,18 +98,18 @@ func _on_Area2D_area_entered(area):
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):
 			state = Missed
 	#To get when it is chatched by the player
-	if area.is_in_group("Catch"):
+	if area.is_in_group("Catch") && state != Flying:
 		AudioManager.play("res://Assets/SFX/BoomerangCatch.wav")
 		Player.BoomerangCount += 1
 		Player.IsOnBoomerang = false
 		queue_free()
 	
-	if area.is_in_group("Player") and candamage:
+	if area.is_in_group("Player") and candamage && JumpUpgrade:
 		Player.IsOnBoomerang = true
 		Player.BoomerangCanJumpOn = self
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Player"):
+	if JumpUpgrade && area.is_in_group("Player"):
 		Player.IsOnBoomerang = false
 		Player.BoomerangCanJumpOn = null
 
