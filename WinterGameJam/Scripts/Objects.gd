@@ -26,5 +26,4 @@ func CheckSwitch():
 	if list.size() == 0:
 		for i in get_children():
 			if i.is_in_group("Object"):
-				i.sprite.modulate = i.CompleteCol
 				door.Deactivate()

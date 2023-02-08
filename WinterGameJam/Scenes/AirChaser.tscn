@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/AirChaser.gd" type="Script" id=1]
 [ext_resource path="res://Assets/boomerang.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -20,10 +28,8 @@ script = ExtResource( 1 )
 MaxHealth = 20
 CurrentDir = 1
 
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 1 )
-scale = Vector2( 0.133, 0.125 )
-texture = ExtResource( 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 0.694118, 1, 1 )

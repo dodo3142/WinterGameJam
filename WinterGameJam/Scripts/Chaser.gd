@@ -24,7 +24,7 @@ export var WalkingSpeed = 200
 export var ChasingSpeed = 400
 export var CheckArea = 200
 
-onready var ChaserSprite = $Sprite
+onready var ChaserSprite = $AnimatedSprite
 onready var PlayerRightRaycast = $PlayerCheckRays/RightRayCast
 onready var PlayerLeftRayCast = $PlayerCheckRays/LeftRayCast
 onready var GroundRightRayCast = $GroundCheckRays/RightRayCast
@@ -48,9 +48,11 @@ func _process(_delta):
 func _physics_process(delta):
 	match state:
 		Walking:
+			ChaserSprite.play("Walking")
 			onLedge = CheckIfOnLedge()
 			MatchSpeedToDir()
 		Chasing:
+			ChaserSprite.play("Chasing")
 			# Tracks player position and changes direction
 			if Pos < Vector2.ZERO:
 				CurrentDir = FacingDir.Left

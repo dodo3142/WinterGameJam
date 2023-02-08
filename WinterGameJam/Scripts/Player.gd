@@ -269,10 +269,6 @@ func _on_TakingDamage_timeout():
 func _on_Timer_timeout():
 	 set_process(true)
 	 set_physics_process(true)
-
-func _on_RunSoundTimer_timeout():
-	AudioManager.play("res://Assets/SFX/RunOnGravel01.wav")
-
 #TimersEnd
 
 func _on_HandSprite_animation_finished():

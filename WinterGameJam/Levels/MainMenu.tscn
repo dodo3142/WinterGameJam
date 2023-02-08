@@ -1,17 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fonts/Front.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/CloudParallax.gd" type="Script" id=3]
 [ext_resource path="res://Assets/BackGround/Clouds.png" type="Texture" id=4]
 [ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=5]
-[ext_resource path="res://Assets/4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/BackGround/4(1).png" type="Texture" id=6]
 [ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=7]
 [ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Fonts/brush in space.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Fonts/Artless Demo.otf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=5]
-size = 98
+size = 124
 font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=6]
@@ -23,12 +22,9 @@ bg_color = Color( 0.6, 0.6, 0.6, 0.596078 )
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0, 0, 0, 0.541176 )
 
-[sub_resource type="DynamicFontData" id=10]
-font_path = "res://Assets/Fonts/brush in space.ttf"
-
 [sub_resource type="DynamicFont" id=11]
 size = 76
-font_data = SubResource( 10 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.6, 0.6, 0.6, 0.6 )
@@ -38,6 +34,10 @@ bg_color = Color( 0.6, 0.6, 0.6, 0.607843 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0.513726 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 80
+font_data = ExtResource( 9 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -54,6 +54,7 @@ custom_styles/hover = SubResource( 6 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 3 )
 text = "Play"
+icon_align = 1
 
 [node name="Quit" type="Button" parent="."]
 margin_left = 575.0
@@ -67,10 +68,11 @@ custom_styles/normal = SubResource( 4 )
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 26.0
+margin_right = 500.0
+margin_bottom = 478.0
 custom_colors/font_color = Color( 1, 1, 1, 0.862745 )
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = SubResource( 12 )
 text = "Credits:
 Dodo3142
 Mr.Mild

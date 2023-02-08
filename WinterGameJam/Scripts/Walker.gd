@@ -7,6 +7,7 @@ var Velocity = Vector2.ZERO
 var Gravity = 700
 
 onready var Raycast = $RayCast2D
+onready var sprite = $AnimatedSprite
 
 func _ready():
 	set_physics_process(false)
@@ -18,5 +19,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall() || !Raycast.is_colliding():
 		Velocity.x *= -1
 		Raycast.position.x *= -1
+		sprite.flip_h = !sprite.flip_h
 	Velocity.y = move_and_slide(Velocity, Vector2.UP).y
 
