@@ -1,8 +1,15 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/Walker.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteSheets/Beetle SpriteSheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
+[ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=23]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -113,6 +120,53 @@ extents = Vector2( 265, 170 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 280, 168.333 )
 
+[sub_resource type="Animation" id=24]
+resource_name = "Flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Normal"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [node name="Walker" type="KinematicBody2D" groups=["Enemy"]]
 scale = Vector2( 0.3, 0.3 )
 collision_layer = 4
@@ -121,6 +175,7 @@ script = ExtResource( 1 )
 MaxHealth = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 23 )
 frames = SubResource( 22 )
 frame = 3
 flip_h = true
@@ -151,5 +206,10 @@ position = Vector2( 76.6667, 56.6667 )
 scale = Vector2( 47.3333, 39.3935 )
 process_parent = true
 physics_process_parent = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 24 )
+anims/Normal = SubResource( 26 )
+anims/RESET = SubResource( 25 )
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

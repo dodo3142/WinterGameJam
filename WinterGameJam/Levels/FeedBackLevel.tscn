@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Objects.gd" type="Script" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://Scenes/AirChaser.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=19]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Assets/Protag Sprite Sheet (new).png" type="Texture" id=21]
 [ext_resource path="res://Assets/Sprites/boomerang.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Sprites/Arrow.png" type="Texture" id=23]
 
@@ -960,7 +959,6 @@ size = 35
 font_data = ExtResource( 16 )
 
 [sub_resource type="AtlasTexture" id=71]
-atlas = ExtResource( 21 )
 region = Rect2( 1000, 3000, 1000, 1000 )
 
 [sub_resource type="SpriteFrames" id=72]
@@ -1265,3 +1263,49 @@ motion_mirroring = Vector2( 5760, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource( 6 )
 centered = false
+
+[node name="Walker" parent="." instance=ExtResource( 20 )]
+position = Vector2( 1125, 78 )
+MaxHealth = 10000
+
+[node name="CountUp" parent="." instance=ExtResource( 10 )]
+position = Vector2( -434, 331 )
+
+[node name="CountUp2" parent="." instance=ExtResource( 10 )]
+position = Vector2( -241, 340 )
+
+[node name="CountUp3" parent="." instance=ExtResource( 10 )]
+position = Vector2( -133, 359 )
+
+[node name="CountUp4" parent="." instance=ExtResource( 10 )]
+position = Vector2( -434, 194 )
+
+[node name="CountUp5" parent="." instance=ExtResource( 10 )]
+position = Vector2( -298, 150 )
+
+[node name="CountUp6" parent="." instance=ExtResource( 10 )]
+position = Vector2( -126, 188 )
+
+[node name="CountUp7" parent="." instance=ExtResource( 10 )]
+position = Vector2( -317, 264 )
+
+[node name="CountUp8" parent="." instance=ExtResource( 10 )]
+position = Vector2( -177, 264 )
+
+[node name="CountUp9" parent="." instance=ExtResource( 10 )]
+position = Vector2( -418, 77 )
+
+[node name="CountUp10" parent="." instance=ExtResource( 10 )]
+position = Vector2( -339, 45 )
+
+[node name="CountUp11" parent="." instance=ExtResource( 10 )]
+position = Vector2( -203, 51 )
+
+[node name="CountUp12" parent="." instance=ExtResource( 10 )]
+position = Vector2( -206, 156 )
+
+[node name="CountUp13" parent="." instance=ExtResource( 10 )]
+position = Vector2( -34, 283 )
+
+[node name="CountUp14" parent="." instance=ExtResource( 10 )]
+position = Vector2( -415, -41 )

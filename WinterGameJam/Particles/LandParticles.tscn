@@ -32,6 +32,7 @@ amount = 10
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
+randomness = 1.0
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

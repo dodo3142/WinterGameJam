@@ -15,6 +15,7 @@ func _process(_delta):
 		queue_free()
 		Engine.time_scale = 1
 
+
 func TakeDamage(Damage):
 	print(Damage)
 	Health -= Damage
@@ -23,9 +24,12 @@ func TakeDamage(Damage):
 	FrameFreeze(FrameFreezeTime)
 
 func FrameFreeze(duration):
+	get_node("AnimatedSprite").stop()
+	get_node("AnimationPlayer").play("Flash")
 	set_process(false)
 	set_physics_process(false)
 	yield(get_tree().create_timer(duration),"timeout")
+	get_node("AnimationPlayer").play("Normal")
 	set_process(true)
 	set_physics_process(true)
 

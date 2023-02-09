@@ -22,6 +22,7 @@ var ThrowForce = 0
 var FrameFreezeTime = 0.2
 var Damage = 0
 var candamage = true
+export(PackedScene) var HitParticles
 
 #timer to fix boomerang stuck and collide
 onready var CollideTimer = $CollideTimer
@@ -88,10 +89,12 @@ func _on_Area2D_area_entered(area):
 	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
-			#Speed = Speed / 2
-			#state = ComingBack
 			area.TakeDamage(Damage);
 			FrameFreeze(FrameFreezeTime)
+			var HitParticle = HitParticles.instance()
+			HitParticle.emitting = true
+			HitParticle.global_position = Vector2(global_position.x,global_position.y)
+			get_parent().add_child(HitParticle)
 	#to get when it should be Missed
 	if state == ComingBack:
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):

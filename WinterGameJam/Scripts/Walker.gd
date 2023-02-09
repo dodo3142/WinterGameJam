@@ -10,10 +10,10 @@ onready var Raycast = $RayCast2D
 onready var sprite = $AnimatedSprite
 
 func _ready():
-	set_physics_process(false)
 	Velocity.x = Speed
 
 func _physics_process(delta: float) -> void:
+	sprite.play()
 	Velocity.y += Gravity * delta
 	#if touch wall/raycast dosent touch floor mulitply by -1 to change direction
 	if is_on_wall() || !Raycast.is_colliding():
