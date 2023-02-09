@@ -56,6 +56,7 @@ var Velocity = Vector2.ZERO
 var k
 
 #get the nodes and scenes
+export(PackedScene) var FootstepsParticles
 onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
@@ -88,6 +89,7 @@ func _process(_delta):
 	
 	Throw(_delta)
 	Catch()
+	HandleParticles()
 	
 	Hud.BoomerangCount.text = str("x " + str(BoomerangCount))
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -246,7 +248,21 @@ func FlashColor():
 		var time = FLASH_RATE * i + FLASH_RATE
 		FlashTween.interpolate_callback(PlayerSprite, time, "set", "modulate", color)
 	FlashTween.start()
-
+#particles
+func HandleParticles():
+	if PlayerSprite.animation == "Running":
+		if PlayerSprite.frame == 2 or PlayerSprite.frame == 7:
+			var lastFrame = 0
+			if lastFrame != PlayerSprite.frame:
+				lastFrame = PlayerSprite.frame
+				var footstep= FootstepsParticles.instance()
+				footstep.emitting = true
+				footstep.global_position = Vector2(global_position.x,global_position.y + 55)
+				get_parent().add_child(footstep)
+		var wasGrounded = isGrounded
+		isGrounded = is_on_floor()
+		if wasGrounded == null || isGrounded != wasGrounded:
+			pass
 #Timers
 func _on_CoyoteTimer_timeout():
 	canJump = false

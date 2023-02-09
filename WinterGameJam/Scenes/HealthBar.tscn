@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Healthbar-black.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Healthbar-over.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Healthbar-progress.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Healthbar-black.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Healthbar-over.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Healthbar-progress.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/HealthBar.gd" type="Script" id=4]
 
 [node name="HealthBar" type="Control"]

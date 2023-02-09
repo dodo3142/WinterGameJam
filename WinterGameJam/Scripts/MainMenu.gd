@@ -12,7 +12,7 @@ func _process(_delta):
 			OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_Play_pressed():
-	MusicController.ChangeMusic("res://Assets/Music/OverwolrdDemo3.ogg")
+	MusicController.ChangeMusic("res://Assets/Music/Overworld.ogg")
 	SceenTransition.ChangeSceen("res://Levels/FinalLevel.tscn")
 
 func _on_Quit_pressed():

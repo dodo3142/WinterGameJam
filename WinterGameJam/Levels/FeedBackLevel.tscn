@@ -21,8 +21,8 @@
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=19]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/Protag Sprite Sheet (new).png" type="Texture" id=21]
-[ext_resource path="res://Assets/boomerang.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Arrow.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/boomerang.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/Arrow.png" type="Texture" id=23]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true

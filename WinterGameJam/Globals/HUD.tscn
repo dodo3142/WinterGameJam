@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Globals/HUD.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Boomerang 2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Boomerang 2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Fonts/Artless Demo.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]

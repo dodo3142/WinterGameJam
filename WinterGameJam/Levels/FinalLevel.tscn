@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Objects.gd" type="Script" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/TileSet/TileSet.png" type="Texture" id=4]
 [ext_resource path="res://Assets/BackGround/Clouds.png" type="Texture" id=5]
 [ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=6]
-[ext_resource path="res://Assets/4.png" type="Texture" id=7]
+[ext_resource path="res://Assets/BackGround/4(1).png" type="Texture" id=7]
 [ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=8]
 [ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/CountUp.tscn" type="PackedScene" id=10]
@@ -21,7 +21,8 @@
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=19]
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scripts/JumpUpgrade.gd" type="Script" id=21]
-[ext_resource path="res://Assets/boomerangup.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/boomerangup.png" type="Texture" id=22]
+[ext_resource path="res://Particles/WorledParticles.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -971,6 +972,7 @@ BoomerangCount = 1
 
 [node name="AutoTile" type="TileMap" parent="."]
 scale = Vector2( 0.1, 0.1 )
+z_index = 10
 tile_set = SubResource( 5 )
 cell_size = Vector2( 1000, 1000 )
 collision_layer = 8
@@ -1235,5 +1237,8 @@ motion_mirroring = Vector2( 5760, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource( 6 )
 centered = false
+
+[node name="WorledParticles" parent="." instance=ExtResource( 23 )]
+position = Vector2( 5171, -880 )
 
 [connection signal="area_entered" from="Collectables/JumpUpgrade" to="Collectables/JumpUpgrade" method="_on_JumpUpgrade_area_entered"]
