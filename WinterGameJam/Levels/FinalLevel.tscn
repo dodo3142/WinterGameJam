@@ -1005,7 +1005,9 @@ position = Vector2( 2256, -1060 )
 script = ExtResource( 2 )
 
 [node name="Switch" parent="Switches/Switch2" instance=ExtResource( 15 )]
-position = Vector2( 2390, 1712 )
+position = Vector2( 2404, 1692 )
+rotation = 1.57079
+scale = Vector2( 0.754274, 0.754274 )
 
 [node name="Door" parent="Switches/Switch2" instance=ExtResource( 13 )]
 position = Vector2( 1899, 1560 )
