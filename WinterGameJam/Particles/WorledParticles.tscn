@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://addons/kenney_particle_pack/circle_05.png" type="Texture" id=1]
+[ext_resource path="res://addons/kenney_particle_pack/light_03.png" type="Texture" id=1]
 
 [sub_resource type="Gradient" id=1]
 interpolation_mode = 2
-offsets = PoolRealArray( 0.00645161, 0.277419, 1 )
-colors = PoolColorArray( 0.52882, 0.641602, 0.52882, 0, 0.572306, 0.679688, 0.507111, 0.564706, 0.680987, 0.786133, 0.641804, 0 )
+offsets = PoolRealArray( 0.00645161, 0.980645, 1 )
+colors = PoolColorArray( 0.52882, 0.641602, 0.52882, 0, 0.572549, 0.678431, 0.505882, 0.14902, 0.680987, 0.786133, 0.641804, 0 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )

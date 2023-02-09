@@ -49,6 +49,7 @@ var tryingtoJump= false
 var takingDamage = false
 var IsOnBoomerang = false
 var isGrounded
+var Landing
 
 #Directions
 var HorizontalDir = Vector2.ZERO
@@ -57,6 +58,7 @@ var k
 
 #get the nodes and scenes
 export(PackedScene) var FootstepsParticles
+export(PackedScene) var LandParticles
 onready var PlayerSprite = $PlayerSprite
 onready var CoyoteJump = $CoyoteTimer
 onready var JumpBuffring = $JumpBuffring
@@ -69,6 +71,7 @@ onready var HandBackPos = $PlayerSprite/Hand/HandBackPos
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var JumpCatchBox = $JumpCatchBox/CollisionShape2D
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
+onready var GroundCheck = $GroundCheck
 onready var PulseTween = $PulseTween
 onready var FlashTween = $FlashTween
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
@@ -259,10 +262,16 @@ func HandleParticles():
 				footstep.emitting = true
 				footstep.global_position = Vector2(global_position.x,global_position.y + 55)
 				get_parent().add_child(footstep)
-		var wasGrounded = isGrounded
-		isGrounded = is_on_floor()
-		if wasGrounded == null || isGrounded != wasGrounded:
-			pass
+	if GroundCheck.is_colliding():
+		if Landing:
+			var LandParticle = LandParticles.instance()
+			LandParticle.emitting = true
+			LandParticle.global_position = Vector2(global_position.x,global_position.y + 55)
+			get_parent().add_child(LandParticle)
+			Landing = false
+	else:
+		if !Landing:
+			Landing = true
 #Timers
 func _on_CoyoteTimer_timeout():
 	canJump = false
