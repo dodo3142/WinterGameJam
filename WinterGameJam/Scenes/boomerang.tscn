@@ -14,9 +14,9 @@ radius = 31.0161
 collision_layer = 2
 collision_mask = 24
 script = ExtResource( 2 )
-Speed = 1600
-Goaccl = 2200
-Backaccl = 1000
+Speed = 1550
+Goaccl = 3000
+Backaccl = 2000
 HitParticles = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

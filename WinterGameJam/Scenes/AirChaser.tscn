@@ -82,6 +82,7 @@ collision_mask = 8
 script = ExtResource( 1 )
 MaxHealth = 20
 CurrentDir = 1
+ChasingSpeed = 600
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 7 )

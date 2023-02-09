@@ -17,11 +17,11 @@ export (float, 0, 1.0) var friction = 0.3
 export (float, 0, 1.0) var acceleration = 0.3
 
 #Boomerang Variables
-export var BoomerangCount = 3
+export var BoomerangCount = 1
 export var BoomerangJumpForce =-900
 export var BoomrangPushDownForce = 400
 export var ThrowForceTimeMult = 100
-export var maxThrowForce = 800
+export var maxThrowForce = 2200
 var PlayerColor = Color.white
 var PulseColor = Color.lightyellow
 var PulseColorHard = Color(1,1,0.5,1)
@@ -130,7 +130,6 @@ func Movement():
 			PlayerSprite.play("Idle")
 
 func Jumping():
-	
 	#start jump buffring when player press jump
 	if Input.is_action_just_pressed("Jump"):
 		JumpButtonrelesed = false

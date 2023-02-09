@@ -25,6 +25,7 @@ export var ChasingSpeed = 400
 export var CheckArea = 200
 
 onready var ChaserSprite = $AnimatedSprite
+onready var HornBox = $HitBox/CollisionShape2D2
 onready var PlayerRightRaycast = $PlayerCheckRays/RightRayCast
 onready var PlayerLeftRayCast = $PlayerCheckRays/LeftRayCast
 onready var GroundRightRayCast = $GroundCheckRays/RightRayCast
@@ -79,8 +80,10 @@ func CheckIfOnLedge():
 func UpdateFacingDir():
 	if(CurrentDir == FacingDir.Right):
 		ChaserSprite.scale.x = abs(ChaserSprite.scale.x)
+		HornBox.position = Vector2(92,-12)
 	else:
 		ChaserSprite.scale.x = -abs(ChaserSprite.scale.x)
+		HornBox.position = Vector2(-92,-12)
 
 func MatchSpeedToDir():
 	if(CurrentDir == FacingDir.Right):
