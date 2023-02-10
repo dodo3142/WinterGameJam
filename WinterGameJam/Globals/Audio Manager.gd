@@ -15,7 +15,7 @@ func _ready():
 		available.append(p)
 		p.connect("finished", self, "_on_stream_finished", [p])
 		p.bus = bus
-		p.volume_db = -20
+		p.volume_db =  -10
 
 
 func _on_stream_finished(stream):
@@ -24,9 +24,10 @@ func _on_stream_finished(stream):
 
 
 func play(sound_path):
-	#queue.clear()
 	queue.append(sound_path)
 
+func QFree():
+	queue.clear()
 
 func _process(_delta):
 	# Play a queued sound if any players are available.

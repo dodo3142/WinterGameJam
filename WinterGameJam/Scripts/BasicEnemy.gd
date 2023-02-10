@@ -5,6 +5,7 @@ export var MaxHealth = 100
 export var Attack = 30
 export var FrameFreezeTime = 0.2
 onready var Health = MaxHealth
+onready var DieAudio = get_node("Die")
 var PlayerDetectRadius = null
 
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 
 func _process(_delta):
 	if Health <= 0:
+		AudioManager.play("res://Assets/SFX/EnemyDie02.wav")
 		queue_free()
 		Engine.time_scale = 1
 

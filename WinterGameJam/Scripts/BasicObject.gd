@@ -11,5 +11,6 @@ func _ready():
 
 func _on_BasicObject_area_entered(area):
 	if area.is_in_group("Weapon"):
+		AudioManager.play("res://Assets/SFX/Switch.wav")
 		sprite.set_texture(ONsprite)
 		Active = true

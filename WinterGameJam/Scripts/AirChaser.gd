@@ -46,8 +46,10 @@ func _process(_delta):
 func _physics_process(delta):
 	match state:
 		Walking:
+			ChaserSprite.play("Walking")
 			MatchSpeedToDir()
 		Chasing:
+			ChaserSprite.play("Chasing")
 			# Tracks player position and changes direction
 			Velocity = position.direction_to(Player.global_position)* ChasingSpeed
 			RotateToTarget(Player, delta)
@@ -71,8 +73,17 @@ func MatchSpeedToDir():
 
 #Rotation logic
 func RotateToTarget(target, delta):
+	var firsttime = true
+	if firsttime:
+		ChaserSprite.flip_h = true
+		firsttime = false
 	var Direction = (target.global_position - global_position)
 	var AngleTo = ChaserSprite.transform.x.angle_to(Direction)
+	if Direction.x < 0: 
+		ChaserSprite.flip_v = true
+	else:
+		ChaserSprite.flip_h = true
+		ChaserSprite.flip_v = false
 	ChaserSprite.rotate(sign(AngleTo) * min(delta * RotationSpeed, abs(AngleTo)))
 
 

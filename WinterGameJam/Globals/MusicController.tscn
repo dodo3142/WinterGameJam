@@ -40,6 +40,7 @@ script = ExtResource( 2 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -10.0
+bus = "Music"
 
 [node name="ChangeMusic" type="AnimationPlayer" parent="."]
 anims/FadeOut = SubResource( 1 )

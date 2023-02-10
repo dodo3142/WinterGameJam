@@ -23,6 +23,8 @@ var FrameFreezeTime = 0.2
 var Damage = 0
 var candamage = true
 export(PackedScene) var HitParticles
+onready var AudioHitGrass = $HitGrass
+onready var AudioHitEnemy = $HitEnemy
 
 #timer to fix boomerang stuck and collide
 onready var CollideTimer = $CollideTimer
@@ -76,11 +78,14 @@ func CollisionCheck(collision_info):
 	if collision_info != null and state == Flying:
 		Speed = Speed / 4
 		state=ComingBack
+		AudioHitGrass.play()
 	elif collision_info != null and state == ComingBack and stuckTimer.time_left == 0:
 		stuckTimer.start(StuckTime)
+		AudioHitGrass.play()
 	elif collision_info == null and state == ComingBack and stuckTimer.time_left > 0:
 		stuckTimer.stop()
 	elif collision_info != null and state == Missed:
+		AudioHitGrass.play()
 		Velocity.x = 0
 		rotationSpeed = 0
 		candamage = false
@@ -95,6 +100,7 @@ func _on_Area2D_area_entered(area):
 			HitParticle.emitting = true
 			HitParticle.global_position = Vector2(global_position.x,global_position.y)
 			get_parent().add_child(HitParticle)
+			AudioHitEnemy.play()
 	#to get when it should be Missed
 	if state == ComingBack:
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):

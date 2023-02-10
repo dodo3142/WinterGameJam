@@ -38,6 +38,7 @@ var Damage = 10
 #Health
 export var MaxHealth = 200
 onready var Health = MaxHealth
+var Die = false
 
 #boolens
 var canmove = true
@@ -78,6 +79,7 @@ onready var Boomerang = preload("res://Scenes/boomerang.tscn")
 
 
 func _ready():
+	Health = MaxHealth
 	set_physics_process(false)
 	set_process(false)
 	#Updates Heathbar to max health
@@ -142,14 +144,15 @@ func Jumping():
 	
 	#jumping
 	if tryingtoJump and canJump:
-			if IsOnBoomerang:
+		AudioManager.play("res://Assets/SFX/Jump.wav")
+		if IsOnBoomerang:
 				#BoomerangCanJumpOn.Velocity.y += BoomrangPushDownForce
 				Velocity.y = BoomerangJumpForce
 				JumpCatchBox.disabled = false
 				CatchTimer.start()
-			else:
+		else:
 				Velocity.y = JumpForce
-			canJump = false
+		canJump = false
 	
 	#variableJump
 	if JumpButtonrelesed and Velocity.y < 0:
@@ -213,17 +216,23 @@ func Catch():
 
 #TakingDamageSystem
 func TakeDamage(Amount):
-	if !takingDamage:
+	if !takingDamage and !Die:
 		Health -= Amount
 		if Health <= 0:
-			Health = MaxHealth
-			k = get_tree().reload_current_scene()
+			Hud.Die()
+			Die = true
+			PlayerSprite.visible = false
+			canAttack = false
+			set_physics_process(false)
+			set_physics_process(false)
+			AudioManager.play("res://Assets/SFX/PlayerDie_1.wav")
 		PlayerEffects.play("Damage")
 		FrameFreeze(0.05,0.4)
 		TakingDamageTimer.start()
 		takingDamage = true
 		#Calls healthbar functions
 		Hud.HealthBar._on_health_updated(Health, Health)
+		AudioManager.play("res://Assets/SFX/PlayerDamage02.wav")
 
 #Adds to boomerang count
 func CountUp(Amount):
@@ -258,15 +267,19 @@ func HandleParticles():
 			if lastFrame != PlayerSprite.frame:
 				lastFrame = PlayerSprite.frame
 				var footstep= FootstepsParticles.instance()
+				if HorizontalDir < 0:
+					footstep.scale.x *= -1
 				footstep.emitting = true
-				footstep.global_position = Vector2(global_position.x,global_position.y + 55)
+				footstep.global_position = Vector2(global_position.x,global_position.y + 30)
 				get_parent().add_child(footstep)
+				#AudioManager.play("res://Assets/SFX/RunOnGrass01.wav")
 	if GroundCheck.is_colliding():
 		if Landing:
 			var LandParticle = LandParticles.instance()
 			LandParticle.emitting = true
-			LandParticle.global_position = Vector2(global_position.x,global_position.y + 55)
+			LandParticle.global_position = Vector2(global_position.x,global_position.y + 30)
 			get_parent().add_child(LandParticle)
+			AudioManager.play("res://Assets/SFX/BoomerangHitGrass.wav")
 			Landing = false
 	else:
 		if !Landing:
