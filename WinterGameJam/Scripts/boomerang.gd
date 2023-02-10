@@ -89,7 +89,7 @@ func _on_Area2D_area_entered(area):
 	#to damage the enemy
 	if candamage:
 		if area.is_in_group("Enemy"):
-			area.TakeDamage(Damage);
+			area.TakeDamage(Damage)
 			FrameFreeze(FrameFreezeTime)
 			var HitParticle = HitParticles.instance()
 			HitParticle.emitting = true

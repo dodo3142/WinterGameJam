@@ -17,7 +17,6 @@ func Spawn():
 		add_child(spawning)
 		spawning.set_as_toplevel(true)
 		spawning.global_position = global_position
-		print("here")
 		CanSpawn = false
 
 func _on_VisibilityEnabler2D_screen_entered():

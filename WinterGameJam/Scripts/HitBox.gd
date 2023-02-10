@@ -5,4 +5,3 @@ func TakeDamage(Damage):
 
 func AddCount(Amount):
 	owner.CountUp(Amount)
-

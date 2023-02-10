@@ -10,6 +10,7 @@ onready var Raycast = $RayCast2D
 onready var sprite = $AnimatedSprite
 
 func _ready():
+	set_physics_process(false)
 	Velocity.x = Speed
 
 func _physics_process(delta: float) -> void:
