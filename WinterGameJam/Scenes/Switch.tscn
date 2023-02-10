@@ -7,6 +7,7 @@
 extents = Vector2( 54, 55.5 )
 
 [node name="Switch" type="Area2D" groups=["Object"]]
+scale = Vector2( 0.75, 0.75 )
 collision_layer = 16
 collision_mask = 2
 script = ExtResource( 2 )
