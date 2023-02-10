@@ -16,3 +16,9 @@ func _on_Play_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+
+func _on_MusicSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),value)
+
+func _on_SFXSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),value)

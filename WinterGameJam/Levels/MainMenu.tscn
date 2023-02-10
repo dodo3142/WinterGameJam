@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CloudParallax.gd" type="Script" id=3]
@@ -39,9 +39,14 @@ bg_color = Color( 0, 0, 0, 0.513726 )
 size = 80
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=13]
+size = 29
+font_data = ExtResource( 9 )
+
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_scale = Vector2( 1, 0.994288 )
 script = ExtResource( 1 )
 
 [node name="Play" type="Button" parent="."]
@@ -127,5 +132,46 @@ script = ExtResource( 3 )
 texture = ExtResource( 5 )
 centered = false
 
+[node name="MusicSlider" type="HSlider" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -316.0
+margin_bottom = 71.0
+min_value = -50.0
+max_value = 0.0
+
+[node name="SFXSlider" type="HSlider" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -316.0
+margin_top = 72.4136
+margin_bottom = 143.414
+min_value = -80.0
+max_value = 0.0
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -372.0
+margin_top = 95.5458
+margin_right = -319.0
+margin_bottom = 128.546
+custom_fonts/font = SubResource( 13 )
+text = "SFX"
+uppercase = true
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -402.0
+margin_top = 21.1206
+margin_right = -319.0
+margin_bottom = 54.1206
+custom_fonts/font = SubResource( 13 )
+text = "Music"
+uppercase = true
+
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="value_changed" from="MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="SFXSlider" to="." method="_on_SFXSlider_value_changed"]
