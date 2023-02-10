@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Video/Title Screen Art_0000.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/CloudParallax.gd" type="Script" id=3]
 [ext_resource path="res://Assets/BackGround/Clouds.png" type="Texture" id=4]
 [ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=5]
@@ -8,6 +9,26 @@
 [ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=7]
 [ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Fonts/Artless Demo.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Video/Title Screen Art_0003.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Video/Title Screen Art_0004.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Video/Title Screen Art_0002.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Video/Title Screen Art_0001.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Video/Title Screen Art_0005.png" type="Texture" id=14]
+
+[sub_resource type="AnimatedTexture" id=14]
+flags = 4
+frames = 6
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 13 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 12 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 10 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 11 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 14 )
+frame_5/delay_sec = 0.0
 
 [sub_resource type="DynamicFont" id=5]
 size = 124
@@ -16,11 +37,9 @@ font_data = ExtResource( 9 )
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.6, 0.6, 0.6, 0.603922 )
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.6, 0.6, 0.6, 0.596078 )
+[sub_resource type="StyleBoxEmpty" id=15]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 0.541176 )
+[sub_resource type="StyleBoxEmpty" id=16]
 
 [sub_resource type="DynamicFont" id=11]
 size = 76
@@ -29,11 +48,9 @@ font_data = ExtResource( 9 )
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.6, 0.6, 0.6, 0.6 )
 
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0.6, 0.6, 0.6, 0.607843 )
+[sub_resource type="StyleBoxEmpty" id=17]
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 0, 0, 0.513726 )
+[sub_resource type="StyleBoxEmpty" id=18]
 
 [sub_resource type="DynamicFont" id=12]
 size = 80
@@ -49,6 +66,11 @@ anchor_bottom = 1.0
 rect_scale = Vector2( 1, 0.994288 )
 script = ExtResource( 1 )
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 14 )
+
 [node name="Play" type="Button" parent="."]
 margin_left = 575.0
 margin_top = 428.0
@@ -56,8 +78,8 @@ margin_right = 1389.0
 margin_bottom = 533.0
 custom_fonts/font = SubResource( 5 )
 custom_styles/hover = SubResource( 6 )
-custom_styles/focus = SubResource( 8 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
 text = "Play"
 icon_align = 1
 
@@ -68,15 +90,15 @@ margin_right = 1389.0
 margin_bottom = 670.0
 custom_fonts/font = SubResource( 11 )
 custom_styles/hover = SubResource( 7 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
 margin_top = 26.0
 margin_right = 500.0
 margin_bottom = 478.0
-custom_colors/font_color = Color( 1, 1, 1, 0.862745 )
+custom_colors/font_color = Color( 0.211765, 0.211765, 0.211765, 0.862745 )
 custom_fonts/font = SubResource( 12 )
 text = "Credits:
 Dodo3142
@@ -85,6 +107,7 @@ Kuma_Porta
 Damoid"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 scroll_limit_end = Vector2( 0, 1080 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]

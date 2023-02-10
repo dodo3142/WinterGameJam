@@ -272,7 +272,6 @@ func HandleParticles():
 				footstep.emitting = true
 				footstep.global_position = Vector2(global_position.x,global_position.y + 30)
 				get_parent().add_child(footstep)
-				#AudioManager.play("res://Assets/SFX/RunOnGrass01.wav")
 	if GroundCheck.is_colliding():
 		if Landing:
 			var LandParticle = LandParticles.instance()
