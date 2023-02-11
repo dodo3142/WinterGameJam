@@ -12,90 +12,112 @@ shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=10]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=11]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=12]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=13]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=14]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=15]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=16]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=17]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=18]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=19]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=20]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=21]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=22]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=23]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=24]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=25]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=26]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=27]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=28]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=29]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=30]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=31]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
@@ -182,7 +204,7 @@ material = SubResource( 7 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 4 )
 animation = "Chasing"
-frame = 3
+frame = 9
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
