@@ -5,7 +5,7 @@ func _process(_delta):
 
 var list = []
 
-onready var door = $Door
+onready var door = $Doors
 
 func _ready():
 	#var Switch = get_child_count()
@@ -24,6 +24,5 @@ func CheckSwitch():
 				list.erase(i)
 			#Switch -= 1
 	if list.size() == 0:
-		for i in get_children():
-			if i.is_in_group("Object"):
-				door.Deactivate()
+				for d in door.get_children():
+					d.Deactivate()

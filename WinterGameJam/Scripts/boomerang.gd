@@ -104,8 +104,8 @@ func _on_Area2D_area_entered(area):
 	if state == ComingBack:
 		if area.is_in_group("Player") or area.is_in_group("PlayerHand"):
 			state = Missed
-	#To get when it is chatched by the player
-	if area.is_in_group("Catch") && state != Flying:
+	#To get when it is caught by the player
+	if area.is_in_group("Catch"):
 		AudioManager.play("res://Assets/SFX/BoomerangCatch.wav")
 		Player.BoomerangCount += 1
 		Player.IsOnBoomerang = false
