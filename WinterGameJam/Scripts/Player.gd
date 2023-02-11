@@ -259,6 +259,8 @@ func FlashColor():
 		var time = FLASH_RATE * i + FLASH_RATE
 		FlashTween.interpolate_callback(PlayerSprite, time, "set", "modulate", color)
 	FlashTween.start()
+
+
 #particles
 func HandleParticles():
 	if PlayerSprite.animation == "Running":

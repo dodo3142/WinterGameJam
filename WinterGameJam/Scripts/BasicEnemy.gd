@@ -1,11 +1,11 @@
 extends KinematicBody2D
 class_name Enemy
 
-export var MaxHealth = 100
+export var MaxHealth = 100 
 export var Attack = 30
 export var FrameFreezeTime = 0.2
 onready var Health = MaxHealth
-onready var DieAudio = get_node("Die")
+#onready var DieAudio = get_node("Die")
 var PlayerDetectRadius = null
 
 func _ready():

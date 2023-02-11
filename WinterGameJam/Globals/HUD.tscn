@@ -214,6 +214,7 @@ anims/Die = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 
 [node name="PauseMenu" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
