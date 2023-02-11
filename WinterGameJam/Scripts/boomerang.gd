@@ -85,7 +85,6 @@ func CollisionCheck(collision_info):
 	elif collision_info == null and state == ComingBack and stuckTimer.time_left > 0:
 		stuckTimer.stop()
 	elif collision_info != null and state == Missed:
-		AudioHitGrass.play()
 		Velocity.x = 0
 		rotationSpeed = 0
 		candamage = false

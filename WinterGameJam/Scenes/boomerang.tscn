@@ -49,7 +49,6 @@ autostart = true
 
 [node name="HitGrass" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = -20.0
 bus = "SFX"
 
 [node name="HitEnemy" type="AudioStreamPlayer2D" parent="."]
