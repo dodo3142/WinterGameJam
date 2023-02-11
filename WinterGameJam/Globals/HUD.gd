@@ -4,6 +4,7 @@ onready var HealthBar = $HealthBar
 onready var BoomerangCount = $Sprite/Label
 export var ThrowUpgrade = false
 export var JumpUpgrade = false
+var PlayerPos = Vector2.ZERO
 var k
 
 func Die():

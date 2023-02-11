@@ -1,13 +1,7 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Video/Title Screen Art_0000.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/CloudParallax.gd" type="Script" id=3]
-[ext_resource path="res://Assets/BackGround/Clouds.png" type="Texture" id=4]
-[ext_resource path="res://Assets/BackGround/1.png" type="Texture" id=5]
-[ext_resource path="res://Assets/BackGround/4(1).png" type="Texture" id=6]
-[ext_resource path="res://Assets/BackGround/2.png" type="Texture" id=7]
-[ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Fonts/Artless Demo.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://Assets/Video/Title Screen Art_0003.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Video/Title Screen Art_0004.png" type="Texture" id=11]
@@ -16,7 +10,6 @@
 [ext_resource path="res://Assets/Video/Title Screen Art_0005.png" type="Texture" id=14]
 
 [sub_resource type="AnimatedTexture" id=14]
-flags = 4
 frames = 6
 frame_0/texture = ExtResource( 2 )
 frame_1/texture = ExtResource( 13 )
@@ -70,6 +63,7 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 14 )
+expand = true
 
 [node name="Play" type="Button" parent="."]
 margin_left = 575.0
@@ -95,90 +89,41 @@ custom_styles/normal = SubResource( 18 )
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
-margin_top = 26.0
-margin_right = 500.0
-margin_bottom = 478.0
+margin_left = 32.0
+margin_top = 22.1264
+margin_right = 1849.0
+margin_bottom = 110.126
 custom_colors/font_color = Color( 0.211765, 0.211765, 0.211765, 0.862745 )
 custom_fonts/font = SubResource( 12 )
-text = "Credits:
-Dodo3142
-Mr.Mild
-Kuma_Porta
-Damoid"
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
-scroll_limit_end = Vector2( 0, 1080 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 5760, 0 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 6 )
-centered = false
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0, 1 )
-motion_mirroring = Vector2( 5760, 0 )
-script = ExtResource( 3 )
-CloudSpeed = -30
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-texture = ExtResource( 4 )
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 5760, 0 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource( 8 )
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 5760, 0 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource( 7 )
-centered = false
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 5760, 0 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
-texture = ExtResource( 5 )
-centered = false
+text = "Credits: Dodo3142 Mr.Mild Kuma_Porta Damoid"
 
 [node name="MusicSlider" type="HSlider" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -316.0
-margin_bottom = 71.0
+margin_left = -345.0
+margin_top = 930.314
+margin_right = -29.0
+margin_bottom = 1001.31
 min_value = -50.0
 max_value = 0.0
 
 [node name="SFXSlider" type="HSlider" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -316.0
-margin_top = 72.4136
-margin_bottom = 143.414
+margin_left = -345.0
+margin_top = 1002.73
+margin_right = -29.0
+margin_bottom = 1073.73
 min_value = -80.0
 max_value = 0.0
 
 [node name="Label2" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -372.0
-margin_top = 95.5458
-margin_right = -319.0
-margin_bottom = 128.546
+margin_left = -401.0
+margin_top = 1025.86
+margin_right = -348.0
+margin_bottom = 1058.86
 custom_fonts/font = SubResource( 13 )
 text = "SFX"
 uppercase = true
@@ -186,10 +131,10 @@ uppercase = true
 [node name="Label3" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -402.0
-margin_top = 21.1206
-margin_right = -319.0
-margin_bottom = 54.1206
+margin_left = -431.0
+margin_top = 951.435
+margin_right = -348.0
+margin_bottom = 984.435
 custom_fonts/font = SubResource( 13 )
 text = "Music"
 uppercase = true
