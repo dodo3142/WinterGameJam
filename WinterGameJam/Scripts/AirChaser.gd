@@ -19,6 +19,7 @@ var Pos = Vector2.ZERO
 var Player = null
 var checkright
 var checkleft
+var time : float
 
 export var WalkingSpeed = 200
 export var ChasingSpeed = 400
@@ -46,6 +47,8 @@ func _process(_delta):
 func _physics_process(delta):
 	match state:
 		Walking:
+			time += delta
+			Velocity.y = sin (time * 5)  * 100
 			ChaserSprite.play("Walking")
 			MatchSpeedToDir()
 		Chasing:
