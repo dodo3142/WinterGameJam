@@ -33,7 +33,7 @@ func _on_health_updated(health, amount):
 
 #Assigns healthbar color to how low health value is
 func _assign_color(health):
-	if health <= 0:
+	if health == 0:
 		PulseTween.set_active(false)
 	elif health < HealthOver.max_value * DangerZone:
 		if WillPulse:

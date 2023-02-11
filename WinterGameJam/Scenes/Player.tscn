@@ -1,558 +1,298 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=62 format=2]
 
-[ext_resource path="res://Assets/Protag Sprite Sheet(2).png" type="Texture" id=1]
+[ext_resource path="res://Assets/SpriteSheets/Protag Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Hand Sprite Sheet.png" type="Texture" id=4]
+[ext_resource path="res://Particles/Footsteps.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Hand.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Protag Sprite Sheet(3).png" type="Texture" id=6]
+[ext_resource path="res://Assets/SpriteSheets/Hand Sprite Sheet sTRONGER LINE.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=7]
+[ext_resource path="res://Particles/LandParticles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=9]
 
-[sub_resource type="Shader" id=75]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}"
-
-[sub_resource type="ShaderMaterial" id=76]
-shader = SubResource( 75 )
+[sub_resource type="ShaderMaterial" id=80]
+resource_local_to_scene = true
+shader = ExtResource( 9 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
-<<<<<<< Updated upstream
-[sub_resource type="AtlasTexture" id=69]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 1000, 8000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=70]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 2000, 8000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=71]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 3000, 8000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=72]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 9000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=73]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 1000, 9000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=74]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 2000, 9000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 0, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 0, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 0, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=25]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-=======
 [sub_resource type="AtlasTexture" id=182]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=183]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=184]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=185]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=186]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=187]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=188]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=189]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=190]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=191]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=192]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=193]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=194]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=195]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 2000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=196]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=197]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=198]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=199]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=200]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=201]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=202]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=203]
->>>>>>> Stashed changes
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
-[sub_resource type="AtlasTexture" id=68]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=32]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=33]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 6000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=34]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 6000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=35]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 6000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=36]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 6000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=37]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 7000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=38]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 7000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=39]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 2000, 7000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=40]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 3000, 7000, 1000, 1000 )
-
 [sub_resource type="SpriteFrames" id=41]
 animations = [ {
-"frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
+"frames": [ SubResource( 182 ) ],
 "loop": true,
 "name": "Falling",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"frames": [ SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), SubResource( 189 ), SubResource( 190 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 68 ) ],
+"frames": [ SubResource( 191 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"frames": [ SubResource( 192 ), SubResource( 193 ), SubResource( 194 ), SubResource( 195 ), SubResource( 196 ), SubResource( 197 ), SubResource( 198 ), SubResource( 199 ), SubResource( 200 ), SubResource( 201 ), SubResource( 202 ), SubResource( 203 ) ],
 "loop": true,
 "name": "Running",
 "speed": 24.0
 } ]
 
-<<<<<<< Updated upstream
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2000, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 3000, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1000, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=46]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2000, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=47]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 3000, 4000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=48]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=49]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=50]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=51]
-flags = 4
-atlas = ExtResource( 4 )
-=======
 [sub_resource type="AtlasTexture" id=157]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=158]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=159]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=160]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=161]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=162]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=163]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=164]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 0, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=165]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 1000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=172]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=173]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=174]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=175]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=176]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=177]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=178]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=179]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=180]
+flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 2000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=181]
+flags = 4
 atlas = ExtResource( 6 )
->>>>>>> Stashed changes
 region = Rect2( 3000, 5000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=67]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=57]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=58]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=59]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 3000, 1000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=60]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=61]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=62]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 2000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=63]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 3000, 2000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=64]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 3000, 1000, 1000 )
-
-[sub_resource type="AtlasTexture" id=65]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 1000, 3000, 1000, 1000 )
 
 [sub_resource type="SpriteFrames" id=66]
 animations = [ {
-"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
+"frames": [ SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ), SubResource( 161 ), SubResource( 162 ), SubResource( 163 ), SubResource( 164 ) ],
 "loop": false,
 "name": "Catch",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 67 ) ],
+"frames": [ SubResource( 165 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 24.0
 }, {
-"frames": [ SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ) ],
+"frames": [ SubResource( 172 ), SubResource( 173 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 181 ) ],
 "loop": false,
 "name": "Throw",
 "speed": 24.0
 } ]
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 35.0223
+radius = 36.336
+
+[sub_resource type="CircleShape2D" id=151]
+radius = 86.2862
 
 [sub_resource type="Animation" id=77]
 resource_name = "Damage"
-length = 0.6
+length = 0.3
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:material:shader_param/flash_color")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, -0.5, -0.5 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("..:material:shader_param/flash_modifier")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 0.00232267, 1 ),
 "update": 0,
 "values": [ 0.6, 0.0, 0.6 ]
 }
@@ -652,25 +392,35 @@ tracks/2/keys = {
 radius = 18.0
 height = 80.0
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 21.0
-height = 76.0
+[sub_resource type="RectangleShape2D" id=156]
+extents = Vector2( 34.5, 74 )
+
+[sub_resource type="RectangleShape2D" id=81]
+extents = Vector2( 15.5, 60 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
-material = SubResource( 76 )
+material = SubResource( 80 )
+z_index = 1
 collision_mask = 8
 script = ExtResource( 2 )
+Speed = 700
+JumpForce = -1180
 FallGravity = 5000
-BoomerangCount = 3
 JumpStopMul = 0.4
-friction = 0.15
+friction = 0.2
 acceleration = 0.15
+ThrowForceTimeMult = 700
+maxThrowForce = 800
+FootstepsParticles = ExtResource( 4 )
+LandParticles = ExtResource( 8 )
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
-scale = Vector2( 0.17, 0.13 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 3
 frames = SubResource( 41 )
-animation = "Idle"
+animation = "Running"
+frame = 10
 
 [node name="Hand" type="Position2D" parent="PlayerSprite"]
 scale = Vector2( 6.66667, 6.66667 )
@@ -680,10 +430,11 @@ script = ExtResource( 5 )
 position = Vector2( 85, 0 )
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 66 )
-animation = "Idle"
+animation = "Catch"
+frame = 7
 playing = true
 
-[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite"]
+[node name="HandHitBox" type="Area2D" parent="PlayerSprite/Hand/HandSprite" groups=["PlayerHand"]]
 position = Vector2( 0, 10 )
 scale = Vector2( 8, 8 )
 collision_layer = 0
@@ -697,15 +448,21 @@ scale = Vector2( 8, 8 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/Hand/HandSprite/CatchHitBox"]
-modulate = Color( 0.00784314, 0.976471, 0, 1 )
-shape = SubResource( 8 )
+modulate = Color( 0.85098, 0, 1, 1 )
+position = Vector2( -48.75, -4.76837e-07 )
+shape = SubResource( 151 )
 disabled = true
+
+[node name="RealHandPos" type="Position2D" parent="PlayerSprite/Hand"]
+position = Vector2( 85, 0 )
+
+[node name="HandBackPos" type="Position2D" parent="PlayerSprite/Hand"]
+position = Vector2( -85, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
 position = Vector2( 864.706, 6.10352e-05 )
 scale = Vector2( 6.66667, 6.66667 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
 process_mode = 0
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -723,7 +480,7 @@ anims/Off = SubResource( 79 )
 anims/RESET = SubResource( 78 )
 
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
-collision_mask = 4
+collision_mask = 20
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
@@ -731,13 +488,26 @@ modulate = Color( 0, 1, 0.180392, 1 )
 position = Vector2( 0, 4 )
 shape = SubResource( 7 )
 
+[node name="JumpCatchBox" type="Area2D" parent="." groups=["Catch"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpCatchBox"]
+modulate = Color( 0.827451, 0, 1, 1 )
+position = Vector2( -1.5, -3 )
+shape = SubResource( 156 )
+disabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-modulate = Color( 0, 1, 0.858824, 1 )
-position = Vector2( 0, 4 )
-shape = SubResource( 3 )
+position = Vector2( -0.5, 3 )
+shape = SubResource( 81 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
+one_shot = true
+
+[node name="AttackRate" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="JumpBuffring" type="Timer" parent="."]
@@ -745,17 +515,35 @@ wait_time = 0.2
 one_shot = true
 
 [node name="CatchTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
-[node name="AttackRate" type="Timer" parent="."]
-wait_time = 0.1
+[node name="TakingDamage" type="Timer" parent="."]
+wait_time = 0.7
 one_shot = true
+
+[node name="FixInput" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="GroundCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, 63 )
+enabled = true
+cast_to = Vector2( 0, 9 )
+collision_mask = 9
+
+[node name="PulseTween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="FlashTween" type="Tween" parent="."]
 
 [connection signal="Grounded_Update" from="." to="PlayerSprite/Camera2D" method="_on_Player_Grounded_Update"]
 [connection signal="animation_finished" from="PlayerSprite/Hand/HandSprite" to="." method="_on_HandSprite_animation_finished"]
-[connection signal="animation_finished" from="PlayerSprite/PlayerEffects" to="." method="_on_PlayerEffects_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
+[connection signal="timeout" from="AttackRate" to="." method="_on_AttackRate_timeout"]
 [connection signal="timeout" from="JumpBuffring" to="." method="_on_JumpBuffring_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_CatchTimer_timeout"]
-[connection signal="timeout" from="AttackRate" to="." method="_on_AttackRate_timeout"]
+[connection signal="timeout" from="TakingDamage" to="." method="_on_TakingDamage_timeout"]
+[connection signal="timeout" from="FixInput" to="." method="_on_Timer_timeout"]
