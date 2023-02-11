@@ -1516,7 +1516,7 @@ position = Vector2( -0.499999, -0.999999 )
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 3
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/JumpUpgrade"]
@@ -1537,7 +1537,7 @@ __meta__ = {
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/ThrowUpgrade"]
@@ -1683,7 +1683,7 @@ max_fps = 3493
 position = Vector2( 5171, -880 )
 
 [node name="Boss2" parent="." instance=ExtResource( 5 )]
-position = Vector2( -2693, 5247 )
+position = Vector2( -2395, 5198 )
 
 [connection signal="area_entered" from="Collectables/JumpUpgrade" to="Collectables/JumpUpgrade" method="_on_JumpUpgrade_area_entered"]
 [connection signal="area_entered" from="Collectables/ThrowUpgrade" to="Collectables/ThrowUpgrade" method="_on_JumpUpgrade_area_entered"]
