@@ -152,13 +152,13 @@ func Jumping():
 		else:
 				Velocity.y = JumpForce
 		canJump = false
-		#AudioManager.play("res://Assets/SFX/Jump.wav")
+		AudioManager.play("res://Assets/SFX/Jump.wav")
 	
 	#variableJump
 	if JumpButtonrelesed and Velocity.y < 0:
 		Velocity.y = Velocity.y * JumpStopMul
 		JumpButtonrelesed = false
-		
+	
 	#JUMP&FALLING ANIMATION
 	if !canJump and Velocity.y < 0:
 		PlayerSprite.play("Jump")
@@ -218,6 +218,7 @@ func Catch():
 #TakingDamageSystem
 func TakeDamage(Amount):
 	if !takingDamage and !Die:
+		$PlayerSprite/Camera2D.add_trauma(0.2)
 		Health -= Amount
 		if Health <= 0:
 			Hud.Die()
