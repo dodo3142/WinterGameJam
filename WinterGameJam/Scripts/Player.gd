@@ -41,8 +41,21 @@ onready var AttackTimer = $AttackRate
 onready var Hand = $PlayerSprite/Hand/HandSprite
 onready var CatchBox = $PlayerSprite/Hand/HandSprite/CatchHitBox/CollisionShape2D
 onready var Boomerang = preload("res://Scenes/boomerang.tscn")
+<<<<<<< Updated upstream
 onready var Health = MaxHealth
 onready var PlayerEffects = $PlayerSprite/PlayerEffects
+=======
+
+
+func _ready():
+	set_physics_process(false)
+	set_process(false)
+	#Updates Heathbar to max health
+	Health = MaxHealth
+	Hud.HealthBar._on_max_health_updated(MaxHealth)
+	Hud.HealthBar._on_health_updated(Health, Health)
+	#position = Hud.PlayerPos
+>>>>>>> Stashed changes
 
 func _process(_delta):
 	#when player can jump
@@ -52,7 +65,13 @@ func _process(_delta):
 		CoyoteJump.start()
 	Throw(_delta)
 	Catch()
+<<<<<<< Updated upstream
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+=======
+	HandleParticles()
+	
+	Hud.BoomerangCount.text = str("x " + str(BoomerangCount))
+>>>>>>> Stashed changes
 
 
 
@@ -150,7 +169,13 @@ func TakeDamage(Amount):
 		Health -= Amount
 		PlayerEffects.play("Damage")
 		takingDamage = true
+<<<<<<< Updated upstream
 		print(Health)
+=======
+		#Calls healthbar functions
+		Hud.HealthBar._on_health_updated(Health, MaxHealth)
+		AudioManager.play("res://Assets/SFX/PlayerDamage02.wav")
+>>>>>>> Stashed changes
 
 
 func CameraUpdate():

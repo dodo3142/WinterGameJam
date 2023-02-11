@@ -25,6 +25,7 @@ shader = SubResource( 75 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+<<<<<<< Updated upstream
 [sub_resource type="AtlasTexture" id=69]
 flags = 4
 atlas = ExtResource( 6 )
@@ -152,6 +153,93 @@ region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
+=======
+[sub_resource type="AtlasTexture" id=182]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=183]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=184]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=185]
+atlas = ExtResource( 1 )
+region = Rect2( 2000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=186]
+atlas = ExtResource( 1 )
+region = Rect2( 3000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=187]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=188]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 1000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=189]
+atlas = ExtResource( 1 )
+region = Rect2( 2000, 1000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=190]
+atlas = ExtResource( 1 )
+region = Rect2( 3000, 1000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=191]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=192]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 2000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=193]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 2000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=194]
+atlas = ExtResource( 1 )
+region = Rect2( 2000, 2000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=195]
+atlas = ExtResource( 1 )
+region = Rect2( 3000, 2000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=196]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=197]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=198]
+atlas = ExtResource( 1 )
+region = Rect2( 2000, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=199]
+atlas = ExtResource( 1 )
+region = Rect2( 3000, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=200]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=201]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=202]
+atlas = ExtResource( 1 )
+region = Rect2( 2000, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=203]
+>>>>>>> Stashed changes
 atlas = ExtResource( 1 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
@@ -243,6 +331,7 @@ animations = [ {
 "speed": 24.0
 } ]
 
+<<<<<<< Updated upstream
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
 atlas = ExtResource( 4 )
@@ -291,6 +380,82 @@ region = Rect2( 2000, 5000, 1000, 1000 )
 [sub_resource type="AtlasTexture" id=51]
 flags = 4
 atlas = ExtResource( 4 )
+=======
+[sub_resource type="AtlasTexture" id=157]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=159]
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=160]
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=161]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 0, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 1000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=172]
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=173]
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 3000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=174]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=175]
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 6 )
+region = Rect2( 3000, 4000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=178]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=179]
+atlas = ExtResource( 6 )
+region = Rect2( 1000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=180]
+atlas = ExtResource( 6 )
+region = Rect2( 2000, 5000, 1000, 1000 )
+
+[sub_resource type="AtlasTexture" id=181]
+atlas = ExtResource( 6 )
+>>>>>>> Stashed changes
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=67]

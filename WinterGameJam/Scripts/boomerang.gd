@@ -88,4 +88,11 @@ func _on_Area2D_area_entered(area):
 		queue_free()
 
 func _on_StuckTimer_timeout():
+<<<<<<< Updated upstream
 	state= Missed
+=======
+	state = Missed
+
+func _on_CollideTimer_timeout():
+	canCollide = true
+>>>>>>> Stashed changes
