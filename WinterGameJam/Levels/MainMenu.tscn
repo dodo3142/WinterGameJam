@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Video/Title Screen Art_0005.png" type="Texture" id=14]
 
 [sub_resource type="AnimatedTexture" id=14]
+flags = 4
 frames = 6
 frame_0/texture = ExtResource( 2 )
 frame_1/texture = ExtResource( 13 )

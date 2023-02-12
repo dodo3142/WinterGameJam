@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Boss.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteSheets/Beetle SpriteSheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=4]
+[ext_resource path="res://Scenes/Rock.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ShaderMaterial" id=36]
 resource_local_to_scene = true
@@ -95,7 +96,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 80.5, 49.5 )
+extents = Vector2( 394, 184 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 289, 202 )
@@ -151,20 +152,26 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="Curve2D" id=42]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -321, -712, 0, 0, 0, 0, 1931, -636 )
+}
+
 [node name="Boss2" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 1 )
+RockSceen = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 36 )
 frames = SubResource( 22 )
-animation = "Angry"
+animation = "Waiting"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 modulate = Color( 0, 0.694118, 1, 1 )
-position = Vector2( 6.5, 36.5 )
+position = Vector2( -28, 90 )
 shape = SubResource( 1 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
@@ -172,12 +179,12 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 78, 106 )
+position = Vector2( -16, 104 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -274, -55 )
+position = Vector2( 272, -98 )
 shape = SubResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -185,4 +192,28 @@ anims/Flash = SubResource( 37 )
 anims/Normal = SubResource( 39 )
 anims/RESET = SubResource( 38 )
 
+[node name="WaitTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="RookSpawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 114.032, -0.00012207 )
+scale = Vector2( 1.35524, 1 )
+curve = SubResource( 42 )
+
+[node name="RookSpawnLoc" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -321, -712 )
+rotation = 0.033722
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( -5000, -500, 10000, 1000 )
+process_parent = true
+physics_process_parent = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="timeout" from="WaitTime" to="." method="_on_WaitTime_timeout"]
+[connection signal="timeout" from="RookSpawnTimer" to="." method="_on_RookSpawnTimer_timeout"]
