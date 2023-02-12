@@ -10,6 +10,7 @@ func _process(delta):
 		$AnimatedSprite.play("Hit")
 		if canPlaySound:
 			$AudioStreamPlayer2D.play()
+			$Area2D/CollisionShape2D.disabled = true
 		canPlaySound = false
 
 func _physics_process(delta):
@@ -22,6 +23,7 @@ func _on_Area2D_area_entered(area):
 		$AnimatedSprite.play("Hit")
 		if canPlaySound:
 			$AudioStreamPlayer2D.play()
+			$Area2D/CollisionShape2D.disabled = true
 		canPlaySound = false
 
 
