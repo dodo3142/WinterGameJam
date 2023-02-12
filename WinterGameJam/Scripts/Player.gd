@@ -84,6 +84,9 @@ func _ready():
 	set_process(false)
 	#Updates Heathbar to max health
 	Hud.HealthBar._on_max_health_updated(MaxHealth)
+	Hud.HealthBar._on_health_updated(MaxHealth, Health)
+	position = Hud.PlayerPos
+	
 
 func _process(_delta):
 	#when player can jump

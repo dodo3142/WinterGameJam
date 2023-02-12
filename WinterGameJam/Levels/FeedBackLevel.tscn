@@ -11,7 +11,7 @@
 [ext_resource path="res://Assets/BackGround/3.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/CountUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/fps_graph_overlay/FPSGraphOverlay.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/BoomerangeReset.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/CheckPoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Chaser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Switch.tscn" type="PackedScene" id=15]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scenes/Walker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/Sprites/boomerang.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Sprites/Arrow.png" type="Texture" id=23]
+
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
