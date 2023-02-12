@@ -60,6 +60,7 @@ func ChangeDir():
 			$HitBox.scale.x = 1
 		WallHits += 1
 		PlayerCamera.add_trauma(0.5)
+		AudioManager.play("res://Assets/SFX/RunOnGravel01.wav")
 		yield(get_tree().create_timer(0.5),"timeout")
 		MaxSpeed *= -1
 		yield(get_tree().create_timer(0.5),"timeout")
