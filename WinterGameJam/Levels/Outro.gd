@@ -1,0 +1,7 @@
+extends Control
+
+
+
+func _on_VideoPlayer_finished():
+	MusicController.ChangeMusic("res://Assets/Music/MainMenuTheme.ogg")
+	SceenTransition.ChangeSceen("res://Levels/MainMenu.tscn")

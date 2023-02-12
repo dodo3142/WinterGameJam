@@ -1513,7 +1513,7 @@ position = Vector2( -0.499999, -0.999999 )
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 5
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/JumpUpgrade"]
@@ -1534,7 +1534,7 @@ __meta__ = {
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/ThrowUpgrade"]

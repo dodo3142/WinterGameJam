@@ -16,11 +16,20 @@ var Pos = Vector2.ZERO
 export var MaxSpeed = 800
 var checkwall = true
 export(PackedScene) var RockSceen
+export(PackedScene) var FinalPotion
 
 func _ready():
 	for members in get_tree().get_nodes_in_group("PlayerCamera"):
 		PlayerCamera = members
-	
+
+func _process(delta):
+	if Health <= 10:
+		var Final = FinalPotion.instance()
+		Final.global_position = global_position
+		get_parent().add_child(Final)
+		AudioManager.play("res://Assets/SFX/EnemyDie02.wav")
+		queue_free()
+
 func _physics_process(delta):
 	if canPlay:
 		MusicController.ChangeMusic("res://Assets/Music/04 Boss.ogg")

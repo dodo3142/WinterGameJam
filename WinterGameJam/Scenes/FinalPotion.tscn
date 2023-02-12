@@ -1,0 +1,49 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://FinalPotion.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Potion_0003.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Potion_0002.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Potion_0004.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Potion_0000.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Potion_0006.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Potion_0005.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Potion_0007.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Potion_0001.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 425, 350 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 430, 365 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+scale = Vector2( 0.1, 0.1 )
+collision_layer = 16
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -25, 20 )
+scale = Vector2( 0.999999, 0.999999 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -30, 25 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+playing = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

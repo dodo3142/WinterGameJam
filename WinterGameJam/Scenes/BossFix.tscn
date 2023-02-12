@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Boss.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteSheets/Beetle SpriteSheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/HitBox.gd" type="Script" id=3]
 [ext_resource path="res://Shaders/FlashShader.gdshader" type="Shader" id=4]
 [ext_resource path="res://Scenes/Rock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/FinalPotion.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=36]
 resource_local_to_scene = true
@@ -161,7 +162,11 @@ _data = {
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 1 )
+MaxHealth = 200
+Attack = 40
+FrameFreezeTime = 0.3
 RockSceen = ExtResource( 5 )
+FinalPotion = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 36 )
