@@ -83,13 +83,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 394, 184 )
+extents = Vector2( 249.5, 145 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 263.5, 171 )
+extents = Vector2( 257, 147.5 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 118.5, 190.5 )
+extents = Vector2( 93, 146.5 )
 
 [sub_resource type="Animation" id=37]
 resource_name = "Flash"
@@ -156,13 +156,14 @@ FinalPotion = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 36 )
+scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 22 )
 animation = "Waiting"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 0, 0.694118, 1, 1 )
-position = Vector2( -28, 90 )
+position = Vector2( 12.5, 86 )
 shape = SubResource( 1 )
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
@@ -170,12 +171,12 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 9.5, 109 )
+position = Vector2( 3, 85.5 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 256.5, -82.5 )
+position = Vector2( 231, -38.5 )
 shape = SubResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -189,7 +190,7 @@ one_shot = true
 autostart = true
 
 [node name="RookSpawnTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2( 114.032, -0.00012207 )

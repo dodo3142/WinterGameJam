@@ -1,9 +1,11 @@
 extends KinematicBody2D
+
 export var Gravity = 700
 var Velocity = Vector2.ZERO
 export var Attack = 30
 var canPlaySound = true
-func _process(delta):
+
+func _process(_delta):
 	if $AnimatedSprite.animation != "Hit":
 		rotate(0.1)
 	if $RayCast2D.is_colliding():

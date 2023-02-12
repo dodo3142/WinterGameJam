@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var HealthBar = $HealthBar
 onready var BoomerangCount = $Sprite/Label
+export var BoomerangAmount = 1
 export var ThrowUpgrade = false
 export var JumpUpgrade = false
 

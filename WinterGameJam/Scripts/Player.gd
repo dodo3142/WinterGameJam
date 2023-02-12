@@ -85,7 +85,8 @@ func _ready():
 	#Updates Heathbar to max health
 	Hud.HealthBar._on_max_health_updated(MaxHealth)
 	Hud.HealthBar._on_health_updated(MaxHealth, Health)
-	#position = Hud.PlayerPos
+	position = Hud.PlayerPos
+	BoomerangCount = Hud.BoomerangAmount
 	
 
 func _process(_delta):

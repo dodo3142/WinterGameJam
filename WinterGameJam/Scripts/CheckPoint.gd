@@ -12,6 +12,7 @@ func _on_CheckPoint_area_entered(area):
 	Hud.PlayerPos = position
 	Hud.HealthBar._on_max_health_updated(200)
 	area.get_parent().Health = area.get_parent().MaxHealth
+	Hud.HealthBar._on_health_updated(200, 200)
 	sprite.play("Activated")
 
 func _on_Sprite_animation_finished():

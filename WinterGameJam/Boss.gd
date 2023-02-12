@@ -22,7 +22,7 @@ func _ready():
 	for members in get_tree().get_nodes_in_group("PlayerCamera"):
 		PlayerCamera = members
 
-func _process(delta):
+func _process(_delta):
 	if Health <= 10:
 		var Final = FinalPotion.instance()
 		Final.global_position = global_position
