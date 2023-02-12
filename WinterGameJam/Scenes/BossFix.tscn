@@ -14,72 +14,58 @@ shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=27]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 4000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=28]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 5000, 4000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=29]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=30]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=31]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=32]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=33]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 4000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=34]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 5000, 5000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=40]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 4000, 3000, 1000, 1000 )
 
 [sub_resource type="AtlasTexture" id=41]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 5000, 3000, 1000, 1000 )
 
@@ -100,10 +86,10 @@ animations = [ {
 extents = Vector2( 394, 184 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 289, 202 )
+extents = Vector2( 263.5, 171 )
 
 [sub_resource type="RectangleShape2D" id=35]
-extents = Vector2( 148.5, 242 )
+extents = Vector2( 118.5, 190.5 )
 
 [sub_resource type="Animation" id=37]
 resource_name = "Flash"
@@ -184,12 +170,12 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -16, 104 )
+position = Vector2( 9.5, 109 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 272, -98 )
+position = Vector2( 256.5, -82.5 )
 shape = SubResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -215,6 +201,7 @@ position = Vector2( -321, -712 )
 rotation = 0.033722
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 rect = Rect2( -5000, -500, 10000, 1000 )
 process_parent = true
 physics_process_parent = true
