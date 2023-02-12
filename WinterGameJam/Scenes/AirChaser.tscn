@@ -119,7 +119,7 @@ extents = Vector2( 32, 32 )
 extents = Vector2( 32, 32 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 200.0
+radius = 300.0
 
 [sub_resource type="Animation" id=6]
 resource_name = "Flash"
@@ -182,7 +182,7 @@ material = SubResource( 7 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 4 )
 animation = "Chasing"
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

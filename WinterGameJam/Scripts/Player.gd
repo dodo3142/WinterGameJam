@@ -156,7 +156,7 @@ func Jumping():
 		else:
 				Velocity.y = JumpForce
 		canJump = false
-		AudioManager.play("res://Assets/SFX/Jump.wav")
+		#AudioManager.play("res://Assets/SFX/Jump.wav")
 	
 	#variableJump
 	if JumpButtonrelesed and Velocity.y < 0:

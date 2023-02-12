@@ -986,7 +986,6 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 material = SubResource( 3 )
-position = Vector2( -5792, 4324 )
 
 [node name="AutoTile" type="TileMap" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -1534,7 +1533,7 @@ position = Vector2( -0.499999, -0.999999 )
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 6
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/JumpUpgrade"]
@@ -1555,7 +1554,6 @@ __meta__ = {
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/ThrowUpgrade"]
