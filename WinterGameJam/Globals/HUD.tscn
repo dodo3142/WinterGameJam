@@ -162,7 +162,6 @@ font_data = ExtResource( 4 )
 [node name="HUD" type="CanvasLayer"]
 pause_mode = 2
 script = ExtResource( 2 )
-JumpUpgrade = true
 
 [node name="HealthBar" parent="." instance=ExtResource( 1 )]
 margin_left = 20.0
