@@ -24,5 +24,6 @@ func _on_VisibilityEnabler2D_screen_entered():
 		Spawn()
 
 func _on_VisibilityEnabler2D_screen_exited():
-	if get_child_count() <= 1:
-		CanSpawn = true
+	#if get_child_count() <= 1:
+		#CanSpawn = true
+	pass

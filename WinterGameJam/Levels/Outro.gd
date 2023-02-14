@@ -3,5 +3,5 @@ extends Control
 
 
 func _on_VideoPlayer_finished():
-	MusicController.ChangeMusic("res://Assets/Music/MainMenuTheme.ogg")
+	MusicController.ChangeMusic(MusicController.MainMenu)
 	SceenTransition.ChangeSceen("res://Levels/MainMenu.tscn")

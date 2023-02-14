@@ -32,7 +32,7 @@ func _process(_delta):
 
 func _physics_process(delta):
 	if canPlay:
-		MusicController.ChangeMusic("res://Assets/Music/04 Boss.ogg")
+		MusicController.ChangeMusic(MusicController.BossTheme)
 		canPlay = false
 	match status:
 		Waiting:

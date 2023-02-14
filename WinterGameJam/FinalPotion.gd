@@ -10,5 +10,5 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		Hud.visible = false
-		MusicController.ChangeMusic("res://Assets/Music/Outro Cutscene.wav")
+		MusicController.ChangeMusic(MusicController.EndTheme)
 		SceenTransition.ChangeSceen("res://Levels/Outro.tscn")

@@ -63,10 +63,10 @@ func _physics_process(delta):
 			if Speed <= 0:
 				state = ComingBack
 		ComingBack:
-			Speed = Speed + Backaccl*delta
+			Speed = Speed + Backaccl * delta
 			Velocity = position.direction_to(Hand.global_position)* Speed
 		Missed:
-			Velocity.y = Velocity.y + Gravity * delta
+			Velocity.y = Velocity.y + 1000 * delta
 	
 	var collision_info = move_and_collide(Velocity * delta)
 	

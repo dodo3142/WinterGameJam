@@ -1236,7 +1236,7 @@ position = Vector2( 8681, -1549 )
 SpawningScene = ExtResource( 20 )
 
 [node name="Spawner9" parent="Enemies" instance=ExtResource( 28 )]
-position = Vector2( 8820, -1546 )
+position = Vector2( 10430, -1151 )
 SpawningScene = ExtResource( 20 )
 
 [node name="Spawner3" parent="Enemies" instance=ExtResource( 28 )]
@@ -1248,21 +1248,19 @@ position = Vector2( 7854, 1663 )
 SpawningScene = ExtResource( 14 )
 
 [node name="Spawner17" parent="Enemies" instance=ExtResource( 28 )]
-visible = false
 position = Vector2( -6078, 4362 )
 SpawningScene = ExtResource( 14 )
 
 [node name="Spawner18" parent="Enemies" instance=ExtResource( 28 )]
-visible = false
 position = Vector2( -4691, 4362 )
 SpawningScene = ExtResource( 14 )
 
 [node name="Spawner4" parent="Enemies" instance=ExtResource( 28 )]
-position = Vector2( -956, -2286 )
+position = Vector2( -1008, -1963 )
 SpawningScene = ExtResource( 20 )
 
 [node name="Spawner14" parent="Enemies" instance=ExtResource( 28 )]
-position = Vector2( -3034, -918 )
+position = Vector2( -2920, -541 )
 SpawningScene = ExtResource( 20 )
 
 [node name="Spawner5" parent="Enemies" instance=ExtResource( 28 )]
@@ -1533,7 +1531,7 @@ position = Vector2( -0.499999, -0.999999 )
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
-frame = 1
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/JumpUpgrade"]
@@ -1554,6 +1552,7 @@ __meta__ = {
 scale = Vector2( 0.118, 0.116 )
 frames = SubResource( 71 )
 animation = "Potion"
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/ThrowUpgrade"]
